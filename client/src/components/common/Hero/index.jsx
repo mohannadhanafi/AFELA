@@ -19,7 +19,7 @@ export default class Hero extends Component {
               <div className="col-md-7 ">
                 <article className="post-1">
                   <div className="entry-img hover-scale">
-                    <img src={hero1} alt="" />
+                    <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_1.jpg" alt="" />
                     <div className="entry-inner">
                       <div className="entry">
                         <h2 className="entry-title color-white">
@@ -34,7 +34,7 @@ export default class Hero extends Component {
               <div className="col-md-5 ">
                 <article className="post-2">
                   <div className="entry-img hover-scale">
-                    <img src={hero2} alt="" />
+                    <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg" alt="" />
                     <div className="entry-inner small">
                       <div className="entry">
                         <h2 className="entry-title color-white">
@@ -49,7 +49,7 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-3">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <img src={hero3} alt="" />
+                        <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg"alt="" />
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
@@ -64,7 +64,7 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-4">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <img src={hero4} alt="" />
+                        <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg" alt="" />
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
