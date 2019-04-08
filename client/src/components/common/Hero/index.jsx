@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import hero1 from './hero_1.jpg';
-import hero2 from './hero_2.jpg';
-import hero3 from './hero_3.jpg';
-import hero4 from './hero_4.jpg';
+import './style.css';
 
 export default class Hero extends Component {
   state = {
@@ -19,7 +16,7 @@ export default class Hero extends Component {
               <div className="col-md-7 ">
                 <article className="post-1">
                   <div className="entry-img hover-scale">
-                    <img src={hero1} alt="" />
+                    <img className="hero1" src="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                     <div className="entry-inner">
                       <div className="entry">
                         <h2 className="entry-title color-white">
@@ -34,7 +31,7 @@ export default class Hero extends Component {
               <div className="col-md-5 ">
                 <article className="post-2">
                   <div className="entry-img hover-scale">
-                    <img src={hero2} alt="" />
+                    <img className="hero2" src="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                     <div className="entry-inner small">
                       <div className="entry">
                         <h2 className="entry-title color-white">
@@ -49,7 +46,7 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-3">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <img src={hero3} alt="" />
+                        <img className="hero3" src="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
@@ -64,7 +61,7 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-4">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <img src={hero4} alt="" />
+                        <img className="hero3" src="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
