@@ -16,19 +16,19 @@ export default class Hero extends Component {
         <div className="container">
           <section className="section-wrap main-news pt-30 pb-50">
             <div className="row small-spacing">
-              <div className="col-md-7 post-1">
-                <div className="entry-img hover-scale">
-                  <img src={hero1} alt="" />
-                  <div className="entry-inner">
-                    <div className="entry">
-                      <h2 className="entry-title color-white">
-                        <span>
+              <div className="col-md-7 ">
+                <article className="post-1">
+                  <div className="entry-img hover-scale">
+                    <img src={hero1} alt="" />
+                    <div className="entry-inner">
+                      <div className="entry">
+                        <h2 className="entry-title color-white">
                           When Are You Actually Ready to Launch a Startup?
-                        </span>
-                      </h2>
+                        </h2>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </article>
               </div>
 
               <div className="col-md-5 ">
