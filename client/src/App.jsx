@@ -1,20 +1,22 @@
 /* eslint-disable react/jsx-filename-extension */
-
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import './App.css';
-import Header from './components/common/Header';
-=======
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.scss';
->>>>>>> ffb019aeccad4a7db7d6190a13c6a6495345d750
+import Home from './components/pages/Home';
 
 class App extends Component {
   state = {};
 
   render() {
     return (
-
-      <Header />
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            {/* <Route path="*" component={Error} /> */}
+          </Switch>
+        </Router>
+      </div>
     );
   }
 }

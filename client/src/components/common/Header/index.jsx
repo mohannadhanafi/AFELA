@@ -11,7 +11,6 @@ export default class Header extends Component {
             <div className="container">
               <div className="row">
                 <div className="top-bar-links">
-
                   <ul className="col-sm-6">
                     <li className="top-bar-date">
                       <span>Thursday, December 26, 2015</span>
