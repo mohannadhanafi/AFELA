@@ -14,8 +14,8 @@ export default class index extends Component {
       },
       {
         link: '/',
-        time: '14:13',
-        text: '7 Traits That Define Work Productivity Superstars',
+        time: '16:07',
+        text: 'new new new new',
       },
     ],
   };
@@ -30,7 +30,8 @@ export default class index extends Component {
             {breaking.map(value => (
               <li>
                 <Link to={value.link}>
-                  <time>{value.time}</time>{value.text}</Link>
+                  <time>{value.time}</time>
+                  {` ${value.text}`}</Link>
               </li>
             ))}
           </ul>
