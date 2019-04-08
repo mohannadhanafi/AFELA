@@ -282,6 +282,7 @@ p {
 }
 
 .logo {
+  height: 48px;
   -webkit-transition: height 0.3s ease-in-out;
   -moz-transition: height 0.3s ease-in-out;
   -o-transition: height 0.3s ease-in-out;
