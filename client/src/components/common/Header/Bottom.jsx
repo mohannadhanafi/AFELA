@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 export default class Header extends Component {
-  state = {};
+  state = {
+
+  };
 
   render() {
     return (
@@ -30,12 +32,9 @@ export default class Header extends Component {
                     </a>
                   </li>
 
-                  <li className="active">
+                  <li className="hidden-sm">
                     <a
                       href="/gldkf.com"
-                      target="_blank"
-                      className="dropdown-toggle"
-                      data-toggle="dropdown"
                     >
                       Home
                     </a>
