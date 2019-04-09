@@ -56,7 +56,7 @@ export default function index() {
         data-placement="top"
         title="Email"
       >
-        <i className="fab fa-envelope" />
+        <i className="fa fa-envelope" />
       </Link>
     </div>
   );

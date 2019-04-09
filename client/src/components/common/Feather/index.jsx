@@ -22,7 +22,7 @@ export default class Feather extends Component {
 
         <div id="flexslider" className="flexslider">
           <ul className="slides clearfix">
-            {feather && feather.map(({ image }) => (
+            {feather && feather.map(({ image }) => (              
               <li>
                 <img src={image} alt="" className="image__feather"/>
               </li>

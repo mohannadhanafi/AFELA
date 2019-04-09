@@ -7,7 +7,6 @@ import Weather from '../../common/Weather';
 import Ads from '../../common/Ads';
 import Galleries from '../../common/Galleries';
 import Categoty from '../../common/Category';
-import Feather from '../../common/Feather';
 import TopRated from '../../common/TopRated';
 import Tags from '../../common/Tags';
 import PostBody from './Post';
@@ -79,12 +78,9 @@ export default class SigleArtice extends Component {
         <div className="container">
           <ol className="breadcrumb mt-20">
             <li>
-              <a href="index.html">Home</a>
+              <a href="/">Home</a>
             </li>
-            <li>
-              <a href="index.html">Pages</a>
-            </li>
-            <li className="active">Magazine Single</li>
+            <li className="active">Single Article</li>
           </ol>
         </div>
 
@@ -113,7 +109,6 @@ export default class SigleArtice extends Component {
                 <Ads link="/" />
                 <Galleries />
                 <Categoty />
-                <Feather />
                 <TopRated />
                 <Tags />
               </aside>

@@ -5535,7 +5535,16 @@ article img {
 /*-------------------------------------------------------*/
 /* Flexslider
 /*-------------------------------------------------------*/
-
+@font-face {
+  font-family: ElegantIcons;
+  src: url(../fonts/ElegantIcons.eot);
+  src: url(../fonts/ElegantIcons.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/ElegantIcons.woff) format("woff"),
+    url(../fonts/ElegantIcons.ttf) format("truetype"),
+    url(../fonts/ElegantIcons.svg#ElegantIcons) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
 .flexslider {
   position: relative;
   overflow: hidden;
@@ -6861,6 +6870,7 @@ label {
     display: none;
   }
 }
+
 @font-face {
   font-family: "FontAwesome";
   font-weight: normal;
