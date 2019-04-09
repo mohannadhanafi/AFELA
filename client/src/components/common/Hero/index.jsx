@@ -1,6 +1,7 @@
 
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
+import './style.css';
 
 export default class Hero extends Component {
   state = {
@@ -16,12 +17,7 @@ export default class Hero extends Component {
               <div className="col-md-7 ">
                 <article className="post-1">
                   <div className="entry-img hover-scale">
-                    <a href="#">
-                      <img
-                        src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg"
-                        alt=""
-                      />
-                    </a>
+                    <img className="hero1" src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg" alt="" />
                     <div className="entry-inner">
                       <div className="entry">
                         <h2 className="entry-title color-white">
@@ -38,12 +34,7 @@ export default class Hero extends Component {
               <div className="col-md-5 ">
                 <article className="post-2">
                   <div className="entry-img hover-scale">
-                    <a href="#">
-                      <img
-                        src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg"
-                        alt=""
-                      />
-                    </a>
+                    <img className="hero2" src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg" alt="" />
                     <div className="entry-inner small">
                       <div className="entry">
                         <h2 className="entry-title color-white">
@@ -60,13 +51,7 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-3">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <a href="#">
-                          {' '}
-                          <img
-                            src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg"
-                            alt=""
-                          />
-                        </a>
+                        <img className="hero3" src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg" alt="" />
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
@@ -83,13 +68,7 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-4">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <a href="#">
-                          {' '}
-                          <img
-                            src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg"
-                            alt=""
-                          />
-                        </a>
+                        <img className="hero3" src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg" alt="" />
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
