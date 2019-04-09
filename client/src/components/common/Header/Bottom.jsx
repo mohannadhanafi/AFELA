@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Header extends Component {
   state = {};
@@ -26,13 +27,13 @@ export default class Header extends Component {
                   </li>
 
                   <li className="nav-home hidden-sm hidden-xs">
-                    <a href="/dlfkd.com">
+                    <Link to="/">
                       <i className="fas fa-home" />{' '}
-                    </a>
+                    </Link>
                   </li>
 
                   <li className="hidden-sm">
-                    <a href="/gldkf.com">Home</a>
+                    <Link to="/">Home</Link>
                   </li>
 
                   <li className="dropdown">

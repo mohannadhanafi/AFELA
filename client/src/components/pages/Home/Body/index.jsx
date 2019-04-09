@@ -9,6 +9,10 @@ import Weather from '../../../common/Weather';
 import EditorPicks from '../../../common/layouts/EditorPicks';
 import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
+import Category from '../../../common/Category';
+import Feather from '../../../common/Feather';
+import TopRated from '../../../common/TopRated';
+import Tags from '../../../common/Tags';
 
 
 export default class index extends Component {
@@ -36,6 +40,10 @@ export default class index extends Component {
               <Weather />
               <Ads link="/" />
               <Galleries />
+              <Category />
+              <Feather />
+              <TopRated />
+              <Tags />
             </aside>
           </div>
         </div>
