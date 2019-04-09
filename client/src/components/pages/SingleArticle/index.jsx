@@ -10,6 +10,8 @@ import Categoty from '../../common/Category';
 import TopRated from '../../common/TopRated';
 import Tags from '../../common/Tags';
 import PostBody from './Post';
+import RelatedPosts from './RelatedPosts';
+import Comments from './Comments';
 
 export default class SigleArtice extends Component {
   state = {
@@ -32,11 +34,43 @@ export default class SigleArtice extends Component {
     comments: 15,
     title: 'Treat Your Employees Well. They Are Your Best Brand Ambassadors',
     body: 'We possess within us two minds. So far I have written only of the conscious mind. It\'s the fastest-funded project and also the most funded - by far. We possess within us two minds. So far I have written only of the conscious mind. I would now like to introduce you to your second mind. And finally the subconscious is the mechanism through which thought impulses which are repeated regularly with feeling and emotion are quickened, charged and changed into their physical equivalent.',
+    relatedPosts: [
+      {
+        image: 'http://deothemes.com/envato/afela/html/img/blog/1.jpg',
+        title: 'The Golden Age: How the PR Industry Is Coming Into its Own',
+      },
+      {
+        image: 'http://deothemes.com/envato/afela/html/img/blog/3.jpg',
+        title: '5 Ways to Give Thanks and Give Back at Work',
+      },
+      {
+        image: 'http://deothemes.com/envato/afela/html/img/blog/1.jpg',
+        title: '16-Step Blueprint to Master Your Digital Marketing in 2016',
+      },
+    ],
+    AllComments: [
+      {
+        time: 'May 6, 2014 at 12:48 pm',
+        comment: 'This template is so awesome. I didn’t expect so many features inside. E-commerce pages are very useful, you can launch your online store in few seconds. I will rate 5 stars.',
+        user: {
+          name: 'Joeby Ragpa',
+          avatar: 'http://deothemes.com/envato/afela/html/img/blog/comment_1.jpg',
+        },
+      },
+      {
+        time: 'May 6, 2014 at 12:48 pm',
+        comment: 'This template is so awesome. I didn’t expect so many features inside. E-commerce pages are very useful, you can launch your online store in few seconds. I will rate 5 stars.',
+        user: {
+          name: 'Christopher Robins',
+          avatar: 'http://deothemes.com/envato/afela/html/img/blog/comment_3.jpg',
+        },
+      },
+    ],
   };
 
   render() {
     const {
-      images, tags, author, date, category, comments, title, body,
+      images, tags, author, date, category, comments, title, body, relatedPosts, AllComments,
     } = this.state;
     return (
       <div className="main-wrapper magazine oh">
@@ -63,6 +97,8 @@ export default class SigleArtice extends Component {
                   title={title}
                   body={body}
                 />
+                <RelatedPosts relatedPosts={relatedPosts} />
+                <Comments AllComments={AllComments} comments={comments} />
               </div>
               <aside className="col-md-4 sidebar pb-50">
                 <FollowUs />

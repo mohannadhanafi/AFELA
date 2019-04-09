@@ -8,7 +8,7 @@ export default class index extends Component {
       title: 'Fashion',
       news: [
         {
-          image: 'http://deothemes.com/envato/afela/html/img/magazine/13.jpg',
+          image: 'http://deothemes.com/envato/afela/html/img/magazine/12.jpg',
           title: 'The Golden Age: How the PR Industry Is Coming Into its Own',
           date: '19 DEC 2015',
           comments: 15,
