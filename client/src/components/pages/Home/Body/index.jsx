@@ -11,6 +11,9 @@ import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
 import Category from '../../../common/Category';
 import Feather from '../../../common/Feather';
+import TopRated from '../../../common/TopRated';
+import Tags from '../../../common/Tags';
+
 
 export default class index extends Component {
     state = {}
@@ -39,6 +42,8 @@ export default class index extends Component {
               <Galleries />
               <Category />
               <Feather />
+              <TopRated />
+              <Tags />
             </aside>
           </div>
         </div>
