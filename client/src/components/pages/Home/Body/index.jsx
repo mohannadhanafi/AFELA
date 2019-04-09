@@ -6,6 +6,7 @@ import Categories from '../../../common/layouts/Categories';
 import FollowUs from '../../../common/FollowUs';
 import Popular from '../../../common/Popular';
 import Weather from '../../../common/Weather';
+import Ads from '../../../common/Ads';
 
 export default class index extends Component {
     state = {}
@@ -24,6 +25,7 @@ export default class index extends Component {
               <FollowUs />
               <Popular />
               <Weather />
+              <Ads />
             </aside>
           </div>
         </div>
