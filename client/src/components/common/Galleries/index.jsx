@@ -10,19 +10,19 @@ export default class Galleries extends Component {
         link: '/',
       },
       {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_11.jpg',
+        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_12.jpg',
         link: '/',
       }, {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_11.jpg',
+        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_13.jpg',
         link: '/',
       }, {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_11.jpg',
+        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_14.jpg',
         link: '/',
       }, {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_11.jpg',
+        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_15.jpg',
         link: '/',
       }, {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/gallery_11.jpg',
+        image: 'http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg',
         link: '/',
       },
 
@@ -39,7 +39,7 @@ export default class Galleries extends Component {
             <li>
               <article className="entry-img hover-scale">
                 <Link to={link}>
-                  <img src={image} alt="" className="image__gallery"/>
+                  <img src={image} alt="" className="image__gallery" />
                 </Link>
               </article>
             </li>

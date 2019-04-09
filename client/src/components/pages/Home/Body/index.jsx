@@ -7,6 +7,8 @@ import FollowUs from '../../../common/FollowUs';
 import Popular from '../../../common/Popular';
 import Weather from '../../../common/Weather';
 import Ads from '../../../common/Ads';
+import Galleries from '../../../common/Galleries';
+
 
 export default class index extends Component {
     state = {}
@@ -26,6 +28,7 @@ export default class index extends Component {
               <Popular />
               <Weather />
               <Ads />
+              <Galleries />
             </aside>
           </div>
         </div>

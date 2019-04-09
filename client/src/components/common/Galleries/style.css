@@ -1,4 +1,4 @@
-image__gallery{
-  width: 114px;
-  height: 114px;
+.image__gallery{
+  width: 114px !important;
+  height: 114px !important;
 }
