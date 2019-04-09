@@ -6,13 +6,16 @@ export default class index extends Component {
 
     render() {
       return (
-        <div className="row">
-          <div className="col-md-8 content">
-            <TrendingPosts />
+        <div className="container">
+
+          <div className="row">
+            <div className="col-md-8 content">
+              <TrendingPosts />
+            </div>
+            <aside className="col-md-4 sidebar pb-50">
+              <h1>The asside will be here</h1>
+            </aside>
           </div>
-          <aside className="col-md-4 sidebar pb-50">
-            <h1>The asside will be here</h1>
-          </aside>
         </div>
       );
     }
