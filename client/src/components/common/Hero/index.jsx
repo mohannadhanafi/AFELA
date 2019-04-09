@@ -1,13 +1,10 @@
+
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
-import hero1 from './hero_1.jpg';
-import hero2 from './hero_2.jpg';
-import hero3 from './hero_3.jpg';
-import hero4 from './hero_4.jpg';
 
 export default class Hero extends Component {
   state = {
     hero: [],
-
   };
 
   render() {
@@ -19,10 +16,17 @@ export default class Hero extends Component {
               <div className="col-md-7 ">
                 <article className="post-1">
                   <div className="entry-img hover-scale">
-                    <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_1.jpg" alt="" />
+                    <a href="#">
+                      <img
+                        src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg"
+                        alt=""
+                      />
+                    </a>
                     <div className="entry-inner">
                       <div className="entry">
                         <h2 className="entry-title color-white">
+
+
                           When Are You Actually Ready to Launch a Startup?
                         </h2>
                       </div>
@@ -34,10 +38,17 @@ export default class Hero extends Component {
               <div className="col-md-5 ">
                 <article className="post-2">
                   <div className="entry-img hover-scale">
-                    <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg" alt="" />
+                    <a href="#">
+                      <img
+                        src="http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg"
+                        alt=""
+                      />
+                    </a>
                     <div className="entry-inner small">
                       <div className="entry">
                         <h2 className="entry-title color-white">
+
+
                           How to Use Pastel Colors in Web Design Projects
                         </h2>
                       </div>
@@ -49,10 +60,18 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-3">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg"alt="" />
+                        <a href="#">
+                          {' '}
+                          <img
+                            src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg"
+                            alt=""
+                          />
+                        </a>
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
+
+
                               Size Matters: Make Your Business
                             </h2>
                           </div>
@@ -64,10 +83,18 @@ export default class Hero extends Component {
                   <div className="col-sm-6 post-4">
                     <article className="">
                       <div className="entry-img hover-scale">
-                        <img src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg" alt="" />
+                        <a href="#">
+                          {' '}
+                          <img
+                            src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg"
+                            alt=""
+                          />
+                        </a>
                         <div className="entry-inner small">
                           <div className="entry">
                             <h2 className="entry-title color-white">
+
+
                               Stop Reacting and Start Responding
                             </h2>
                           </div>

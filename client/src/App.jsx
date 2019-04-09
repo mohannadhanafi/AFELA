@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Header from './components/common/Header';
 import './App.scss';
+import Footer from './components/common/Footer';
 
 class App extends Component {
   state = {};
@@ -12,11 +13,12 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-           <Header />
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            {/* <Route path="*" component={Error} /> */}
           </Switch>
+          <Footer />
+
         </Router>
       </div>
     );
