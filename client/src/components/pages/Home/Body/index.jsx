@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TrendingPosts from '../../../common/layouts/TrendingPosts';
 import LatestNews from '../../../common/layouts/LatestNews';
 import NewsInPicture from '../../../common/layouts/NewsInPicture';
+import FollowUs from '../../../common/FollowUs';
+import Popular from '../../../common/Popular';
 
 export default class index extends Component {
     state = {}
@@ -17,10 +19,12 @@ export default class index extends Component {
               <NewsInPicture />
             </div>
             <aside className="col-md-4 sidebar pb-50">
-              <h1>The asside will be here</h1>
+              <FollowUs />
+              <Popular />
             </aside>
           </div>
         </div>
+
       );
     }
 }
