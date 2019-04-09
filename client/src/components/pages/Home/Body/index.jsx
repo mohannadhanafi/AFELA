@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TrendingPosts from '../../../common/layouts/TrendingPosts';
 
 export default class index extends Component {
     state = {}
@@ -7,7 +8,7 @@ export default class index extends Component {
       return (
         <div className="row">
           <div className="col-md-8 content">
-            <h1>The content will be here</h1>
+            <TrendingPosts />
           </div>
           <aside className="col-md-4 sidebar pb-50">
             <h1>The asside will be here</h1>
