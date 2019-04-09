@@ -6,6 +6,7 @@ import Categories from '../../../common/layouts/Categories';
 import FollowUs from '../../../common/FollowUs';
 import Popular from '../../../common/Popular';
 import Weather from '../../../common/Weather';
+import EditorPicks from '../../../common/layouts/EditorPicks';
 import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
 import Category from '../../../common/Category';
@@ -23,12 +24,18 @@ export default class index extends Component {
               <LatestNews />
               <NewsInPicture />
               <Categories />
+              {/* <div className="header-ad hidden-sm hidden-xs">
+                <a href="http://deothemes.com">
+                  <img src="http://deothemes.com/envato/afela/html/img/magazine/728_ad.jpg" alt="" />
+                </a>
+              </div> */}
+              <EditorPicks />
             </div>
             <aside className="col-md-4 sidebar pb-50">
               <FollowUs />
               <Popular />
               <Weather />
-              <Ads />
+              <Ads link="/" />
               <Galleries />
               <Category />
             </aside>
