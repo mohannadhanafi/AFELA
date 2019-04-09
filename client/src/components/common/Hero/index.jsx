@@ -25,6 +25,17 @@ export default class Hero extends Component {
 
                           When Are You Actually Ready to Launch a Startup?
                         </h2>
+                        <ul className="entry-meta list-inline">
+                          <li className="entry-date">
+                            <i className="fa fa-clock-o" /><a href="#">19 Dec, 2015</a>
+                          </li>
+                          <li className="entry-category">
+                            <i className="fa fa-folder-open" /><a href="#">World</a>
+                          </li>
+                          <li className="entry-author">
+                            <i className="fa fa-user" /><a href="#">John Doe</a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
