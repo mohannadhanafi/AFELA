@@ -10,7 +10,7 @@ import EditorPicks from '../../../common/layouts/EditorPicks';
 import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
 import Category from '../../../common/Category';
-
+import Feather from '../../../common/Feather';
 
 export default class index extends Component {
     state = {}
@@ -38,6 +38,7 @@ export default class index extends Component {
               <Ads link="/" />
               <Galleries />
               <Category />
+              <Feather />
             </aside>
           </div>
         </div>
