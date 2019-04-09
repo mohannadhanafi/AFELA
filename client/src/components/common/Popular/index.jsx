@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import './style.css';
 
 export default class Popular extends Component {
   state = {
     Popular: [
       {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/thumb_5.jpg',
+        image: 'http://deothemes.com/envato/afela/html/img/magazine/hero_1.jpg',
         title:
       '6 Ways to Be More Productive by Working Less',
         date: '19 Dec, 201',
         comments: 15,
       },
       {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/thumb_6.jpg',
+        image: 'http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg',
         title:
       '3 Key Lessons for My Kids About Becoming Entrepreneurs',
         date: '19 Dec, 201',
@@ -69,7 +70,7 @@ export default class Popular extends Component {
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
                         <a href="#">
-                          <img src={image} alt="" />
+                          <img src={image} alt="" className="popular__image" />
                         </a>
                       </div>
                       <div className="entry">
@@ -99,7 +100,7 @@ export default class Popular extends Component {
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
                         <a href="magazine-single-article.html">
-                          <img src={image} alt="" />
+                          <img src={image} alt="" className="popular__image"/>
                         </a>
                       </div>
                       <div className="entry">
