@@ -6,6 +6,7 @@ import SingleArticle from './components/pages/SingleArticle';
 import Header from './components/common/Header';
 import './App.scss';
 import Footer from './components/common/Footer';
+import About from './components/pages/AboutUs';
 
 class App extends Component {
   state = {};
@@ -18,6 +19,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/post" component={SingleArticle} />
+            <Route exact path="/about" component={About} />
+
           </Switch>
           <Footer />
         </Router>
