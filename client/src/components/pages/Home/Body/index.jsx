@@ -8,6 +8,7 @@ import Popular from '../../../common/Popular';
 import Weather from '../../../common/Weather';
 import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
+import Category from '../../../common/Category';
 
 
 export default class index extends Component {
@@ -29,6 +30,7 @@ export default class index extends Component {
               <Weather />
               <Ads />
               <Galleries />
+              <Category />
             </aside>
           </div>
         </div>
