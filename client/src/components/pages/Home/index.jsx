@@ -10,10 +10,10 @@ export default class index extends Component {
     render() {
       return (
         <>
-            <Breaking />
-            <Hero />
-            <Body />
-            <BackToTop />
+          <Breaking />
+          <Hero />
+          <Body />
+          <BackToTop />
         </>
       );
     }
