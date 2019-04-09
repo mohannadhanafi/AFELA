@@ -21,6 +21,8 @@ export default class Hero extends Component {
                     <div className="entry-inner">
                       <div className="entry">
                         <h2 className="entry-title color-white">
+
+
                           When Are You Actually Ready to Launch a Startup?
                         </h2>
                         <ul className="entry-meta list-inline">

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import TrendingPosts from '../../../common/layouts/TrendingPosts';
+import LatestNews from '../../../common/layouts/LatestNews';
+import NewsInPicture from '../../../common/layouts/NewsInPicture';
 import FollowUs from '../../../common/FollowUs';
 import Popular from '../../../common/Popular';
 import Weather from '../../../common/Weather';
-import LatestNews from '../../../common/Layouts/LatestNews';
-import NewsInPicture from '../../../common/Layouts/NewsInPicture';
 
 export default class index extends Component {
     state = {}
@@ -13,6 +14,7 @@ export default class index extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 content">
+              <TrendingPosts />
               <LatestNews />
               <NewsInPicture />
             </div>
