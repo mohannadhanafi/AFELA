@@ -7,6 +7,8 @@ import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import About from './components/pages/AboutUs';
 import ContactUs from './components/pages/ContactUs';
+import BackToTop from './components/common/BackToTop';
+
 import './App.scss';
 
 class App extends Component {
@@ -24,6 +26,8 @@ class App extends Component {
             <Route exact path="/contact" component={ContactUs} />
           </Switch>
           <Footer />
+          <BackToTop />
+
         </Router>
       </div>
     );

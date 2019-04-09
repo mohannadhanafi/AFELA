@@ -4,65 +4,109 @@ import React from 'react';
 
 export default function WhatWeDo() {
   return (
-    <section className="section-wrap results parallax-counters relative pt-mdm-40">
+    <section className="section-wrap" id="intro">
       <div className="container">
         <div className="row">
-          <div className="col-md-2 col-sm-4 text-center">
-            <div className="statistic mt-mdm-40">
-              <span className="timer" data-from="0" data-to="968">
-                &nbsp;
-              </span>
-              <h5 className="counter-text">Cups of Coffee</h5>
+          <div className="col-sm-6">
+            <div className="about-description">
+              <h4>What We Do</h4>
+              <p>
+
+                Our Theme is a very slick and clean e-commerce template with
+                endless possibilities. Creating an awesome website with this
+                Theme is easy than you can imagine. Our Theme is a very slick
+                and clean e-commerce template with endless possibilities.
+</p>
+              <p>
+
+                We possess within us two minds. So far I have written only of
+                the conscious mind. I would now like to introduce you to your
+                second mind, the hidden and mysterious subconscious. Our
+                subconscious mind contains such power and complexity that it
+                literally staggers the imagination. We know that this
+                subconscious mind controls and orchestrates our bodily
+                functions.
+</p>
             </div>
           </div>
 
-          <div className="col-md-2 col-sm-4 text-center">
-            <div className="statistic mt-mdm-40">
-              <span className="timer" data-from="0" data-to="357">
-                &nbsp;
-              </span>
-              <h5 className="counter-text">Happy Clients</h5>
-            </div>
-          </div>
+          <div className="col-sm-6">
+            <div className="progress-bars skills-progress">
+              <h6>
 
-          <div className="col-md-2 col-sm-4 text-center">
-            <div className="statistic mt-mdm-40">
-              <span className="timer" data-from="0" data-to="813">
-                &nbsp;
-              </span>
-              <h5 className="counter-text">Marketing Goals</h5>
-            </div>
-          </div>
+                Web Design
+{' '}
+<span>88%</span>
+              </h6>
+              <div className="progress meter">
+                <div
+                  aria-valuemax="100"
+                  aria-valuemin="0"
+                  aria-valuenow="88"
+                  className="progress-bar"
+                  role="progressbar"
+                >
+                  <span className="sr-only">88% Complete</span>
+                </div>
+              </div>
 
-          <div className="col-md-2 col-sm-4 text-center">
-            <div className="statistic mt-mdm-40">
-              <span className="timer" data-from="0" data-to="972">
-                &nbsp;
-              </span>
-              <h5 className="counter-text">Awesome Ideas</h5>
-            </div>
-          </div>
+              <h6>
 
-          <div className="col-md-2 col-sm-4 text-center">
-            <div className="statistic mt-mdm-40">
-              <span className="timer" data-from="0" data-to="517">
-                &nbsp;
-              </span>
-              <h5 className="counter-text">Design Awards</h5>
-            </div>
-          </div>
+                Marketing
+{' '}
+<span>92%</span>
+              </h6>
+              <div className="progress meter">
+                <div
+                  aria-valuemax="100"
+                  aria-valuemin="0"
+                  aria-valuenow="92"
+                  className="progress-bar"
+                  role="progressbar"
+                >
+                  <span className="sr-only">92% Complete</span>
+                </div>
+              </div>
 
-          <div className="col-md-2 col-sm-4 text-center">
-            <div className="statistic mt-mdm-40">
-              <span className="timer" data-from="0" data-to="289">
-                &nbsp;
-              </span>
-              <h5 className="counter-text">Projects Done</h5>
+              <h6>
+
+                WordPress
+{' '}
+<span>94%</span>
+              </h6>
+              <div className="progress meter">
+                <div
+                  aria-valuemax="100"
+                  aria-valuemin="0"
+                  aria-valuenow="94"
+                  className="progress-bar"
+                  role="progressbar"
+                >
+                  <span className="sr-only">94% Complete</span>
+                </div>
+              </div>
+
+              <h6>
+
+                Photography
+{' '}
+<span>78%</span>
+              </h6>
+              <div className="progress meter" id="animated-skills">
+                <div
+                  aria-valuemax="100"
+                  aria-valuemin="0"
+                  aria-valuenow="78"
+                  className="progress-bar"
+                  role="progressbar"
+                >
+                  <span className="sr-only">78% Complete</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="parallax" data-stellar-background-ratio="0.5" />
     </section>
   );
 }

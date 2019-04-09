@@ -76,7 +76,7 @@
   });
 
   // Smooth Scroll Navigation
-  // $('.local-scroll').localScroll({ offset: { top: -60 }, duration: 1500, easing: 'easeInOutExpo' });
+  $('.local-scroll').localScroll({ offset: { top: -60 }, duration: 1500, easing: 'easeInOutExpo' });
 
 
   /* Full screen Navigation
