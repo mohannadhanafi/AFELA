@@ -46,7 +46,7 @@ export default class index extends Component {
       const { news, title } = this.state;
       return (
         <div className="col-md-4 mb-50">
-          <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align heading-label-red">{title}</h2>
+          <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align heading-label-green">{title}</h2>
           <article>
             <div className="entry-img hover-scale">
               <Link to={news[0].link}>
