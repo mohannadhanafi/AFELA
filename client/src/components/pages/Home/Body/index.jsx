@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import FollowUs from '../../../common/FollowUs';
+import Popular from '../../../common/Popular';
 
 export default class index extends Component {
     state = {}
@@ -10,7 +12,8 @@ export default class index extends Component {
             <h1>The content will be here</h1>
           </div>
           <aside className="col-md-4 sidebar pb-50">
-            <h1>The asside will be here</h1>
+            <FollowUs />
+            <Popular />
           </aside>
         </div>
       );
