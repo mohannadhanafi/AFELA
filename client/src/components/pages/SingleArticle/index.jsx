@@ -12,6 +12,7 @@ import Tags from '../../common/Tags';
 import PostBody from './Post';
 import RelatedPosts from './RelatedPosts';
 import Comments from './Comments';
+import AddComment from './AddComment';
 
 export default class SigleArtice extends Component {
   state = {
@@ -99,6 +100,7 @@ export default class SigleArtice extends Component {
                 />
                 <RelatedPosts relatedPosts={relatedPosts} />
                 <Comments AllComments={AllComments} comments={comments} />
+                <AddComment />
               </div>
               <aside className="col-md-4 sidebar pb-50">
                 <FollowUs />
