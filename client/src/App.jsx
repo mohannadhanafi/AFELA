@@ -18,10 +18,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/post" component={SingleArticle} />
-
           </Switch>
           <Footer />
-
         </Router>
       </div>
     );
