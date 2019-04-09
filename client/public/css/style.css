@@ -1016,9 +1016,11 @@ header.transparent .navigation.scrolling .navbar-nav > .active > a:hover {
 /* Parallax Testimonials
 -------------------------------------------------------*/
 
-.parallax-testimonials .parallax {
-  background-image: url(../img/testimonials_bg.jpg);
-}
+ .parallax {
+   background-image: url(http://deothemes.com/envato/afela/html/img/testimonials_bg.jpg);
+
+  }
+
 
 .parallax {
   position: absolute;
