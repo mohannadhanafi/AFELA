@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+/* eslint-disable react/jsx-one-expression-per-line */
+import React, { Component } from 'react';
 
 export default class Header extends Component {
-  state = {
-
-  };
+  state = {};
 
   render() {
     return (
@@ -28,16 +27,12 @@ export default class Header extends Component {
 
                   <li className="nav-home hidden-sm hidden-xs">
                     <a href="/dlfkd.com">
-                      <i className="fas fa-home" />{" "}
+                      <i className="fas fa-home" />{' '}
                     </a>
                   </li>
 
                   <li className="hidden-sm">
-                    <a
-                      href="/gldkf.com"
-                    >
-                      Home
-                    </a>
+                    <a href="/gldkf.com">Home</a>
                   </li>
 
                   <li className="dropdown">
@@ -77,7 +72,6 @@ export default class Header extends Component {
                     </ul>
                   </li>
 
-                  
                   <li className="nav-search type-2 hidden-sm hidden-xs">
                     <form method="get">
                       <input

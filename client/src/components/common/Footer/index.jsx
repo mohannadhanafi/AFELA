@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 export default class Footer extends Component {
   state = {
+    links: [{ name: 'facebook', link: '#' }, { name: 'google-plus', link: '#' }, { name: 'youtube', link: '#' }, { name: 'linkedin', link: '#' }, { name: 'vimeo', link: '#' }],
     categories: ['Sport', 'Business', 'Science', 'Politics', 'Lifestyle'],
     copyrights: '© 2015 Afela Theme | Made by DeoThemes',
     recentPosts: [
@@ -25,7 +26,7 @@ export default class Footer extends Component {
 
   render() {
     const {
-      copyrights, aboutUs, recentPosts, categories,
+      copyrights, aboutUs, recentPosts, categories, links,
     } = this.state;
     return (
       <footer className="footer footer-type-4">
@@ -80,7 +81,7 @@ export default class Footer extends Component {
                                   <a href="#">{post.date}</a>
                                 </li>
                                 <li className="entry-comments">
-                                  <i className="fab fa-comments" />
+                                  <i className="fa fa-comments" />
                                   <a href="magazine-single-article.html">{post.comments}</a>
                                 </li>
                               </ul>
@@ -134,21 +135,12 @@ export default class Footer extends Component {
 
               <div className="col-md-3 col-xs-12 footer-socials mt-mdm-10 text-right">
                 <div className="social-icons dark">
-                  <a href="#">
-                    <i className="fab fa-twitter" />
-                  </a>
-                  <a href="#">
-                    <i className="fab fa-facebook" />
-                  </a>
-                  <a href="#">
-                    <i className="fab fa-google-plus" />
-                  </a>
-                  <a href="#">
-                    <i className="fab fa-linkedin" />
-                  </a>
-                  <a href="#">
-                    <i className="fab fa-vimeo" />
-                  </a>
+                  {links.map(link => (
+                    <a href={link.link}>
+                      <i className={`fab fa-${link.name}`} />
+                    </a>
+                  ))}
+
                 </div>
               </div>
             </div>
