@@ -5,6 +5,7 @@ import NewsInPicture from '../../../common/layouts/NewsInPicture';
 import Categories from '../../../common/layouts/Categories';
 import FollowUs from '../../../common/FollowUs';
 import Popular from '../../../common/Popular';
+import Weather from '../../../common/Weather';
 
 export default class index extends Component {
     state = {}
@@ -22,6 +23,7 @@ export default class index extends Component {
             <aside className="col-md-4 sidebar pb-50">
               <FollowUs />
               <Popular />
+              <Weather />
             </aside>
           </div>
         </div>
