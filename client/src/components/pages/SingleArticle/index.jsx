@@ -8,6 +8,8 @@ import Ads from '../../common/Ads';
 import Galleries from '../../common/Galleries';
 import Categoty from '../../common/Category';
 import Feather from '../../common/Feather';
+import TopRated from '../../common/TopRated';
+import Tags from '../../common/Tags';
 import PostBody from './Post';
 
 export default class SigleArtice extends Component {
@@ -74,6 +76,8 @@ export default class SigleArtice extends Component {
                 <Galleries />
                 <Categoty />
                 <Feather />
+                <TopRated />
+                <Tags />
               </aside>
             </div>
           </div>
