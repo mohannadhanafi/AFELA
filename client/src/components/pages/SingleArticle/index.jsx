@@ -47,19 +47,19 @@ export default class SigleArtice extends Component {
                   </h1>
                   <ul className="entry-meta list-inline mb-30">
                     <li className="entry-date">
-                      <i className="fab fa-clock-o" />
+                      <i className="fa fa-clock-o" />
                       <a href="#">19 July, 2015</a>
                     </li>
                     <li className="entry-category">
-                      <i className="fab fa-folder-open" />
+                      <i className="fa fa-folder-open" />
                       <a href="#">Fashion</a>
                     </li>
                     <li className="entry-author">
-                      <i className="fab fa-user" />
+                      <i className="fa fa-user" />
                       <a href="#">Admin</a>
                     </li>
                     <li className="entry-comments">
-                      <i className="fab fa-comments" />
+                      <i className="fa fa-comments" />
                       <a href="blog-single.html">15</a>
                     </li>
                   </ul>
@@ -189,7 +189,7 @@ export default class SigleArtice extends Component {
                               data-placement="top"
                               title="Email"
                             >
-                              <i className="fab fa-envelope" />
+                              <i className="fa fa-envelope" />
                             </a>
                           </div>
                         </div>
