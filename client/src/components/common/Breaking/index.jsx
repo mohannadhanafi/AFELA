@@ -23,6 +23,7 @@ export default class index extends Component {
   render() {
     const { breaking } = this.state;
     return (
+      <div className="container">
       <div className="breaking-news mt-30 clearfix">
         <span className="uppercase">Breaking News:</span>
         <div id="ticker" className="flexslider">
@@ -36,6 +37,7 @@ export default class index extends Component {
             ))}
           </ul>
         </div>
+      </div>
       </div>
     );
   }

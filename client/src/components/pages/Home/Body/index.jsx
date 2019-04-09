@@ -5,6 +5,8 @@ export default class index extends Component {
 
     render() {
       return (
+          <div className="container">
+          
         <div className="row">
           <div className="col-md-8 content">
             <h1>The content will be here</h1>
@@ -13,6 +15,7 @@ export default class index extends Component {
             <h1>The asside will be here</h1>
           </aside>
         </div>
+          </div>
       );
     }
 }
