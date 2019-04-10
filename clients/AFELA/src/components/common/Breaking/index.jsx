@@ -8,18 +8,7 @@ import moment from 'moment';
 
 export default class index extends Component {
   state = {
-    breaking: [
-      {
-        link: '/',
-        time: '14:13',
-        text: '7 Traits That Define Work Productivity Superstars',
-      },
-      {
-        link: '/',
-        time: '16:07',
-        text: 'new new new new',
-      },
-    ],
+    breaking: [],
   };
 
   componentDidMount() {
