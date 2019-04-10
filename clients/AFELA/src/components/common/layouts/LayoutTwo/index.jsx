@@ -5,6 +5,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import './style.css';
+import uuid from 'uuid';
 
 export default class TrendingPosts extends Component {
   state = {
@@ -34,8 +35,8 @@ export default class TrendingPosts extends Component {
           {catName}
         </h2>
         <div className="row">
-          {news && news.map(element => (
-            <div className="col-md-4 mb-50">
+          {news && news.slice(0, 6).map(element => (
+            <div className="col-md-4 mb-50" key={uuid()}>
               <article>
                 <div className="entry-img hover-scale">
                   <Link

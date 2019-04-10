@@ -64,7 +64,7 @@ class index extends Component {
               </div>
               <div className="col-md-5 mb-50">
                 <ul className="posts-list no-top-pad">
-                  {news && news.slice(1).map(element => (
+                  {news && news.slice(1, 5).map(element => (
                     <li key={uuid()}>
                       <article className="post-small clearfix">
                         <div className="entry">
