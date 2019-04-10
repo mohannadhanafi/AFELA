@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Footer extends Component {
   state = {
+    categories: [],
+    options: [],
     links: [{ name: 'facebook', link: '#' }, { name: 'google-plus', link: '#' }, { name: 'youtube', link: '#' }, { name: 'linkedin', link: '#' }, { name: 'vimeo', link: '#' }],
-    categories: ['Sport', 'Business', 'Science', 'Politics', 'Lifestyle'],
     copyrights: '© 2015 Afela Theme | Made by DeoThemes',
     recentPosts: [
       {
@@ -24,9 +26,23 @@ export default class Footer extends Component {
       'Afela Shop is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme. We possess within us two minds. So far I have written only of the conscious mind.',
   };
 
+  componentWillMount() {
+    axios.get('/api/v1/categories/allWithCount').then((result) => {
+      const { data } = result;
+      this.setState(() => ({ categories: data }));
+    }).then(() => {
+      axios.get('/api/v1/getoptions').then((result) => {
+        const { data } = result;
+        console.log(data);
+
+        this.setState(() => ({ options: data }));
+      });
+    });
+  }
+
   render() {
     const {
-      copyrights, aboutUs, recentPosts, categories, links,
+      aboutUs, recentPosts, categories, links, options,
     } = this.state;
     return (
       <footer className="footer footer-type-4">
@@ -97,9 +113,9 @@ export default class Footer extends Component {
                 <div className="widget footer-links small-space">
                   <h5 className="uppercase">Useful Links</h5>
                   <ul>
-                    {categories.map(category => (
-                      <li><a href="#">{category}</a></li>
-                    ))}
+                    {categories.length ? categories.slice(0.5).map(category => (
+                      <li><a href="#">{category.name}</a></li>
+                    )) : null}
                   </ul>
                 </div>
               </div>
@@ -112,7 +128,9 @@ export default class Footer extends Component {
             <div className="row">
               <div className="col-md-4 col-xs-12 copyright">
                 <span>
-                  <a href="/">{copyrights}</a>
+
+                  {options.length ? <a href="/">{options[0].copyrights}</a>
+                    : null}
                 </span>
               </div>
 
@@ -125,7 +143,7 @@ export default class Footer extends Component {
                     <a href="#">Terms of Use</a>
                   </li>
                   <li>
-                    <a href="#">Contact Us</a>
+                    <a href="/contact">Contact Us</a>
                   </li>
                   <li>
                     <a href="#">Advertisement</a>
@@ -135,11 +153,13 @@ export default class Footer extends Component {
 
               <div className="col-md-3 col-xs-12 footer-socials mt-mdm-10 text-right">
                 <div className="social-icons dark">
-                  {links.map(link => (
-                    <a href={link.link}>
-                      <i className={`fab fa-${link.name}`} />
-                    </a>
-                  ))}
+                  {options.length ? (
+                    links.map(link => (
+                      <a href={options[0][link.name] ? options[0][link.name] : null}>
+                        <i className={`fab fa-${link.name}`} />
+                      </a>
+                    ))
+                  ) : null}
 
                 </div>
               </div>
