@@ -7,6 +7,8 @@ const server = http.Server(app);
 SocketSingleton.configure(server);
 
 const port = app.get('port');
-server.listen(port, () => {
+connection.sync().then(() => {
+  server.listen(port, () => {
 
+  });
 });
