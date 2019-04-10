@@ -24,7 +24,7 @@ app
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
   .use('/api/v1', controller)
-  .use(express.static(path.join(__dirname, '..', 'clients', 'Home', 'build')))
+  .use(express.static(path.join(__dirname, '..', 'clients', 'AFELA', 'build')))
   .use(express.static(path.join(__dirname, '..', 'clients', 'Admin', 'build')))
   .get('/admin*', (req, res) => {
     res.sendFile(
@@ -33,7 +33,7 @@ app
   })
   .get('*', (req, res) => {
     res.sendFile(
-      path.join(__dirname, '..', 'clients', 'Home', 'build', 'index.html'),
+      path.join(__dirname, '..', 'clients', 'AFELA', 'build', 'index.html'),
     );
   });
 
