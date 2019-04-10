@@ -36,7 +36,14 @@ export default class Header extends Component {
                     <Link to="/">Home</Link>
                   </li>
 
-                  <li className="dropdown">
+                  <li className="hidden-sm">
+                    <Link to="/contact">Contact Us</Link>
+                  </li>
+
+                  <li className="hidden-sm">
+                    <Link to="/about">About Us</Link>
+                  </li>
+                  {/* <li className="dropdown">
                     <a
                       href="#"
                       className="dropdown-toggle"
@@ -71,7 +78,7 @@ export default class Header extends Component {
                         <a href="404.html">404</a>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
 
                   <li className="nav-search type-2 hidden-sm hidden-xs">
                     <form method="get">
