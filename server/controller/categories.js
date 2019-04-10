@@ -1,0 +1,170 @@
+/* eslint-disable no-param-reassign */
+const validator = require('validator');
+const Sequelize = require('../database/config');
+const { categories, posts, homePageLayouts } = require('../database/models');
+
+exports.get = async (request, response) => {
+  try {
+    const result = await Sequelize.query(
+      'select a.*, b.name as parent_name from categories as a left join categories as b on b.id = a.parent order by id DESC',
+    );
+    response.status(200).send(result[0]);
+  } catch (error) {
+    response.status(500).send('Server Error');
+  }
+};
+exports.getRelated = async (request, response) => {
+  const result = await posts.findAll({
+    order: [['updatedAt', 'DESC']],
+    limit: 10,
+    where: { approve: true, breaking: true },
+    include: [{ model: categories }],
+  });
+  response.status(200).send(result);
+};
+exports.post = async (request, response) => {
+  try {
+    const newCat = request.body;
+    const {
+      name, seo, parent, description, pic,
+    } = newCat;
+    if (
+      name
+      && validator.isLength(name, { min: 0, max: 20 })
+      && parent && parent.trim()
+      && description && description.trim()
+      && pic && pic.trim()
+      && seo && seo.trim()
+      && validator.isLength(seo, { min: 0, max: 20 })
+    ) {
+      const result = await categories.count({
+        where: {
+          name,
+        },
+      });
+      if (result === 0) {
+        const seoName = await categories.count({
+          where: {
+            seo,
+          },
+        });
+        if (seoName === 0) {
+          newCat.seo = newCat.seo.replace(/\s/g, '').toLowerCase();
+          categories
+            .create(newCat)
+            .then(async (finalResult) => {
+              const { dataValues: { id } } = finalResult;
+              await homePageLayouts.create({ category_id: id });
+              response.status(200).send({
+                message:
+                  'New Category has been added, Redirect to Category list ...',
+              });
+            })
+            .catch(() => {
+              response.status(500).send({
+                message: 'Internal Server Error',
+              });
+            });
+        } else {
+          response.status(400).send({
+            message: `Category with Seo Name ${seo} is Alreday exist !`,
+          });
+        }
+      } else {
+        response.status(400).send({
+          message: `Category with name ${name} is Alreday exist !`,
+        });
+      }
+    } else {
+      response.status(400).send({
+        message: 'Invalid inputs, please note the type of each input',
+      });
+    }
+  } catch (error) {
+    response.status(500).send({
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+exports.delete = (req, res) => {
+  try {
+    const { id } = req.body;
+    categories.destroy({
+      where: {
+        id,
+      },
+    });
+    res.status(200).send({
+      message: 'Success, category is deleted',
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+exports.getCategoty = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await categories.findByPk(id);
+    if (result) {
+      res.status(200).send(result);
+    } else {
+      res.status(500).send({
+        message: 'Category not found',
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+exports.updateCategory = async (req, res) => {
+  try {
+    const {
+      data,
+      params: { id },
+    } = req.body;
+    const {
+      name, seo, description,
+    } = data;
+
+
+    if (
+      !name.trim()
+      || !validator.isLength(name, { min: 1, max: 20 })
+      || !seo.trim()
+      || !validator.isLength(seo, { min: 1, max: 20 })
+      || !description.trim()
+    ) {
+      res.status(400).send({
+        message: 'Invalid inputs, please note the type of each input',
+      });
+    } else {
+      const categoriesCheck = await categories.findOne({ where: { $or: [{ name }, { seo }] }, raw: true });
+      if (categoriesCheck && categoriesCheck.id !== parseInt(id, 10)) {
+        res
+          .status(400)
+          .send({ message: 'Sorry !, Category with this Name Or Seo Name is already exist' });
+      } else {
+        data.seo = seo.replace(/\s/g, '').toLowerCase();
+        categories.update(data, {
+          where: {
+            id,
+          },
+        });
+        res.status(200).send({
+          message: 'Update is done, Redirect to Category list ...',
+        });
+      }
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: 'Internal Server Error',
+    });
+  }
+};
