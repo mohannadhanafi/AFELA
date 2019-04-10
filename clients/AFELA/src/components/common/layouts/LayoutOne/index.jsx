@@ -7,7 +7,7 @@ import './style.css';
 
 export default class index extends Component {
     state = {
-      title: 'Latest News',
+      title: 'Category Name',
       news: [
         {
           image: 'http://deothemes.com/envato/afela/html/img/magazine/11.jpg',

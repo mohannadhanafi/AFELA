@@ -83,7 +83,7 @@ export default class TrendingPosts extends Component {
                 all
               </a>
             </li>
-            {categories.map((category) => (
+            {categories.map(category => (
               <li>
                 <a href={`#tab-${category}`} data-toggle="tab">
                   {category}
@@ -106,13 +106,13 @@ export default class TrendingPosts extends Component {
                       {news[0].category}
                     </a>
                     <a href="magazine-single-article.html">
-                    <img src={news[0].image} alt="" />
+                      <img src={news[0].image} alt="" />
                     </a>
                   </div>
                   <div className="entry mb-0">
                     <h2 className="entry-title">
                       <a href="magazine-single-article.html">
-               {news[0].title}
+                        {news[0].title}
                       </a>
                     </h2>
                     <ul className="entry-meta list-inline">
@@ -126,7 +126,7 @@ export default class TrendingPosts extends Component {
                     </ul>
                     <div className="entry-content">
                       <p>
-{news[0].description}
+                        {news[0].description}
                       </p>
                       <a
                         href="magazine-single-article.html"
@@ -143,13 +143,13 @@ export default class TrendingPosts extends Component {
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
                         <a href="magazine-single-article.html">
-                        <img src={news[0].image} alt="" />
+                          <img src={news[0].image} alt="" />
                         </a>
                       </div>
                       <div className="entry">
                         <h3 className="entry-title">
                           <a href="magazine-single-article.html">
-                           {news[0].title}
+                            {news[0].title}
                           </a>
                         </h3>
                         <ul className="entry-meta list-inline">
@@ -168,7 +168,7 @@ export default class TrendingPosts extends Component {
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
                         <a href="magazine-single-article.html">
-                        <img src={news[0].image} alt="" />
+                          <img src={news[0].image} alt="" />
                         </a>
                       </div>
                       <div className="entry">
@@ -203,7 +203,7 @@ export default class TrendingPosts extends Component {
                       Fashion
                     </a>
                     <a href="magazine-single-article.html">
-                    <img src={news[0].image} alt="" />
+                      <img src={news[0].image} alt="" />
                     </a>
                   </div>
                   <div className="entry mb-0">
@@ -242,7 +242,7 @@ export default class TrendingPosts extends Component {
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
                         <a href="magazine-single-article.html">
-                        <img src={news[0].image} alt="" />
+                          <img src={news[0].image} alt="" />
                         </a>
                       </div>
                       <div className="entry">
@@ -268,7 +268,7 @@ export default class TrendingPosts extends Component {
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
                         <a href="magazine-single-article.html">
-                        <img src={news[0].image} alt="" />
+                          <img src={news[0].image} alt="" />
                         </a>
                       </div>
                       <div className="entry">
