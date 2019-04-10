@@ -85,22 +85,6 @@ export default class Hero extends Component {
                       ))}
                     </div>
                   ) : null}
-
-                  {/* <div className="col-sm-6 post-4">
-                      <article>
-                        <div className="entry-img hover-scale">
-                          <img className="hero3" src="http://deothemes.com/envato/afela/html/img/magazine/hero_3.jpg" alt="" />
-                          <div className="entry-inner small">
-                            <div className="entry">
-                              <h2 className="entry-title color-white">
-                              Stop Reacting and Start Responding
-                              </h2>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    </div> */}
-
                 </div>
               </div>
             </section>

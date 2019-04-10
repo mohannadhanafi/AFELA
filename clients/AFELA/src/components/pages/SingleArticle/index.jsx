@@ -1,6 +1,9 @@
+/* eslint-disable camelcase */
+/* eslint-disable react/sort-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
-
 import React, { Component } from 'react';
+import axios from 'axios';
+import swal from 'sweetalert2';
 import FollowUs from '../../common/FollowUs';
 import Popular from '../../common/Popular';
 import Weather from '../../common/Weather';
@@ -16,25 +19,15 @@ import AddComment from './AddComment';
 
 export default class SigleArtice extends Component {
   state = {
-    images: [
-      'http://deothemes.com/envato/afela/html/img/blog/gallery_post_img_1.jpg',
-      'http://deothemes.com/envato/afela/html/img/blog/gallery_post_img_3.jpg',
-      'http://deothemes.com/envato/afela/html/img/blog/gallery_post_img_2.jpg',
-    ],
-    date: '15 Dec 2015',
-    category: {
-      name: 'Sport',
-    },
-    tags: ['Creative', 'Creative', 'Creative', 'Creative'],
-    author: {
-      image: 'http://deothemes.com/envato/afela/html/img/blog/author.jpg',
-      name: 'MARIA RODRIGUES',
-      bio:
-        'In order to understand how the conscious and subconscious minds. Find me on Facebook, on Twitter or Google +. As a team to create your reality, let me again use an analogy. Your subconscious mind is like fertile soil which accepts any seed you plant within it.',
-    },
-    comments: 15,
-    title: 'Treat Your Employees Well. They Are Your Best Brand Ambassadors',
-    body: 'We possess within us two minds. So far I have written only of the conscious mind. It\'s the fastest-funded project and also the most funded - by far. We possess within us two minds. So far I have written only of the conscious mind. I would now like to introduce you to your second mind. And finally the subconscious is the mechanism through which thought impulses which are repeated regularly with feeling and emotion are quickened, charged and changed into their physical equivalent.',
+    images: [],
+    date: '',
+    category: {},
+    tags: [],
+    author: {},
+    title: '',
+    body: '',
+    nextPost: {},
+    prevPost: '',
     relatedPosts: [
       {
         image: 'http://deothemes.com/envato/afela/html/img/blog/1.jpg',
@@ -67,59 +60,135 @@ export default class SigleArtice extends Component {
         },
       },
     ],
+    name: '',
+    email: '',
+    comment: '',
   };
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
-
-  render() {
+  addComment = async (e) => {
+    e.preventDefault();
     const {
-      images, tags, author, date, category, comments, title, body, relatedPosts, AllComments,
+      comment, name, email, id,
     } = this.state;
-    return (
-      <div className="main-wrapper magazine oh">
-        <div className="container">
-          <ol className="breadcrumb mt-20">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li className="active">Single Article</li>
-          </ol>
-        </div>
+    const data = {
+      comment,
+      username: name,
+      email,
+      post_id: id,
+    };
+    await axios.post('/api/v1/comments/addComment', data).then(() => {
+      swal.fire({
+        title: 'Your comment sent, it will be avaliable after accept from admin',
+        type: 'success',
+        timer: 3000,
+        customClass: {
+          popup: 'animated tada',
+        },
+      });
+    });
+  };
 
-        <section className="section-wrap post-single pt-0 pb-50">
-          <div className="container">
-            <div className="row mt-40">
-              <div className="col-md-8 content">
-                <PostBody
-                  images={images}
-                  tags={tags}
-                  author={author}
-                  date={date}
-                  category={category}
-                  comments={comments}
-                  title={title}
-                  body={body}
-                />
-                <RelatedPosts relatedPosts={relatedPosts} />
-                <Comments AllComments={AllComments} comments={comments} />
-                <AddComment />
-              </div>
-              <aside className="col-md-4 sidebar pb-50">
-                <FollowUs />
-                <Popular />
-                <Weather />
-                <Ads link="/" />
-                <Galleries />
-                <Categoty />
-                <TopRated />
-                <Tags />
-              </aside>
-            </div>
-          </div>
-        </section>
+getData = (props) => {
+  const {
+    match: {
+      params: { seoName, category: cat_seo },
+    },
+  } = props;
+  axios(`/api/v1/post/${cat_seo}/${seoName}`).then((result) => {
+    const {
+      data: {
+        result: postData, nextPost, prevPost, commentsResult: AllComments,
+      },
+    } = result;
+    console.log(AllComments);
+    const {
+      header_media: images, tags, user: author, createdAt: date, category, title, description: body, id,
+    } = postData[0];
+    this.setState({
+      images,
+      tags,
+      author,
+      date,
+      category,
+      title,
+      body,
+      nextPost,
+      prevPost,
+      id,
+      AllComments,
+    });
+  });
+}
+
+componentDidMount() {
+  window.scrollTo(0, 0);
+  this.getData(this.props);
+}
+
+componentWillReceiveProps(props) {
+  window.scrollTo(0, 0);
+  this.getData(props);
+}
+
+onChange = ({ target: { name, value } }) => {
+  this.setState({ [name]: value });
+};
+
+render() {
+  const {
+    images, tags, author, date, category, comments, title, body, relatedPosts, AllComments, nextPost, prevPost, comment, name, email,
+  } = this.state;
+  return (
+    <div className="main-wrapper magazine oh">
+      <div className="container">
+        <ol className="breadcrumb mt-20">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="active">Single Article</li>
+        </ol>
       </div>
-    );
-  }
+
+      <section className="section-wrap post-single pt-0 pb-50">
+        <div className="container">
+          <div className="row mt-40">
+            <div className="col-md-8 content">
+              <PostBody
+                images={images}
+                tags={tags}
+                author={author}
+                date={date}
+                category={category}
+                comments={comments}
+                title={title}
+                body={body}
+                next={nextPost}
+                prev={prevPost}
+              />
+              <RelatedPosts relatedPosts={relatedPosts} />
+              <Comments AllComments={AllComments} />
+              <AddComment
+                onClick={this.addComment}
+                comment={comment}
+                name={name}
+                email={email}
+                onChange={this.onChange}
+              />
+            </div>
+            <aside className="col-md-4 sidebar pb-50">
+              <FollowUs />
+              <Popular />
+              <Weather />
+              <Ads link="/" />
+              <Galleries />
+              <Categoty />
+              <TopRated />
+              <Tags />
+            </aside>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
 }

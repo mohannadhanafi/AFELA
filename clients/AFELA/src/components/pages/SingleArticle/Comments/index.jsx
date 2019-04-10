@@ -2,12 +2,13 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
-export default function index({ comments, AllComments }) {
+export default function index({ AllComments }) {
   return (
     <div className="entry-comments mt-20">
       <h3 className="heading relative heading-small uppercase bottom-line style-2 left-align mb-40">
-        {`${comments} `}comments
+        {`${AllComments.length} `}comments
       </h3>
       <ul className="comment-list">
       {AllComments.map(comment => (
@@ -15,10 +16,9 @@ export default function index({ comments, AllComments }) {
           <div className="comment-body">
             <img src={comment.user.avatar} className="comment-avatar" alt="bg" />
             <div className="comment-content">
-              <span className="comment-author">{comment.user.name}</span>
-              <span><Link to="/">{comment.time}</Link></span>
-              <p>{comment.comment}</p>
-              <Link to="/">Reply</Link>
+              <span className="comment-author">{comment.email}</span>
+              <span><Link to="/">{moment(comment.time).calendar()}</Link></span>
+              <p>{comment.username}</p>
             </div>
           </div>
         </li>

@@ -11,7 +11,7 @@ import Auther from './Auther';
 import NextPrev from './NextPrev';
 
 export default function index({
-  images, author, tags, date, category, comments, title, body,
+  images, author, tags, date, category, comments, title, body, next, prev,
 }) {
   return (
     <div className="entry-item">
@@ -26,7 +26,9 @@ export default function index({
       <div className="entry">
         <div className="entry-content">
           <PostBody body={body} />
+          {tags.length && (
           <Tags tags={tags} />
+          )}
           <div className="entry-share">
             <div className="socials-share clearfix">
               <span className="uppercase">Share:</span>
@@ -34,7 +36,10 @@ export default function index({
             </div>
           </div>
           <Auther author={author} />
-          <NextPrev />
+          <NextPrev
+            next={next}
+            prev={prev}
+          />
         </div>
       </div>
     </div>

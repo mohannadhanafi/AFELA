@@ -1,8 +1,12 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import './style.css';
 
 export default function index({
-  images, date, category, comments, author, title,
+  images, date, category, author, title,
 }) {
   return (
     <>
@@ -10,7 +14,7 @@ export default function index({
       <ul className="entry-meta list-inline mb-30">
         <li className="entry-date">
           <i className="fa fa-clock-o" />
-          <Link to="/">{date}</Link>
+          <Link to="/">{moment(date).format('DD MMM, YYYY')}</Link>
         </li>
         <li className="entry-category">
           <i className="fa fa-folder-open" />
@@ -20,24 +24,22 @@ export default function index({
           <i className="fa fa-user" />
           <Link to="/">{author.name}</Link>
         </li>
-        <li className="entry-comments">
-          <i className="fa fa-comments" />
-          <a href="blog-single.html">15</a>
-        </li>
       </ul>
 
       <div className="entry-slider">
-        <div className="flexslider" id="flexslider">
-          <ul className="slides clearfix">
-            {images.map(image => (
-              <li>
-                <a href="#">
-                  <img src={image} alt="" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* {images.length > 1 ? (
+          <div className="flexslider" id="flexslider">
+            <ul className="slides clearfix">
+              {images.map(image => (
+                <li>
+                  <img className="post-image-slider" src={`/api/v1/getFile/${image}`} alt="" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : ( */}
+        <img className="post-image-slider" src={`/api/v1/getFile/${images[0]}`} alt="" />
+        {/* )} */}
       </div>
     </>
   );
