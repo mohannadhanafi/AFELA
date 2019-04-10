@@ -25,6 +25,7 @@ exports.getHero = async (req, res) => {
         hero: true,
         approve: true,
       },
+      order: [['updatedAt', 'DESC']],
       include: [
         {
           model: users,
@@ -36,8 +37,6 @@ exports.getHero = async (req, res) => {
     });
     res.status(200).send(result);
   } catch (error) {
-    console.log(error);
-
     res.status(500).send('Internal Server Error');
   }
 };
