@@ -30,11 +30,6 @@ export default class index extends Component {
               <LayoutOne />
               <LayoutTwo />
               <LayoutThree />
-              {/* <div className="header-ad hidden-sm hidden-xs">
-                <a href="http://deothemes.com">
-                  <img src="http://deothemes.com/envato/afela/html/img/magazine/728_ad.jpg" alt="" />
-                </a>
-              </div> */}
               <EditorPicks />
             </div>
             <aside className="col-md-4 sidebar pb-50">

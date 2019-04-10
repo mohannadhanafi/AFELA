@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Top from './Top';
 import Middle from './Middle';
 import Bottom from './Bottom';
 
 export default class Header extends Component {
-    state = {}
+    state = { data: '' }
+
+    componentWillMount() {
+      axios.get('/api/v1/getoptions').then((result) => {
+        const { data } = result;
+        this.setState(() => ({ data }));
+      });
+    }
 
     render() {
+      const { data } = this.state;
       return (
         <header className="nav-type-4">
-          <Top />
-
+          <Top data={data} />
           <nav className="navbar navbar-static-top">
             <div className="navigation">
               <div className="container-fluid relative">
