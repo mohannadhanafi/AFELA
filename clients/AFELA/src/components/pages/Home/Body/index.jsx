@@ -25,9 +25,9 @@ export default class index extends Component {
           <div className="row">
             <div className="col-md-8 content">
               <TrendingPosts />
+              <LayoutOne seo="main" />
               <NewsInPicture seo="main" />
               <Categories seo="main" />
-              <LayoutOne seo="main" />
               <LayoutTwo seo="main" />
               <LayoutThree seo="main" />
               <EditorPicks />
