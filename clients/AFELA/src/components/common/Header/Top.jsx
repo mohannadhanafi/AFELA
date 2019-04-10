@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 export default class Header extends Component {
-  state = { links: [{ name: 'facebook', link: '#' }, { name: 'google-plus', link: '#' }, { name: 'youtube', link: '#' }, { name: 'linkedin', link: '#' }, { name: 'vimeo', link: '#' }] };
+  state = {
+    links: [
+      { name: 'facebook' },
+      { name: 'google-plus' },
+      { name: 'youtube' },
+      { name: 'linkedin' },
+      { name: 'vimeo' },
+    ],
+  };
 
   render() {
     const { links } = this.state;
+    const { data } = this.props;
     return (
       <>
         <div className="top-bar hidden-xs">
@@ -25,13 +34,15 @@ export default class Header extends Component {
                 </ul>
 
                 <ul className="col-sm-6 top-bar-acc text-right">
-                  <li className="social-icons dark">
-                    {links.map(link => (
-                      <a href={link.link}>
-                        <i className={`fab fa-${link.name}`} />
-                      </a>
-                    ))}
-                  </li>
+                  {data ? (
+                    <li className="social-icons dark">
+                      {links.map(link => (
+                        <a href={data[0][link.name] ? data[0][link.name] : null}>
+                          <i className={`fab fa-${link.name}`} />
+                        </a>
+                      ))}
+                    </li>
+                  ) : null}
                   <li className="top-bar-link">
                     <a href="#">Join</a>
                   </li>
