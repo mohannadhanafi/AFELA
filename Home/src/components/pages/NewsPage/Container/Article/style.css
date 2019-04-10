@@ -1,0 +1,141 @@
+.article img {
+  height: 550px;
+  width: 100%;
+}
+
+.article h2 {
+  font-size: 32px;
+  background: linear-gradient(90deg, #da0842 0%, #8c0080 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 30px;
+}
+
+.article .info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 22px;
+}
+.article .info .user {
+  display: flex;
+  align-items: center;
+}
+.article .info .user img {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+.article .info .user h5 {
+  font-size: 14px;
+  color: #a0a0a0;
+  font-weight: 100;
+}
+.article .info .user h5 span {
+  color: #cb064e;
+  text-transform: uppercase;
+}
+.article .comments {
+  display: flex;
+  align-items: center;
+}
+
+.article .comments i {
+  background: linear-gradient(90deg, #da0842 0%, #8c0080 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
+.article .comments i:last-child {
+  font-size: 22px;
+}
+.article .comments > div {
+  display: flex;
+  align-items: center;
+  margin-right: 18px;
+}
+
+.article .comments > div i {
+  margin-right: 9px;
+}
+
+.article .comments > div h6 {
+  color: #a0a0a0;
+  font-size: 14px;
+  font-weight: 100;
+}
+ .social--post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+ .social--post h4 {
+  font-size: 18px;
+  color: #212121;
+  font-weight: 100;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+ .social--post h4 span {
+  color: #a0a0a0;
+  text-transform: uppercase;
+}
+ .social--post .social--icons {
+  display: flex;
+  align-items: center;
+}
+ .social--post .social--icons .facebook img {
+  height: 24px;
+  width: 12px;
+}
+ .social--post .social--icons .twitter img {
+  height: 16px;
+  width: 20px;
+}
+ .social--post .social--icons img {
+  height: 32px;
+  width: 32px;
+  margin-right: 7px;
+  cursor: pointer;
+}
+ .social--post .social--icons .facebook {
+  background-color: #3b5998;
+}
+ .social--post .social--icons .twitter {
+  background-color: #38a1f3;
+}
+ .social--post .social--icons > div {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 15px;
+  margin-right: 7px;
+  cursor: pointer;
+}
+ .social--post .social--icons > div span {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 100;
+}
+ .social--post .share {
+  display: flex;
+  align-items: center;
+  background-color: #e1e1e1;
+  border-radius: 15px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+ .social--post .share i {
+  color: #a0a0a0;
+  font-size: 20px;
+}
+
+ .social--post p {
+  font-size: 14px;
+  color: #a0a0a0;
+  margin-left: 20px;
+}

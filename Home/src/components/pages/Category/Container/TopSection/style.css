@@ -1,0 +1,81 @@
+.breadcrumb--container {
+  padding: 40px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.last--posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2px;
+  margin-bottom: 42px;
+}
+.last--posts .first--photo {
+  height: 440px;
+  position: relative;
+}
+.last--posts .second--photos .container--images {
+  position: relative;
+  height: 219px;
+}
+.last--posts .photo--data {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+  padding: 0 40px 38px 40px;
+}
+.last--posts .gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.7));
+  bottom: 0;
+  left: 0;
+}
+.last--posts .first--photo img {
+  width: 100%;
+  height: 100%;
+}
+.last--posts .second--photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2px;
+}
+.last--posts .second--photos img {
+  width: 100%;
+  height: 100%;
+}
+
+.top--section .adv {
+  width: 728px;
+  height: 90px;
+  margin: 0 auto 40px;
+  display: inherit;
+}
+.top--section .last--posts .photo--data p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.top--section .last--posts .first--photo .photo--data p {
+  line-height: 38px;
+  margin-top: 15px;
+  font-size: 36px;
+  max-height: 114px;
+  font-weight: bold;
+}
+.top--section .last--posts .second--photos .photo--data p {
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 23px;
+  max-height: 69px;
+}
+.top--section .last--posts .photo--data p a {
+  color: #ffffff;
+}
+.top--section .last--posts .photo--data p a:hover {
+  text-decoration: underline;
+}

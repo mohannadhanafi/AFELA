@@ -1,0 +1,32 @@
+.pop--post {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 16px;
+    margin-bottom: 21px;
+}
+
+.pop--post .image--post img {
+    height: 100px;
+}
+
+.pop--post .post--data a {
+    color: #212121;
+}
+
+.pop--post .post--data h3 {
+    color: #212121;
+    font-size: 18px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-height: 21px;
+    height: 61px;
+    width: 80%;
+}
+
+.pop--post .post--data span {
+    color: #A0A0A0;
+    font-size: 14px;
+}

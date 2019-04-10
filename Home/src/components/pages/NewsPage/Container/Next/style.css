@@ -1,0 +1,33 @@
+.next--posts {
+  border-top: 1px solid #dbdbdb;
+  margin: 60px 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.next--posts div:last-child {
+  text-align: right;
+  border-left: 1px solid #dbdbdb;
+}
+.next--posts > div {
+  padding-top: 20px;
+}
+.next--posts h5 {
+  color: #c4c4c4;
+  font-size: 16px;
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+.next--posts span {
+  font-size: 18px;
+  color: #333333;
+  cursor: pointer;
+}
+.next--posts span:hover {
+  text-decoration: underline;
+}
+
+.next--posts span.disable {
+  cursor: auto;
+  color: #dbdbdb;
+  text-decoration: unset;
+}

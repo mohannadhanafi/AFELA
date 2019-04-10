@@ -1,0 +1,9 @@
+.spec--title {
+  background: linear-gradient(90deg, #da0842 0%, #8c0080 100%);
+  color: #fff;
+  font-size: 12px;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-weight: 100;
+}
