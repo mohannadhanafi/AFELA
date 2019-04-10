@@ -4305,8 +4305,8 @@ article img {
 }
 
 .post-small img {
-  width: auto;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 
 .post-small .entry,
