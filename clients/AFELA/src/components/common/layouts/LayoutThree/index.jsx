@@ -35,13 +35,13 @@ export default class index extends Component {
           <div className="row">
 
             <ul className="posts-list">
-              {news.map(element => (
+              {news.slice(0, 4).map(element => (
                 <div className="col-md-6 mb-50">
 
-                  <li>
+                  <li key={uuid()}>
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
-                        <Link to={`/news/${element.category.category_seo}/${element.seo}`} >
+                        <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
                           <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" />
                         </Link>
                       </div>

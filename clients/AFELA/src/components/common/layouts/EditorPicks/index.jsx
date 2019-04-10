@@ -29,7 +29,7 @@ export default class index extends Component {
               <div className="col-sm-12">
                 <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align">{title}</h2>
                 <ul className="posts-list no-top-pad clearfix">
-                  {news.map(element => (
+                  {news.slice(0,3).map(element => (
                     <li key={uuid()} className="clearfix">
                       <article>
                         <div className="entry-img hover-scale">
