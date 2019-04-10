@@ -100,7 +100,7 @@ getData = (props) => {
         result: postData, nextPost, prevPost, commentsResult: AllComments,
       },
     } = result;
-    console.log(AllComments);
+
     const {
       header_media: images, tags, user: author, createdAt: date, category, title, description: body, id,
     } = postData[0];
