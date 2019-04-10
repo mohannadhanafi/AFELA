@@ -35,42 +35,11 @@ export default class Header extends Component {
                   <li className="hidden-sm">
                     <Link to="/">Home</Link>
                   </li>
-
-                  <li className="dropdown">
-                    <a
-                      href="#"
-                      className="dropdown-toggle"
-                      data-toggle="dropdown"
-                    >
-                      Pages
-                    </a>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a href="services.html">Services</a>
-                      </li>
-                      <li>
-                        <a href="about-us.html">About Us</a>
-                      </li>
-                      <li>
-                        <a href="magazine-categories.html">
-                          Magazine Categories
-                        </a>
-                      </li>
-                      <li>
-                        <a href="magazine-single-article.html">
-                          Magazine Single Article
-                        </a>
-                      </li>
-                      <li>
-                        <a href="contact.html">Contact</a>
-                      </li>
-                      <li>
-                        <a href="faq.html">F.A.Q</a>
-                      </li>
-                      <li>
-                        <a href="404.html">404</a>
-                      </li>
-                    </ul>
+                  <li className="hidden-sm">
+                    <Link to="/contact">Contact Us</Link>
+                  </li>
+                  <li className="hidden-sm">
+                    <Link to="/about">About Us</Link>
                   </li>
 
                   <li className="nav-search type-2 hidden-sm hidden-xs">
