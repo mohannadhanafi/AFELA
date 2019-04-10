@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TrendingPosts from '../../../common/layouts/TrendingPosts';
-import LatestNews from '../../../common/layouts/LatestNews';
+import LayoutThree from '../../../common/layouts/LayoutThree';
 import NewsInPicture from '../../../common/layouts/NewsInPicture';
 import Categories from '../../../common/layouts/Categories';
 import FollowUs from '../../../common/FollowUs';
@@ -13,7 +13,8 @@ import Category from '../../../common/Category';
 import Feather from '../../../common/Feather';
 import TopRated from '../../../common/TopRated';
 import Tags from '../../../common/Tags';
-
+import LayoutOne from '../../../common/layouts/LayoutOne';
+import LayoutTwo from '../../../common/layouts/LayoutTwo';
 
 export default class index extends Component {
     state = {}
@@ -24,14 +25,11 @@ export default class index extends Component {
           <div className="row">
             <div className="col-md-8 content">
               <TrendingPosts />
-              <LatestNews />
-              <NewsInPicture />
+              <NewsInPicture seo="main" />
               <Categories />
-              {/* <div className="header-ad hidden-sm hidden-xs">
-                <a href="http://deothemes.com">
-                  <img src="http://deothemes.com/envato/afela/html/img/magazine/728_ad.jpg" alt="" />
-                </a>
-              </div> */}
+              <LayoutOne />
+              <LayoutTwo />
+              <LayoutThree />
               <EditorPicks />
             </div>
             <aside className="col-md-4 sidebar pb-50">
