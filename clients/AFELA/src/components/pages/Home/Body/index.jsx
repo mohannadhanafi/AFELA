@@ -27,9 +27,9 @@ export default class index extends Component {
               <TrendingPosts />
               <NewsInPicture seo="main" />
               <Categories seo="main" />
-              <LayoutOne />
-              <LayoutTwo />
-              <LayoutThree />
+              <LayoutOne seo="main" />
+              <LayoutTwo seo="main" />
+              <LayoutThree seo="main" />
               <EditorPicks />
             </div>
             <aside className="col-md-4 sidebar pb-50">

@@ -1,120 +1,70 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import React, { Component } from 'react';
+import axios from 'axios';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import './style.css';
 
 export default class TrendingPosts extends Component {
   state = {
     categories: ['WORLD', 'SPORTS', 'TRAVEL', 'fashion'],
     news: [
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'fashion',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'fashion',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
+
     ],
   };
 
+  componentDidMount() {
+    const { seo } = this.props;
+    axios.get(`/api/v1/CatWithPosts/${seo}`).then((results) => {
+      const { data } = results;
+      const { result, catName } = data;
+      const { rows } = result;
+      this.setState({ news: rows, catName });
+    }).catch((error) => {
+
+    });
+  }
+
   render() {
-    const { categories, news } = this.state;
+    const { news, catName } = this.state;
     return (
       <section className="section-wrap relative pb-0 pt-0">
         <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align">
-          category name
+          {catName}
         </h2>
-
         <div className="row">
-          {news.map(element => (
+          {news && news.map(element => (
             <div className="col-md-4 mb-50">
-
               <article>
                 <div className="entry-img hover-scale">
-                  <a
-                    href="magazine-single-article.html"
+                  <Link
+                    to={`/news/${element.category.category_seo}/${element.seo}`}
                     className="entry-category-label blue"
                   >
-                    {element.category}
-                  </a>
-                  <a href="magazine-single-article.html">
-                    <img src={element.image} alt="" />
-                  </a>
+                    {element.category.category_name}
+                  </Link>
+                  <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
+                    <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" className="entry__img" />
+                  </Link>
                 </div>
                 <div className="entry mb-0">
                   <h2 className="entry-title">
-                    <a href="magazine-single-article.html">
+                    <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
                       {element.title}
-                    </a>
+                    </Link>
                   </h2>
                   <ul className="entry-meta list-inline">
                     <li className="entry-date">
-                      <a href="#">{element.date}</a>
+                      <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(news.createdAt).format('DD MMM YYYY')}</Link>
                     </li>
-                    <li className="entry-comments">
-                      <i className="fa fa-comments" />
-                      <a href="magazine-single-article.html">15</a>
-                    </li>
+
                   </ul>
                   <div className="entry-content">
-                    <a
-                      href="magazine-single-article.html"
-                      className="read-more dark-link"
-                    >
+
+                    <Link to={`/news/${element.category.category_seo}/${element.seo}`} className="read-more dark-link">
                   Read More <i className="fa fa-angle-right" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </article>

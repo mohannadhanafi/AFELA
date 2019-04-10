@@ -1,3 +1,7 @@
 .latest--image {
-    height: 230px;
+  height: 230px;
+}
+
+.entry__img {
+  height: 111px !important;
 }
