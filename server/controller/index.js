@@ -33,6 +33,7 @@ router
   .get('/CatWithPosts/:seo_name', postsCat.get)
   .get('/getRelatedPosts', categories.getRelated)
   .get('/categories/getAll', categories.get)
+  .get('/categories/allWithCount', categories.allWithCount)
   .get('/getFile/:name', upload.get)
   .get('/getoptions', options.get)
   .get('/heading', heading.getHero)

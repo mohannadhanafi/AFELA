@@ -13,6 +13,14 @@ exports.get = async (request, response) => {
     response.status(500).send('Server Error');
   }
 };
+exports.allWithCount = async (request, response) => {
+  try {
+    const result = await categories.findAll();
+    response.status(200).send(result);
+  } catch (error) {    
+    response.status(500).send('Server Error');
+  }
+};
 exports.getRelated = async (request, response) => {
   const result = await posts.findAll({
     order: [['updatedAt', 'DESC']],
@@ -26,15 +34,19 @@ exports.post = async (request, response) => {
   try {
     const newCat = request.body;
     const {
-      name, seo, parent, description, pic,
-    } = newCat;
+ name, seo, parent, description, pic 
+} = newCat;
     if (
       name
       && validator.isLength(name, { min: 0, max: 20 })
-      && parent && parent.trim()
-      && description && description.trim()
-      && pic && pic.trim()
-      && seo && seo.trim()
+      && parent
+      && parent.trim()
+      && description
+      && description.trim()
+      && pic
+      && pic.trim()
+      && seo
+      && seo.trim()
       && validator.isLength(seo, { min: 0, max: 20 })
     ) {
       const result = await categories.count({
@@ -53,7 +65,9 @@ exports.post = async (request, response) => {
           categories
             .create(newCat)
             .then(async (finalResult) => {
-              const { dataValues: { id } } = finalResult;
+              const {
+                dataValues: { id },
+              } = finalResult;
               await homePageLayouts.create({ category_id: id });
               response.status(200).send({
                 message:
@@ -129,10 +143,7 @@ exports.updateCategory = async (req, res) => {
       data,
       params: { id },
     } = req.body;
-    const {
-      name, seo, description,
-    } = data;
-
+    const { name, seo, description } = data;
 
     if (
       !name.trim()
@@ -145,11 +156,15 @@ exports.updateCategory = async (req, res) => {
         message: 'Invalid inputs, please note the type of each input',
       });
     } else {
-      const categoriesCheck = await categories.findOne({ where: { $or: [{ name }, { seo }] }, raw: true });
+      const categoriesCheck = await categories.findOne({
+        where: { $or: [{ name }, { seo }] },
+        raw: true,
+      });
       if (categoriesCheck && categoriesCheck.id !== parseInt(id, 10)) {
-        res
-          .status(400)
-          .send({ message: 'Sorry !, Category with this Name Or Seo Name is already exist' });
+        res.status(400).send({
+          message:
+            'Sorry !, Category with this Name Or Seo Name is already exist',
+        });
       } else {
         data.seo = seo.replace(/\s/g, '').toLowerCase();
         categories.update(data, {
