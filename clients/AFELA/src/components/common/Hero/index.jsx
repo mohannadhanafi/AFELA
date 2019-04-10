@@ -36,7 +36,7 @@ export default class Hero extends Component {
                           </h2>
                           <ul className="entry-meta list-inline">
                             <li className="entry-date">
-                              <i className="fa fa-clock-o" /><a>{moment(hero[0].createdAt).format('DD-MM-YYYY')}</a>
+                              <i className="fa fa-clock-o" /><a>{moment(hero[0].createdAt).format('DD MMM, YYYY')}</a>
                             </li>
                             <li className="entry-category">
                               <i className="fa fa-folder-open" /><a>{hero[0].category.name}</a>

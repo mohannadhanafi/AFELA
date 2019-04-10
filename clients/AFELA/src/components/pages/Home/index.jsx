@@ -6,6 +6,10 @@ import Body from './Body';
 export default class index extends Component {
     state = {}
 
+    componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+
     render() {
       return (
         <>

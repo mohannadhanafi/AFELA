@@ -61,6 +61,10 @@ export default class AboutUs extends Component {
     ],
   };
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const { teamTitle, team, testomonials } = this.state;
     return (
