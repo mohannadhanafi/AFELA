@@ -1,0 +1,39 @@
+.first--footer h2 {
+    background: linear-gradient(90deg, #DA0842 0%, #8C0080 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.first--footer p {
+    color: #FFFFFF;
+    font-size: 14px;
+    margin: 22px 0 30px;
+}
+
+.first--footer i {
+    background: linear-gradient(90deg, #DA0842 0%, #8C0080 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.first--footer h6 {
+    color: #606060;
+    font-size: 14px;
+    display: inline;
+    margin-left: 5px;
+}
+
+.first--footer h6 span {
+    color: #FFF;
+}
+
+.first--footer .footer--mobile {
+    margin-bottom: 20px;
+}
+
+.first--footer .logo {
+    height: 32px;
+    width: auto;
+}
