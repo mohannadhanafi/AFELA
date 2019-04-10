@@ -29,10 +29,6 @@ export default class index extends Component {
                   <li className="entry-date">
                     <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{moment(news[0].createdAt).format('DD MMM YYYY')}</Link>
                   </li>
-                  <li className="entry-comments">
-                    <i className="fa fa-comments" />
-                    <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>15</Link>
-                  </li>
                 </ul>
                 <div className="entry-content">
                   <p>{ReactHtmlParser(news[0].description)}</p>
@@ -49,7 +45,7 @@ export default class index extends Component {
                       <h3 className="entry-title"><Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.title}</Link></h3>
                       <ul className="entry-meta list-inline">
                         <li className="entry-date">
-                          <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(element.createdAt).format('DD MMM YYYY')}</Link>
+                          <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(element.createdAt).format('DD MMM, YYYY')}</Link>
                         </li>
                       </ul>
                     </div>

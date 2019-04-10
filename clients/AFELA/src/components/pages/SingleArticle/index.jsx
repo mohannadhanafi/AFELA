@@ -69,6 +69,10 @@ export default class SigleArtice extends Component {
     ],
   };
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const {
       images, tags, author, date, category, comments, title, body, relatedPosts, AllComments,

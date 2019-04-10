@@ -11,6 +11,10 @@ export default class index extends Component {
     email: 'afelasupport@gmail.com',
   };
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const {
       background, mobile, address, email,

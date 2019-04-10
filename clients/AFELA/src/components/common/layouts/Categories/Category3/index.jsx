@@ -27,11 +27,7 @@ export default class index extends Component {
                 <h2 className="entry-title small"><Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{news[0].title}</Link></h2>
                 <ul className="entry-meta list-inline">
                   <li className="entry-date">
-                    <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{moment(news[0].createdAt).format('DD MMM YYYY')}</Link>
-                  </li>
-                  <li className="entry-comments">
-                    <i className="fa fa-comments" />
-                    <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>15</Link>
+                    <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{moment(news[0].createdAt).format('DD MMM, YYYY')}</Link>
                   </li>
                 </ul>
                 <div className="entry-content">
