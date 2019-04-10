@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import * as $ from 'jquery';
 
 export default class Feather extends Component {
   state={
@@ -14,6 +15,28 @@ export default class Feather extends Component {
     ],
   }
 
+  // componentDidMount() {
+  //   $('document').ready(() => {
+  //     $('#flexslider').flexslider({
+  //       animation: 'slide',
+  //       directionNav: true,
+  //       touch: true,
+  //       slideshow: false,
+  //       prevText: ["<i class='fa fa-angle-left'></i>"],
+  //       nextText: ["<i class='fa fa-angle-right'></i>"],
+  //       start() {
+  //         const $container = $('.masonry');
+  //         $container.imagesLoaded(() => {
+  //           $container.isotope({
+  //             itemSelector: '.masonry-item',
+  //             layoutMode: 'masonry',
+  //           });
+  //         });
+  //       },
+  //     });
+  //   });
+  // }
+
   render() {
     const { feather } = this.state;
     return (
@@ -22,9 +45,9 @@ export default class Feather extends Component {
 
         <div id="flexslider" className="flexslider">
           <ul className="slides clearfix">
-            {feather && feather.map(({ image }) => (              
+            {feather && feather.map(({ image }) => (
               <li>
-                <img src={image} alt="" className="image__feather"/>
+                <img src={image} alt="" className="image__feather" />
               </li>
             ))}
           </ul>

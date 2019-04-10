@@ -539,23 +539,23 @@ animate: !1, distance: 0, max: 100, min: 0, orientation: 'horizontal', range: !1
 
 
   // Flexslider / Masonry
-  $('#flexslider').flexslider({
-    animation: 'slide',
-    directionNav: true,
-    touch: true,
-    slideshow: false,
-    prevText: ["<i class='fa fa-angle-left'></i>"],
-    nextText: ["<i class='fa fa-angle-right'></i>"],
-    start() {
-      const $container = $('.masonry');
-      $container.imagesLoaded(() => {
-        $container.isotope({
-          itemSelector: '.masonry-item',
-          layoutMode: 'masonry',
-        });
-      });
-    },
-  });
+  // $('#flexslider').flexslider({
+  //   animation: 'slide',
+  //   directionNav: true,
+  //   touch: true,
+  //   slideshow: false,
+  //   prevText: ["<i class='fa fa-angle-left'></i>"],
+  //   nextText: ["<i class='fa fa-angle-right'></i>"],
+  //   start() {
+  //     const $container = $('.masonry');
+  //     $container.imagesLoaded(() => {
+  //       $container.isotope({
+  //         itemSelector: '.masonry-item',
+  //         layoutMode: 'masonry',
+  //       });
+  //     });
+  //   },
+  // });
 
 
   $('#ticker').flexslider({
