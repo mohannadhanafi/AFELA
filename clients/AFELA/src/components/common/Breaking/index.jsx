@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
-import uuid from 'uuid';
 
 export default class index extends Component {
   state = {
@@ -39,12 +38,11 @@ export default class index extends Component {
           <span className="uppercase">Breaking News:</span>
           <div id="ticker" className="flexslider">
             <ul className="slides clearfix">
-              {breaking.map(value => (
-                <li key={uuid()}>
-                  {/* <Link to={`/news/${value.category.seo}/${value.seo}`}> */}
-                  {/* <time>{moment(value.createdAt).format('HH:mm')}</time> */}
-                  {` ${value.title}` || null}
-                  {/* </Link> */}
+              {breaking.map(post => (
+                <li>
+                  <Link to={post.category && `/news/${post.category.seo}/${post.seo}`}>
+                    <time>{moment(post.createdAt).format('HH:mm')}</time>
+                    {` ${post.title}`}</Link>
                 </li>
               ))}
             </ul>
