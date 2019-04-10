@@ -1,0 +1,8 @@
+.tags span {
+  font-size: 14px;
+  color: #969696;
+  padding: 10px 20px;
+  display: inline-block;
+  background-color: #e1e1e1;
+  margin: 0 10px 15px 0;
+}

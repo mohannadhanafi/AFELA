@@ -1,0 +1,15 @@
+.form--data {
+  margin-top: 29px;
+}
+.form--data p {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 19px;
+}
+.form--data button {
+  text-transform: unset;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  background: -webkit-linear-gradient(left, #da0842 0%, #8c0080 100%);
+}

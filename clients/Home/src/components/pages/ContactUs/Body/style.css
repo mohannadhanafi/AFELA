@@ -1,0 +1,7 @@
+.contact p {
+  color: #222222;
+  font-size: 18px;
+}
+.contact .heading h2:before, .contact .heading h2:after {
+  width: 17%;
+}

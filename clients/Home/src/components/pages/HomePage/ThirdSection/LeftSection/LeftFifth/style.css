@@ -1,0 +1,105 @@
+.third-fifth {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  min-height: 490px;
+}
+.third-fifth div {
+  outline: none;
+}
+.fifth-slider-overlay {
+  padding-top: 150px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  outline-style: none;
+}
+
+.fifth-image-slider {
+  height: 430px;
+  position: relative;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  outline-style: none;
+}
+.third-fifth .slick-prev {
+  z-index: 99;
+  text-align: center;
+  right: 95px;
+  left: unset;
+  position: absolute;
+  top: 52px;
+}
+.third-fifth .slick-next {
+  z-index: 99;
+  position: absolute;
+  right: 40px;
+  top: 52px;
+}
+.third-fifth .slick-prev:hover:before, .third-fifth .slick-next:hover:before {
+    background: #0D0C0C;
+}
+.third-fifth .slick-prev::before,
+.third-fifth .slick-next::before {
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  text-align: center;
+  font-weight: 900;
+
+  text-align: center;
+  background: linear-gradient(90deg, #da0842 0%, #8c0080 100%);
+  height: 35px;
+  width: 35px;
+  opacity: 1;
+  line-height: 2.1rem;
+  display: block !important ;
+  transition-duration: 0.5s;
+}
+.third-fifth .slick-prev::before {
+  content: "\f053";
+}
+.third-fifth .slick-next::before {
+  content: "\f054";
+}
+.fifth-slider-overlay h4 {
+  margin-bottom: 20px;
+}
+.fifth-image-slider {
+  margin-top: 30px;
+}
+.fifth-image-slider .news {
+  height: 60px;
+  color: #ffffff;
+  font-size: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-height: 25px;
+  height: 50px; 
+  cursor: pointer;
+}
+.fifth-image-slider .news:hover {
+  text-decoration: underline;
+}
+.fifth-slider-overlay .container {
+  width: 85%;
+}
+.fifth-slider-overlay .news-details {
+  color: #ffffff;
+  margin-top: 34px;
+  display: block;
+  font-size: 14px;
+  font-weight: normal !important ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-height: 25px;
+  height: 75px;
+}

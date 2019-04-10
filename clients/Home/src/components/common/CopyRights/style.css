@@ -1,0 +1,26 @@
+.copy--rights {
+    padding: 25px 0;
+    background-color: #202020;
+}
+
+.copy--rights h5 {
+    color: #FFF;
+    font-size: 16px;
+}
+
+.copy--rights i {
+    color: #666666;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.copy--rights i:hover {
+    background: linear-gradient(90deg, #DA0842 0%, #8C0080 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.copy--rights .copy--footer {
+    display: flex;
+    justify-content: space-between;
+}

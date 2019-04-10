@@ -1,0 +1,12 @@
+.area-field {
+  height: 180px;
+  border: 1px solid #dbdbdb;
+  width: 100%;
+  padding: 16px 0 0 18px;
+  resize: none;
+}
+.area-field::placeholder {
+  font-size: 14px;
+  color: #c4c4c4;
+  font-weight: 100;
+}

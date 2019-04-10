@@ -1,0 +1,33 @@
+.second--footer h2:before,
+.second--footer h2:after {
+  width: 26%;
+}
+
+.second--footer ul {
+  list-style: none;
+  margin-top: 22px;
+}
+
+.second--footer ul li {
+  display: inline-block;
+  background-color: #2f2f2f;
+  margin: 2px;
+  padding: 8px 24px;
+  cursor: pointer;
+}
+.second--footer ul li:hover {
+  background: linear-gradient(90deg, #da0842 0%, #8c0080 100%);
+}
+
+.second--footer ul li:hover a {
+  color: #fff;
+}
+
+.second--footer ul li a {
+  color: #8f8f8f;
+  font-size: 14px;
+}
+
+.second--footer ul li a:hover {
+  text-decoration: none;
+}
