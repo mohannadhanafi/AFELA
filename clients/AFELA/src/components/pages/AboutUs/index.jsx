@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import React, { Component } from 'react';
+import $ from 'jquery';
 import TopSection from './TopSection';
 import Results from './Results';
 import OurTeam from './OurTeam';
@@ -63,6 +64,33 @@ export default class AboutUs extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    $(document).ready(() => {
+      (function ($) {
+        $('.local-scroll').localScroll({ offset: { top: -60 }, duration: 1500, easing: 'easeInOutExpo' });
+        $('.statistic').appear(() => {
+          $('.timer').countTo({
+            speed: 4000,
+            refreshInterval: 60,
+            formatter(value, options) {
+              return value.toFixed(options.decimals);
+            },
+          });
+        });
+        const $section = $('#animated-skills').appear(function () {
+          const bar = $('.progress-bar');
+          let bar_width = $(this);
+      
+          function loadDaBars() {
+            $(bar).each(function () {
+              bar_width = $(this).attr('aria-valuenow');
+              $(this).width(`${bar_width}%`);
+            });
+          }
+          loadDaBars();
+        });
+      
+      }(window.jQuery));
+    });
   }
 
   render() {

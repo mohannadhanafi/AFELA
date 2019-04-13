@@ -31,7 +31,7 @@ export default class index extends Component {
                   </li>
                 </ul>
                 <div className="entry-content">
-                  <p>{ReactHtmlParser(news[0].description)}</p>
+                  <p>{ReactHtmlParser(news[0].post_intro)}</p>
                   <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`} className="read-more dark-link">Read More<i className="fa fa-angle-right" />
                   </Link>
                 </div>

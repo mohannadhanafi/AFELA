@@ -22,6 +22,8 @@ export default class index extends Component {
 
     render() {
       const { title, news } = this.state;
+      console.log(news);
+
       return (
         news.length ? (
           <section className="section-wrap relative pb-70 pt-0">
@@ -29,7 +31,7 @@ export default class index extends Component {
               <div className="col-sm-12">
                 <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align">{title}</h2>
                 <ul className="posts-list no-top-pad clearfix">
-                  {news.slice(0,3).map(element => (
+                  {news.slice(0, 3).map(element => (
                     <li key={uuid()} className="clearfix">
                       <article>
                         <div className="entry-img hover-scale">
@@ -44,13 +46,11 @@ export default class index extends Component {
                             <li className="entry-date">
                               <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(element.createdAt).format('DD MMM YYYY')}</Link>
                             </li>
-                            {/* <li className="entry-author">
-                              <i className="fa fa-user" />
-                              <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.auther}</Link>
-                            </li> */}
+
                           </ul>
+
                           <div className="entry-content">
-                            <p>{element.desc}</p>
+                            <p>{element.post_intro}</p>
                             <Link to={`/news/${element.category.category_seo}/${element.seo}`} className="read-more dark-link">Read More<i className="fa fa-angle-right" />
                             </Link>
                           </div>
