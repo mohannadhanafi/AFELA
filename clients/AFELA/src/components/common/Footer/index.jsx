@@ -68,6 +68,7 @@ export default class Footer extends Component {
                       type="submit"
                       className="btn btn-md btn-dark newsletter-submit"
                       value="Subscribe"
+                      onClick={this.addNewleter}
                     />
                   </form>
                 </div>
