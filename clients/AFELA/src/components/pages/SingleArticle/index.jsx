@@ -29,20 +29,7 @@ export default class SigleArtice extends Component {
     body: '',
     nextPost: {},
     prevPost: '',
-    relatedPosts: [
-      {
-        image: 'http://deothemes.com/envato/afela/html/img/blog/1.jpg',
-        title: 'The Golden Age: How the PR Industry Is Coming Into its Own',
-      },
-      {
-        image: 'http://deothemes.com/envato/afela/html/img/blog/3.jpg',
-        title: '5 Ways to Give Thanks and Give Back at Work',
-      },
-      {
-        image: 'http://deothemes.com/envato/afela/html/img/blog/1.jpg',
-        title: '16-Step Blueprint to Master Your Digital Marketing in 2016',
-      },
-    ],
+    relatedPosts: [],
     AllComments: [
       {
         time: 'May 6, 2014 at 12:48 pm',
@@ -66,7 +53,7 @@ export default class SigleArtice extends Component {
     comment: '',
   };
 
-  
+
   addComment = async (e) => {
     e.preventDefault();
     const {
@@ -106,6 +93,7 @@ getData = (props) => {
     const {
       header_media: images, tags, user: author, createdAt: date, category, title, description: body, id,
     } = postData[0];
+
     this.setState({
       images,
       tags,
@@ -123,6 +111,10 @@ getData = (props) => {
 }
 
 componentDidMount() {
+  axios('/api/v1/lastposts').then((result) => {
+    const { data } = result;
+    this.setState({ relatedPosts: data });
+  });
   window.scrollTo(0, 0);
   this.getData(this.props);
   $(document).ready(() => {
@@ -135,6 +127,18 @@ componentDidMount() {
 }
 
 componentWillReceiveProps(props) {
+  console.log(545);
+  
+  $(document).ready(() => {
+    (function ($) {
+      $('.loader').show();
+      $('.loader-mask').show();
+      $(window).trigger('resize');
+      $('.loader').delay(1000).fadeOut();
+      $('.loader-mask').delay(1500).fadeOut('slow');
+      $(window).trigger('resize');
+    }(window.jQuery));
+  });
   window.scrollTo(0, 0);
   this.getData(props);
 }
@@ -147,6 +151,7 @@ render() {
   const {
     images, tags, author, date, category, comments, title, body, relatedPosts, AllComments, nextPost, prevPost, comment, name, email,
   } = this.state;
+
   return (
     <div className="main-wrapper magazine oh">
       <div className="loader-mask">

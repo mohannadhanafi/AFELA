@@ -50,7 +50,7 @@ class index extends Component {
                     <h2 className="entry-title"><a href="magazine-single-article.html">{this.state && news[0].title}</a></h2>
                     <ul className="entry-meta list-inline">
                       <li className="entry-date">
-                        <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{moment(news[0].createdAt).format('DD MMM YYYY')}</Link>
+                        <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{moment(news[0].createdAt).calendar()}</Link>
                       </li>
 
                     </ul>
@@ -77,7 +77,7 @@ class index extends Component {
                           <ul className="entry-meta list-inline">
                             <li className="entry-date">
                               <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                                {moment(news.createdAt).format('DD MMM YYYY')}
+                                {moment(news.createdAt).calendar()}
                               </Link>
                             </li>
                           </ul>

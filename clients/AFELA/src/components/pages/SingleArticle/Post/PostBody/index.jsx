@@ -5,7 +5,7 @@
 import React from 'react';
 import reactHtmlParser from 'react-html-parser';
 
-export default function index({ body }) {
+export default function index({ body }) {  
   return (
     <>
     {reactHtmlParser(body)}

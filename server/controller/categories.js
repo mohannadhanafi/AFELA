@@ -17,7 +17,7 @@ exports.allWithCount = async (request, response) => {
   try {
     const result = await categories.findAll();
     response.status(200).send(result);
-  } catch (error) {    
+  } catch (error) {
     response.status(500).send('Server Error');
   }
 };
@@ -34,8 +34,8 @@ exports.post = async (request, response) => {
   try {
     const newCat = request.body;
     const {
- name, seo, parent, description, pic 
-} = newCat;
+      name, seo, parent, description, pic,
+    } = newCat;
     if (
       name
       && validator.isLength(name, { min: 0, max: 20 })

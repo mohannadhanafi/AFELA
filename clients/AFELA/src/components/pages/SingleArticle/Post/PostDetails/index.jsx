@@ -14,7 +14,7 @@ export default function index({
       <ul className="entry-meta list-inline mb-30">
         <li className="entry-date">
           <i className="fa fa-clock-o" />
-          <Link to="/">{moment(date).format('DD MMM, YYYY')}</Link>
+          <Link to="/">{moment(date).calendar()}</Link>
         </li>
         <li className="entry-category">
           <i className="fa fa-folder-open" />
@@ -27,17 +27,7 @@ export default function index({
       </ul>
 
       <div className="entry-slider">
-        {/* {images.length > 1 ? (
-          <div className="flexslider" id="flexslider">
-            <ul className="slides clearfix">
-              {images.map(image => (
-                <li>
-                  <img className="post-image-slider" src={`/api/v1/getFile/${image}`} alt="" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : ( */}
+
         <img className="post-image-slider" src={`/api/v1/getFile/${images[0]}`} alt="" />
         {/* )} */}
       </div>
