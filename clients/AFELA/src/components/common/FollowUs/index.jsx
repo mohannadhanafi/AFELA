@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class FollowUs extends Component {
-  state={
-    social: [
-      { name: 'facebook', link: '/', className: 'fab fa-facebook-f' },
-      { name: 'twitter', link: '/', className: 'fab fa-twitter' },
-      { name: 'google-plus', link: '/', className: 'fab fa-google-plus-g' },
-      { name: 'instagram', link: '/', className: 'fab fa-instagram' },
-      { name: 'youtube', link: '/', className: 'fab fa-youtube' },
-      { name: 'rss', link: '/', className: 'fa fa-rss' },
+  state = {
+    data: '',
+    links: [
+      { name: 'facebook' },
+      { name: 'google-plus' },
+      { name: 'youtube' },
+      { name: 'linkedin' },
+      { name: 'vimeo' },
     ],
+  };
+
+  componentDidMount() {
+    axios.get('/api/v1/getoptions').then((result) => {
+      const { data } = result;
+      this.setState(() => ({ data }));
+    });
   }
 
   render() {
-    const { social } = this.state;
+    const { data, links } = this.state;
     return (
       <div className="widget follow-us">
-        <h3 className="widget-title heading relative heading-small uppercase bottom-line style-2 left-align">Follow Us</h3>
+        <h3 className="widget-title heading relative heading-small uppercase bottom-line style-2 left-align">
+
+          Follow Us
+</h3>
         <div className="social-icons colored large">
-          {social && social.map(({ name, link, className }) => (
-            <a href={link} className={`social-${name}`} data-toggle="tooltip" data-placement="top" title={name}><i className={className} /></a>
-          ))}
+          {data
+            && links.map(link => (
+              <a
+                href={data[0][link.name] ? data[0][link.name] : null}
+                className={`social-${link.name}`}
+                data-toggle="tooltip"
+                data-placement="top"
+                title={link.name}
+              >
+                <i className={`fab fa-${link.name}`} />
+              </a>
+            ))}
         </div>
       </div>
     );
