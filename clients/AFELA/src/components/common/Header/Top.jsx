@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import moment from 'moment';
+import React, { Component } from "react";
+import moment from "moment";
+import { Link } from "react-router-dom";
 
 export default class Header extends Component {
   state = {
     links: [
-      { name: 'facebook' },
-      { name: 'google-plus' },
-      { name: 'youtube' },
-      { name: 'linkedin' },
-      { name: 'vimeo' },
-    ],
+      { name: "facebook" },
+      { name: "google-plus" },
+      { name: "youtube" },
+      { name: "linkedin" },
+      { name: "vimeo" }
+    ]
   };
 
   render() {
@@ -23,13 +24,10 @@ export default class Header extends Component {
               <div className="top-bar-links">
                 <ul className="col-sm-6">
                   <li className="top-bar-date">
-                    <span>{moment().format('dddd, MMMM D, YYYY')}</span>
+                    <span>{moment().format("dddd, MMMM D, YYYY")}</span>
                   </li>
                   <li className="top-bar-link">
-                    <a href="#">advertise</a>
-                  </li>
-                  <li className="top-bar-link">
-                    <a href="#">buy now</a>
+                    <Link to="/contact">ADVERTISE</Link>
                   </li>
                 </ul>
 
@@ -37,18 +35,20 @@ export default class Header extends Component {
                   {data ? (
                     <li className="social-icons dark">
                       {links.map(link => (
-                        <a href={data[0][link.name] ? data[0][link.name] : null}>
+                        <a
+                          href={data[0][link.name] ? data[0][link.name] : null}
+                        >
                           <i className={`fab fa-${link.name}`} />
                         </a>
                       ))}
                     </li>
                   ) : null}
-                  <li className="top-bar-link">
+                  {/* <li className="top-bar-link">
                     <a href="#">Join</a>
                   </li>
                   <li className="top-bar-link">
                     <a href="#">Login</a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>

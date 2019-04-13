@@ -27,9 +27,9 @@ export default class Category extends Component {
 </h3>
         <ul className="list-dividers">
           {categories.length
-            && categories.map(({ name, seo }) => (
+            && categories.slice(0, 10).map(({ name, seo }) => (
               <li>
-                <Link to={`/${seo}`}>
+                <Link to={`/news/${seo}`}>
                   {name}
                 </Link>
               </li>
