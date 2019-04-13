@@ -127,6 +127,18 @@ componentDidMount() {
 }
 
 componentWillReceiveProps(props) {
+  console.log(545);
+  
+  $(document).ready(() => {
+    (function ($) {
+      $('.loader').show();
+      $('.loader-mask').show();
+      $(window).trigger('resize');
+      $('.loader').delay(1000).fadeOut();
+      $('.loader-mask').delay(1500).fadeOut('slow');
+      $(window).trigger('resize');
+    }(window.jQuery));
+  });
   window.scrollTo(0, 0);
   this.getData(props);
 }
