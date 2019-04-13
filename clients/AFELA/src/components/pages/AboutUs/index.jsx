@@ -79,7 +79,7 @@ export default class AboutUs extends Component {
         const $section = $('#animated-skills').appear(function () {
           const bar = $('.progress-bar');
           let bar_width = $(this);
-      
+
           function loadDaBars() {
             $(bar).each(function () {
               bar_width = $(this).attr('aria-valuenow');
@@ -88,7 +88,9 @@ export default class AboutUs extends Component {
           }
           loadDaBars();
         });
-      
+        $('.loader').delay(1000).fadeOut();
+        $('.loader-mask').delay(1500).fadeOut('slow');
+        $(window).trigger('resize');
       }(window.jQuery));
     });
   }
@@ -97,6 +99,9 @@ export default class AboutUs extends Component {
     const { teamTitle, team, testomonials } = this.state;
     return (
       <>
+        <div className="loader-mask">
+          <div className="loader">Loading...</div>
+        </div>
         <TopSection />
         <WhatWeDo />
         <Results />

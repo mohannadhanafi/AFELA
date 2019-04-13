@@ -1,13 +1,13 @@
 (function ($) {
-  $(window).load(() => {
-    // Preloader
-    $('.loader').fadeOut();
-    $('.loader-mask').delay(350).fadeOut('slow');
+  // $(window).load(() => {
+  //   // Preloader
+  //   $('.loader').fadeOut();
+  //   $('.loader-mask').delay(350).fadeOut('slow');
 
-    $(window).trigger('resize');
-    masonry();
-    initOwlCarousel();
-  });
+  //   $(window).trigger('resize');
+  //   masonry();
+  //   initOwlCarousel();
+  // });
 
 
   $(window).resize(() => {

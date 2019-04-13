@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert2';
+import $ from 'jquery';
 import FollowUs from '../../common/FollowUs';
 import Popular from '../../common/Popular';
 import Weather from '../../common/Weather';
@@ -65,6 +66,7 @@ export default class SigleArtice extends Component {
     comment: '',
   };
 
+  
   addComment = async (e) => {
     e.preventDefault();
     const {
@@ -123,6 +125,13 @@ getData = (props) => {
 componentDidMount() {
   window.scrollTo(0, 0);
   this.getData(this.props);
+  $(document).ready(() => {
+    (function ($) {
+      $('.loader').delay(1000).fadeOut();
+      $('.loader-mask').delay(1500).fadeOut('slow');
+      $(window).trigger('resize');
+    }(window.jQuery));
+  });
 }
 
 componentWillReceiveProps(props) {
@@ -140,6 +149,9 @@ render() {
   } = this.state;
   return (
     <div className="main-wrapper magazine oh">
+      <div className="loader-mask">
+        <div className="loader">Loading...</div>
+      </div>
       <div className="container">
         <ol className="breadcrumb mt-20">
           <li>
