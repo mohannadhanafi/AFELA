@@ -26,9 +26,7 @@ export default function index({
       <div className="entry">
         <div className="entry-content">
           <PostBody body={body} />
-          {tags.length && (
-          <Tags tags={tags} />
-          )}
+          {tags.length ? <Tags tags={tags} /> : null}
           <div className="entry-share">
             <div className="socials-share clearfix">
               <span className="uppercase">Share:</span>

@@ -27,17 +27,7 @@ export default function index({
       </ul>
 
       <div className="entry-slider">
-        {/* {images.length > 1 ? (
-          <div className="flexslider" id="flexslider">
-            <ul className="slides clearfix">
-              {images.map(image => (
-                <li>
-                  <img className="post-image-slider" src={`/api/v1/getFile/${image}`} alt="" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : ( */}
+
         <img className="post-image-slider" src={`/api/v1/getFile/${images[0]}`} alt="" />
         {/* )} */}
       </div>
