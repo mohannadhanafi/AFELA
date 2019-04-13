@@ -39,6 +39,10 @@ class Registration extends Component {
     whats: '',
     google: '',
     copyrights: '',
+    googleplus: '',
+    linkedin: '',
+    vimeo: '',
+    youtube: '',
     logo: '',
   };
 
@@ -48,10 +52,10 @@ componentDidMount = async () => {
   const res = await axios.get('/api/v1/getoptions');
   const { data } = res;
   const {
-    facebook, twitter, whats, google, copyrights, logo,
+    facebook, twitter, whats, google, copyrights, logo, googleplus, linkedin, vimeo, youtube,
   } = data[0];
   this.setState({
-    facebook, twitter, copyrights, logo, whats, google,
+    facebook, twitter, copyrights, logo, whats, google, googleplus, linkedin, vimeo, youtube,
   });
 }
 
@@ -128,7 +132,7 @@ componentDidMount = async () => {
   render() {
     const { getFieldDecorator } = this.props.form;
     const {
-      facebook, twitter, whats, google,
+      facebook, twitter, whats, google, googleplus, linkedin, vimeo, youtube,
     } = this.state;
     const formItemLayout = {
       labelCol: {
@@ -158,10 +162,10 @@ componentDidMount = async () => {
           <FormItem {...formItemLayout} label={<span>Facebook</span>}>
             {getFieldDecorator('facebook', { initialValue: facebook })(<Input />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={<span>twitter</span>}>
+          <FormItem {...formItemLayout} label={<span>Twitter</span>}>
             {getFieldDecorator('twitter', { initialValue: twitter })(<Input />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={<span>whatsapp</span>}>
+          <FormItem {...formItemLayout} label={<span>Whatsapp</span>}>
             {getFieldDecorator('whats', {
               initialValue: whats,
               rules: [
@@ -172,9 +176,19 @@ componentDidMount = async () => {
               ],
             })(<Input type="number" />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={<span>google</span>}>
+          <FormItem {...formItemLayout} label={<span>Google</span>}>
             {getFieldDecorator('google', { initialValue: google })(<Input />)}
           </FormItem>
+          <FormItem {...formItemLayout} label={<span>Google-plus</span>}>
+            {getFieldDecorator('googleplus', { initialValue: googleplus })(<Input />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label={<span>linkedIn</span>}>
+            {getFieldDecorator('linkedin', { initialValue: linkedin })(<Input />)}
+          </FormItem>  <FormItem {...formItemLayout} label={<span>Vimeo</span>}>
+            {getFieldDecorator('vimeo', { initialValue: vimeo })(<Input />)}
+                       </FormItem>  <FormItem {...formItemLayout} label={<span>Youtube</span>}>
+            {getFieldDecorator('youtube', { initialValue: youtube })(<Input />)}
+                       </FormItem>
           <FormItem {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
               Update

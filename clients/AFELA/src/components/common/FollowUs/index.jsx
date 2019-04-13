@@ -11,12 +11,17 @@ export default class FollowUs extends Component {
       { name: 'linkedin' },
       { name: 'vimeo' },
     ],
+
+
   };
 
   componentDidMount() {
     axios.get('/api/v1/getoptions').then((result) => {
       const { data } = result;
-      this.setState(() => ({ data }));
+
+      this.setState(() => ({
+     data
+      }));
     });
   }
 
@@ -27,7 +32,7 @@ export default class FollowUs extends Component {
         <h3 className="widget-title heading relative heading-small uppercase bottom-line style-2 left-align">
 
           Follow Us
-</h3>
+        </h3>
         <div className="social-icons colored large">
           {data
             && links.map(link => (

@@ -162,7 +162,7 @@ render() {
           <li>
             <a href="/">Home</a>
           </li>
-          <li className="active">Single Article</li>
+          <li className="active">{title}</li>
         </ol>
       </div>
 

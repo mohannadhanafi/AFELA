@@ -13,6 +13,10 @@ const posts = connection.define('options', {
   },
   whats: Sequelize.TEXT,
   google: Sequelize.TEXT,
+  googleplus: Sequelize.TEXT,
+  youtube: Sequelize.TEXT,
+  linkedin: Sequelize.TEXT,
+  vimeo: Sequelize.TEXT,
   logo: {
     type: Sequelize.TEXT,
   },

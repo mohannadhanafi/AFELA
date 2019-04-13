@@ -16,6 +16,7 @@ exports.update = async (req, res) => {
       youtub_number,
       facebook,
       twitter,
+      googleplus, linkedin, vimeo, youtube,
       whats,
       google,
       about_title,
@@ -30,6 +31,10 @@ exports.update = async (req, res) => {
       || (twitter && !validator.isURL(twitter))
       || (whats && !validator.isNumeric(whats))
       || (google && !validator.isURL(google))
+      || (googleplus && !validator.isURL(googleplus))
+      || (linkedin && !validator.isURL(linkedin))
+      || (vimeo && !validator.isURL(vimeo))
+      || (youtube && !validator.isURL(youtube))
       || (mobile && !validator.isNumeric(mobile))
       || (email && !validator.isEmail(email))
       || (copyrights
@@ -101,9 +106,7 @@ exports.update = async (req, res) => {
         message: 'Updated',
       });
     }
-  } catch (error) {
-    console.log(error);
-    
+  } catch (error) {    
     res.status(500).send({
       message: 'Internal server error',
     });
