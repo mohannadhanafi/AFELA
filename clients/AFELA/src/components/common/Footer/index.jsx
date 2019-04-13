@@ -1,26 +1,17 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 export default class Footer extends Component {
   state = {
     categories: [],
     options: [],
+
     links: [{ name: 'facebook', link: '#' }, { name: 'google-plus', link: '#' }, { name: 'youtube', link: '#' }, { name: 'linkedin', link: '#' }, { name: 'vimeo', link: '#' }],
     copyrights: '© 2015 Afela Theme | Made by DeoThemes',
     recentPosts: [
-      {
-        title: '6 Ways to Be More Productive by Working Less',
-        date: '19 Dec, 2015',
-        comments: 15,
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/thumb_11.jpg',
-      },
-      {
-        title: '3 Tips to Align Your Startup\'s \'Core Value\' With Customers',
-        date: '19 Dec, 2015',
-        comments: 15,
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/thumb_12.jpg',
-      },
+      
     ],
     aboutUs:
       'Afela Shop is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme. We possess within us two minds. So far I have written only of the conscious mind.',
@@ -33,9 +24,12 @@ export default class Footer extends Component {
     }).then(() => {
       axios.get('/api/v1/getoptions').then((result) => {
         const { data } = result;
-        console.log(data);
 
         this.setState(() => ({ options: data }));
+      }).then(async () => {
+        const result = await axios('/api/v1/lastposts');
+        const { data } = result;
+        this.setState({ recentPosts: data });
       });
     });
   }
@@ -44,6 +38,8 @@ export default class Footer extends Component {
     const {
       aboutUs, recentPosts, categories, links, options,
     } = this.state;
+    console.log(recentPosts);
+    
     return (
       <footer className="footer footer-type-4">
         <div className="container">
@@ -78,27 +74,23 @@ export default class Footer extends Component {
                   <h5 className="uppercase">Recent Posts</h5>
                   <div className="footer-entry-list">
                     <ul className="posts-list no-top-pad">
-                      {recentPosts.map(post => (
+                      {recentPosts.slice(0, 2).map(post => (
                         <li className="footer-entry">
                           <article className="post-small clearfix">
                             <div className="entry-img hover-scale">
-                              <a href="magazine-single-article.html">
-                                <img src={post.image} alt="" />
+                              <a href={`/news/${post.seo}`}>
+                                <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
                               </a>
                             </div>
                             <div className="entry">
                               <h3 className="entry-title">
-                                <a href="magazine-single-article.html">
+                                <a href={`/news/${post.seo}`}>
                                   {post.title}
                                 </a>
                               </h3>
                               <ul className="entry-meta list-inline">
                                 <li className="entry-date">
-                                  <a href="#">{post.date}</a>
-                                </li>
-                                <li className="entry-comments">
-                                  <i className="fa fa-comments" />
-                                  <a href="magazine-single-article.html">{post.comments}</a>
+                                  <a href={`/news/${post.seo}`}>{moment(post.createdAt).calendar()}</a>
                                 </li>
                               </ul>
                             </div>

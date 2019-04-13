@@ -35,6 +35,8 @@ export default class TrendingPosts extends Component {
           {catName}
         </h2>
         <div className="row">
+        {console.log(news)
+        }
           {news && news.slice(0, 6).map(element => (
             <div className="col-md-4 mb-50" key={uuid()}>
               <article>
@@ -57,7 +59,7 @@ export default class TrendingPosts extends Component {
                   </h2>
                   <ul className="entry-meta list-inline">
                     <li className="entry-date">
-                      <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(news.createdAt).format('DD MMM YYYY')}</Link>
+                      <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</Link>
                     </li>
 
                   </ul>

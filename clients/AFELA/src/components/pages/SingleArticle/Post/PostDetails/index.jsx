@@ -14,7 +14,7 @@ export default function index({
       <ul className="entry-meta list-inline mb-30">
         <li className="entry-date">
           <i className="fa fa-clock-o" />
-          <Link to="/">{moment(date).format('DD MMM, YYYY')}</Link>
+          <Link to="/">{moment(date).calendar()}</Link>
         </li>
         <li className="entry-category">
           <i className="fa fa-folder-open" />

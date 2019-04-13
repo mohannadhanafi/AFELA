@@ -44,7 +44,7 @@ export default class index extends Component {
                           <h2 className="entry-title"><Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.title}</Link></h2>
                           <ul className="entry-meta list-inline">
                             <li className="entry-date">
-                              <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(element.createdAt).format('DD MMM YYYY')}</Link>
+                              <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</Link>
                             </li>
 
                           </ul>
