@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
 import axios from 'axios';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import $ from 'jquery';
 import FollowUs from '../../common/FollowUs';
 import Popular from '../../common/Popular';
@@ -56,6 +56,13 @@ export default class SigleArtice extends Component {
 
   addComment = async (e) => {
     e.preventDefault();
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+
+    });
     const {
       comment, name, email, id,
     } = this.state;
@@ -66,13 +73,18 @@ export default class SigleArtice extends Component {
       post_id: id,
     };
     await axios.post('/api/v1/comments/addComment', data).then(() => {
-      swal.fire({
+      Toast.fire({
         title: 'Your comment sent, it will be avaliable after accept from admin',
         type: 'success',
-        timer: 3000,
-        customClass: {
-          popup: 'animated tada',
-        },
+
+      });
+      this.setState({
+        email: '', name: '', comment: '',
+      });
+    }).catch((err) => {
+      Toast.fire({
+        title: 'Somthing Error',
+        type: 'error',
       });
     });
   };
@@ -128,7 +140,7 @@ componentDidMount() {
 
 componentWillReceiveProps(props) {
   console.log(545);
-  
+
   $(document).ready(() => {
     (function ($) {
       $('.loader').show();

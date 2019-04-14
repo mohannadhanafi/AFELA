@@ -2,16 +2,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 
 export default class Footer extends Component {
   state = {
     categories: [],
+    email: '',
     options: [],
 
     links: [{ name: 'facebook', link: '#' }, { name: 'google-plus', link: '#' }, { name: 'youtube', link: '#' }, { name: 'linkedin', link: '#' }, { name: 'vimeo', link: '#' }],
     copyrights: '© 2015 Afela Theme | Made by DeoThemes',
     recentPosts: [
-      
+
     ],
     aboutUs:
       'Afela Shop is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme. We possess within us two minds. So far I have written only of the conscious mind.',
@@ -34,12 +36,50 @@ export default class Footer extends Component {
     });
   }
 
+  addNewletter= async (e) => {
+    e.preventDefault();
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+    });
+    const { email } = this.state;
+    const data = { email };
+    await axios.post('api/v1/newsletter', data).then((res) => {
+      const { data: { message } } = res;
+      if (res.err) {
+        return Toast.fire({
+          type: 'error',
+          title: message,
+
+        });
+      }
+      Toast.fire({
+        type: 'success',
+        title: message,
+      });
+      this.setState({
+        email: '',
+      });
+    }).catch((err) => {
+      Toast.fire({
+        title: 'Somthing Error',
+        type: 'error',
+      });
+    });
+  }
+
+  onChange=(e) => {
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
+  }
+
   render() {
     const {
-      aboutUs, recentPosts, categories, links, options,
+      aboutUs, recentPosts, categories, links, options,email
     } = this.state;
-    console.log(recentPosts);
-    
+
     return (
       <footer className="footer footer-type-4">
         <div className="container">
@@ -53,18 +93,21 @@ export default class Footer extends Component {
                   </p>
 
                   <p>Subscribe to our newsletter:</p>
-                  <form className="relative newsletter-form style-2">
+                  <form className="relative newsletter-form style-2" onSubmit={this.addNewletter}>
                     <input
                       type="email"
                       className="newsletter-input"
                       placeholder="Enter your email"
+                      name="email"
+                      value={email}
+                      onChange={this.onChange}
+                      required
                     />
                     <i className="icon_mail" />
                     <input
                       type="submit"
                       className="btn btn-md btn-dark newsletter-submit"
                       value="Subscribe"
-                      onClick={this.addNewleter}
                     />
                   </form>
                 </div>

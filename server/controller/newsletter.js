@@ -46,17 +46,25 @@ exports.delete = async (req, res) => {
 exports.post = async (req, res) => {
   try {
     const hash = randomstring.generate({ length: 50 });
+
     const { email } = req.body;
+
     const data = { email, activated: true, hash };
     const checkEmail = validator.isEmail(email);
-    if (checkEmail) {
-      const checkEmailIfExist = await newsletter.findAndCountAll({ where: { email }, raw: true });
-      if (checkEmailIfExist.rows.length) {
-        res.status(400).send({ message: 'Your email is already exist !' });
+    if (email && email.trim()) {
+      if (checkEmail) {
+        const checkEmailIfExist = await newsletter.findAndCountAll({ where: { email }, raw: true });
+        if (checkEmailIfExist.rows.length) {
+          res.status(400).send({ message: 'Your email is already exist !' });
+        } else {
+          newsletter.create(data);
+          res.status(200).send({ message: 'Thank you,' });
+        }
       } else {
-        newsletter.create(data);
-        res.status(200).send({ message: 'Thank you,' });
+        res.status(401).send({ message: 'Enter Vaild Email' });
       }
+    } else {
+      res.status(401).send({ message: 'Fill the fields !' });
     }
   } catch (error) {
     res.status(500).send('Internal Server Error');

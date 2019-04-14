@@ -20,8 +20,6 @@ exports.post = async (request, response) => {
               const tokenData = { id, rule };
               sign(tokenData, process.env.SECRET, (errSign, resultCookie) => {
                 if (errSign) {
-                  console.log(errSign);
-
                   response.status(401).send('Wrong in signin !');
                 } else {
                   response.cookie('jwt', resultCookie, { maxAge: 6048000000 });

@@ -399,7 +399,7 @@ header.transparent .navigation.scrolling .navbar-nav > .active > a:hover {
 
 .navigation.sticky.scrolling {
   opacity: 1;
-  visibility: visible;
+  /* visibility: visible; */
 }
 
 .navigation-overlay.sticky .navbar-nav > li > a,
@@ -4031,6 +4031,7 @@ input[type="email"].newsletter-input:focus {
 }
 
 .nav-type-4 .nav-wrap {
+  position: relative;
   background-color: #f2f2f2;
 }
 

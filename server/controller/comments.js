@@ -1,5 +1,7 @@
 const cookieParse = require('cookie');
 const { verify } = require('jsonwebtoken');
+const validator = require('validator');
+
 const {
   comments,
   users,
@@ -67,43 +69,59 @@ exports.post = async (request, response) => {
       username,
       post_id,
     };
-    const newCommentResult = await comments.create(newComment, {
-      returning: true,
-      raw: true,
-    });
-    const {
-      dataValues: { post_id: postId },
-    } = newCommentResult;
-    const { clients } = socket;
-    const userPostId = await posts.findOne({
-      where: { id: post_id },
-      attributes: ['auther_id'],
-      raw: true,
-    });
-    await notifications.create({
-      text: `New Comment Arrived from ${email}`,
-      seen: false,
-      user_id: userPostId.auther_id,
-    });
-    notify(request, response, clients, (error, result) => {
-      if (result) {
-        result.map((user) => {
-          if (user.userId) {
-            if (user.userId === userPostId.auther_id) {
-              socket.io
-                .to(user.id)
-                .emit('newComment', {
-                  message: `New Comment Arrived from ${email}`,
-                });
-            }
+    if (
+      comment
+      && comment.trim()
+      && username
+      && username.trim()
+      && email
+      && email.trim()
+    ) {
+      const checkEmail = validator.isEmail(email);
+      if (checkEmail) {
+        const newCommentResult = await comments.create(newComment, {
+          returning: true,
+          raw: true,
+        });
+        const {
+          dataValues: { post_id: postId },
+        } = newCommentResult;
+        const { clients } = socket;
+        const userPostId = await posts.findOne({
+          where: { id: post_id },
+          attributes: ['auther_id'],
+          raw: true,
+        });
+        await notifications.create({
+          text: `New Comment Arrived from ${email}`,
+          seen: false,
+          user_id: userPostId.auther_id,
+        });
+        notify(request, response, clients, (error, result) => {
+          if (result) {
+            result.map((user) => {
+              if (user.userId) {
+                if (user.userId === userPostId.auther_id) {
+                  socket.io
+                    .to(user.id)
+                    .emit('newComment', {
+                      message: `New Comment Arrived from ${email}`,
+                    });
+                }
+              }
+            });
           }
         });
-      }
-    });
 
-    response
-      .status(200)
-      .send({ message: 'New Comment Added', newCommentResult });
+        response
+          .status(200)
+          .send({ message: 'New Comment Added', newCommentResult });
+      } else {
+        response.status(401).send({ message: 'Enter Vaild Email' });
+      }
+    } else {
+      response.status(401).send({ message: 'Fill all the fields !' });
+    }
   } catch (error) {
     response.status(500).send('Server Error');
   }

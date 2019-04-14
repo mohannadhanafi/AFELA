@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.swal2-popup.swal2-toast .swal2-title{
+  font-size: 15px !important
+}
+
+.swal2-toast-shown .swal2-shown{
+  /* position: absolute !important */
+}

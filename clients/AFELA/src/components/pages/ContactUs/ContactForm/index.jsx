@@ -3,7 +3,9 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import React from 'react';
 
-export default function index({ mobile, address, email }) {
+export default function index({
+  mobile, address, email2, onClick, onChange, name, massage, email,
+}) {
   return (
     <section className="section-wrap-lg contact" id="contact">
       <div className="container">
@@ -31,25 +33,25 @@ export default function index({ mobile, address, email }) {
               <div className="contact-icon">
                 <i className="icon icon_mail_alt" />
               </div>
-              <a href="mailto:afelasupport@gmail.com" className="dark-link">{email}</a>
+              <a href="mailto:afelasupport@gmail.com" className="dark-link">{email2}</a>
             </div>
 
           </div>
 
           <div className="col-md-8">
-            <form id="contact-form" action="#">
+            <form onSubmit={onClick}>
 
               <div className="row row-16">
                 <div className="col-md-6 contact-name">
-                  <input name="name" id="name" type="text" placeholder="Name*" />
+                  <input name="name" id="name" type="text" placeholder="Name*" onChange={onChange} value={name} required />
                 </div>
                 <div className="col-md-6 contact-email">
-                  <input name="mail" id="mail" type="email" placeholder="E-mail*" />
+                  <input name="email" id="mail" type="email" placeholder="E-mail*" onChange={onChange} value={email} required />
                 </div>
               </div>
 
-              <textarea name="comment" id="comment" placeholder="Message" rows="9" />
-              <input type="submit" className="btn btn-lg btn-color btn-submit" value="Send Message" id="submit-message" />
+              <textarea name="message" id="message" placeholder="Message" rows="9" onChange={onChange} value={massage} required />
+              <input type="submit" className="btn btn-lg btn-color btn-submit" value="Send Message" />
               <div id="msg" className="message" />
             </form>
           </div>

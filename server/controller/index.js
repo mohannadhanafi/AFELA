@@ -21,13 +21,14 @@ const mail = require('./mail');
 const install = require('./install');
 const reset = require('./resetPassword');
 const search = require('./search');
-
+const contact = require('./contact');
 const router = express.Router();
 router
   .post('/login', login.post)
   .get('/installCheck', install.installCheck)
   .post('/install', install.install)
   .get('/logout', logout.get)
+  .post('/contact', contact.post)
   .post('/comments/addComment', comments.post)
   .post('/visitorCounter', options.counterPlus)
   .get('/CatWithPosts/:seo_name', postsCat.get)

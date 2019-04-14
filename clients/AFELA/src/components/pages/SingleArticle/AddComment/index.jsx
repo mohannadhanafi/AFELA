@@ -9,13 +9,13 @@ export default function index({
       <form onSubmit={onClick}>
         <div className="row row-16">
           <div className="col-md-6">
-            <input name="name" type="text" placeholder="Name*" value={name} onChange={onChange} />
+            <input name="name" type="text" placeholder="Name*" value={name} onChange={onChange} required />
           </div>
           <div className="col-md-6">
-            <input name="email" type="email" placeholder="E-mail*" value={email} onChange={onChange} />
+            <input name="email" type="email" placeholder="E-mail*" value={email} onChange={onChange} required />
           </div>
           <div className="col-md-12">
-            <textarea name="comment" placeholder="Comment" rows="8" value={comment} onChange={onChange} />
+            <textarea name="comment" placeholder="Comment" rows="8" value={comment} onChange={onChange} required />
           </div>
         </div>
         <input type="submit" className="btn btn-md btn-color" value="Post Comment" />

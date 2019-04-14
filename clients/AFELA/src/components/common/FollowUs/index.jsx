@@ -18,9 +18,8 @@ export default class FollowUs extends Component {
   componentDidMount() {
     axios.get('/api/v1/getoptions').then((result) => {
       const { data } = result;
-
       this.setState(() => ({
-     data
+        data,
       }));
     });
   }
