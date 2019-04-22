@@ -22,13 +22,21 @@ const install = require('./install');
 const reset = require('./resetPassword');
 const search = require('./search');
 const contact = require('./contact');
+const team = require('./teams');
+const titles = require('./titles');
+const clients = require('./clients');
+
+
 const router = express.Router();
 router
   .post('/login', login.post)
   .get('/installCheck', install.installCheck)
   .post('/install', install.install)
+  .get('/getTitle', titles.getTitle)
+  .get('/clients/getAll', clients.getAll)
   .get('/logout', logout.get)
   .post('/contact', contact.post)
+  .get('/team/getAll', team.get)
   .post('/comments/addComment', comments.post)
   .post('/visitorCounter', options.counterPlus)
   .get('/CatWithPosts/:seo_name', postsCat.get)
@@ -54,6 +62,16 @@ router
   .use(Auth.checkToken)
   .get('/notification/getNotifications', notification.get)
   .post('/notification/seenNotification', notification.seen)
+  .post('/titles/update', titles.update)
+  .post('/team/create', team.post)
+  .delete('/team/delete/:id', team.delete)
+  .get('/team/get/:id', team.getOne)
+  .post('/team/update/:id', team.update)
+  .post('/clients/add', clients.create)
+  .get('/clients/get/:id', clients.getOne)
+  .post('/clients/updateTitle', clients.updateTitle)
+  .delete('/clients/delete', clients.delete)
+  .post('/clients/update/:id', clients.update)
   .get('/post/:id', posts.getPost)
   .get('/posts', posts.get)
   .delete('/posts/delete', posts.delete)

@@ -11,6 +11,9 @@ const ads = require('./ads');
 const services = require('./services');
 const visitors = require('./visitors');
 const mail = require('./mails');
+const team = require('./team');
+const titles = require('./titles');
+const clients = require('./clients');
 
 posts.belongsTo(categories, {
   onDelete: 'CASCADE',
@@ -51,8 +54,11 @@ module.exports = {
   comments,
   notifications,
   ads,
+  team,
   services,
+  titles,
   homePageLayouts,
   visitors,
   mail,
+  clients,
 };

@@ -272,6 +272,66 @@ class SidebarContent extends Component {
                   </Menu.Item>
                 </SubMenu>
               ) : null}
+              <SubMenu
+                key="teams"
+                className={this.getNavStyleSubMenuClass(navStyle)}
+                title={(
+                  <span>
+                    <i className="icon icon-team" />
+                    <IntlMessages id="sidebar.teams" />
+                  </span>
+)}
+              >
+                <Menu.Item key="teams/view">
+                  <Link to="/admin/teams/view">
+                    <i className="icon icon-plain-list-divider" />
+                    <IntlMessages id="sidebar.teams.view" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="teams/add">
+                  <Link to="/admin/teams/add">
+                    <i className="icon icon-add" />
+                    <IntlMessages id="sidebar.teams.add" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="teams/settings">
+                  <Link to="/admin/teams/settings">
+                    <i className="icon icon-setting" />
+                    <IntlMessages id="sidebar.settings" />
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
+
+              <SubMenu
+                key="testimonials"
+                className={this.getNavStyleSubMenuClass(navStyle)}
+                title={(
+                  <span>
+                    {' '}
+                    <i className="icon icon-plain-list-divider" />
+                    <IntlMessages id="sidebar.testimonials" />
+                  </span>
+)}
+              >
+                <Menu.Item key="testimonials/view">
+                  <Link to="/admin/testimonials/view">
+                    <i className="icon icon-plain-list-divider" />
+                    <IntlMessages id="sidebar.testimonials.view" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="testimonials/add">
+                  <Link to="/admin/testimonials/add">
+                    <i className="icon icon-add" />
+                    <IntlMessages id="sidebar.testimonials.add" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="testimonials/settings">
+                  <Link to="/admin/testimonials/settings">
+                    <i className="icon icon-setting" />
+                    <IntlMessages id="sidebar.settings" />
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
               { role === 'admin' ? (
                 <SubMenu
                   key="ads"

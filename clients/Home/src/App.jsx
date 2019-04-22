@@ -1,51 +1,35 @@
-import { Provider } from 'react-redux';
+/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
-import store from './appRedux/store';
-import HomePage from './components/pages/HomePage';
-import NewsPage from './components/pages/NewsPage';
-import Category from './components/pages/Category';
+import Home from './components/pages/Home';
+import SingleArticle from './components/pages/SingleArticle';
+import Header from './components/common/Header';
+import Footer from './components/common/Footer';
+import About from './components/pages/AboutUs';
 import ContactUs from './components/pages/ContactUs';
-import AboutUs from './components/pages/AboutUs';
-import Error from './components/common/ErrorPage';
-import Activate from './components/common/Activate';
-import './App.css';
+import BackToTop from './components/common/BackToTop';
+
+
+import './App.scss';
 
 class App extends Component {
   state = {};
 
-  componentWillMount() {
-    const sessionVisitor = localStorage.getItem('visitor');
-    if (!sessionVisitor) {
-      const hash = Date.now().toString();
-      axios.get('https://json.geoiplookup.io/').then((result) => {
-        const { country_code: countryCode } = result.data;
-        axios.post('/api/v1/visitorCounter', { country: countryCode }).then((result) => {
-          const { country } = result.data;
-          localStorage.setItem('visitor', hash);
-          localStorage.setItem('country', country);
-        });
-      });
-    }
-  }
-
   render() {
     return (
       <div className="App">
-        <Provider store={store}>
-          <Router>
-            <Switch>
-              <Route exact path="/news/:seoName" component={Category} />
-              <Route exact path="/news/:category/:seoName" component={NewsPage} />
-              <Route exact path="/contact" component={ContactUs} />
-              <Route exact path="/aboutus" component={AboutUs} />
-              <Route exact path="/activate/:hash" component={Activate} />
-              <Route exact path="/" component={HomePage} />
-              <Route path="*" component={Error} />
-            </Switch>
-          </Router>
-        </Provider>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/contact" component={ContactUs} />
+            <Route exact path="/news/:category/:seoName" component={SingleArticle} />
+          </Switch>
+          <Footer />
+          <BackToTop />
+
+        </Router>
       </div>
     );
   }
