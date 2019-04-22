@@ -117,59 +117,55 @@ class SidebarContent extends Component {
                     <IntlMessages id="sidebar.posts.Pending" />
                   </Link>
                 </Menu.Item>
-                {role === 'admin' ? (
-                  <SubMenu
-                    key="hero"
-                    className={this.getNavStyleSubMenuClass(navStyle)}
-                    title={(
-                      <span>
-                        <i className="icon icon-product-list" />
-                        <IntlMessages id="sidebar.hero" />
-                      </span>
-)}
-                  >
-                    <Menu.Item key="hero/view">
-                      <Link to="/admin/hero/view">
-                        <i className="icon icon-table" />
-                        <IntlMessages id="sidebar.viewhero" />
-                      </Link>
-                    </Menu.Item>
-                    <Menu.Item key="hero/add">
-                      <Link to="/admin/hero/add">
-                        <i className="icon icon-add" />
-                        <IntlMessages id="sidebar.addhero" />
-                      </Link>
-                    </Menu.Item>
-                  </SubMenu>
-                ) : null}
-              </SubMenu>
-              {role === 'admin' ? (
                 <SubMenu
-                  key="categories"
+                  key="hero"
                   className={this.getNavStyleSubMenuClass(navStyle)}
                   title={(
                     <span>
-                      {' '}
-                      <i className="icon icon-apps" />
-                      <IntlMessages id="sidebar.categories" />
+                      <i className="icon icon-product-list" />
+                      <IntlMessages id="sidebar.hero" />
                     </span>
 )}
                 >
-                  <Menu.Item key="Categories/Main">
-                    <Link to="/admin/Categories/Main">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.mainCategories" />
+                  <Menu.Item key="hero/view">
+                    <Link to="/admin/hero/view">
+                      <i className="icon icon-table" />
+                      <IntlMessages id="sidebar.viewhero" />
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="Categories/Add">
-                    <Link to="/admin/Categories/Add">
+                  <Menu.Item key="hero/add">
+                    <Link to="/admin/hero/add">
                       <i className="icon icon-add" />
-                      <IntlMessages id="sidebar.addCategory" />
+                      <IntlMessages id="sidebar.addhero" />
                     </Link>
                   </Menu.Item>
-
                 </SubMenu>
-              ) : null}
+              </SubMenu>
+              <SubMenu
+                key="categories"
+                className={this.getNavStyleSubMenuClass(navStyle)}
+                title={(
+                  <span>
+                    {' '}
+                    <i className="icon icon-apps" />
+                    <IntlMessages id="sidebar.categories" />
+                  </span>
+)}
+              >
+                <Menu.Item key="Categories/Main">
+                  <Link to="/admin/Categories/Main">
+                    <i className="icon icon-product-list" />
+                    <IntlMessages id="sidebar.mainCategories" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="Categories/Add">
+                  <Link to="/admin/Categories/Add">
+                    <i className="icon icon-add" />
+                    <IntlMessages id="sidebar.addCategory" />
+                  </Link>
+                </Menu.Item>
+
+              </SubMenu>
               {role === 'admin' ? (
                 <SubMenu
                   key="options"
@@ -220,39 +216,43 @@ class SidebarContent extends Component {
                   </Menu.Item>
                 </SubMenu>
               ) : null}
-              {role === 'admin' ? (
-                <SubMenu
-                  key="services"
-                  className={this.getNavStyleSubMenuClass(navStyle)}
-                  title={(
-                    <span>
-                      {' '}
-                      <i className="icon icon-widgets" />
-                      <IntlMessages id="sidebar.services" />
-                    </span>
+              <SubMenu
+                key="services"
+                className={this.getNavStyleSubMenuClass(navStyle)}
+                title={(
+                  <span>
+                    {' '}
+                    <i className="icon icon-widgets" />
+                    <IntlMessages id="sidebar.services" />
+                  </span>
 )}
-                >
-                  <Menu.Item key="services/addService">
-                    <Link to="/admin/services/addService">
-                      <i className="icon icon-chat" />
-                      <IntlMessages id="sidebar.addService" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="services/viewServices">
-                    <Link to="/admin/services/viewServices">
-                      <i className="icon icon-chat" />
-                      <IntlMessages id="sidebar.viewServices" />
-                    </Link>
-                  </Menu.Item>
-                </SubMenu>
-              ) : null}
+              >
+                <Menu.Item key="services/addService">
+                  <Link to="/admin/services/addService">
+                    <i className="icon icon-chat" />
+                    <IntlMessages id="sidebar.addService" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="services/viewServices">
+                  <Link to="/admin/services/viewServices">
+                    <i className="icon icon-chat" />
+                    <IntlMessages id="sidebar.viewServices" />
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
               <Menu.Item key="comments">
                 <Link to="/admin/comments/all">
                   <i className="icon icon-chat" />
                   <IntlMessages id="sidebar.comments" />
                 </Link>
               </Menu.Item>
-              { role === 'admin' ? (
+              <Menu.Item key="Gallery">
+                <Link to="/admin/gallery">
+                  <i className="icon icon-chat" />
+                  <IntlMessages id="sidebar.gallery" />
+                </Link>
+              </Menu.Item>
+              {/* { role === 'admin' ? (
                 <SubMenu
                   key="layouts"
                   className={this.getNavStyleSubMenuClass(navStyle)}
@@ -271,7 +271,7 @@ class SidebarContent extends Component {
                     </Link>
                   </Menu.Item>
                 </SubMenu>
-              ) : null}
+              ) : null} */}
               <SubMenu
                 key="teams"
                 className={this.getNavStyleSubMenuClass(navStyle)}
@@ -332,33 +332,31 @@ class SidebarContent extends Component {
                   </Link>
                 </Menu.Item>
               </SubMenu>
-              { role === 'admin' ? (
-                <SubMenu
-                  key="ads"
-                  className={this.getNavStyleSubMenuClass(navStyle)}
-                  title={(
-                    <span>
-                      {' '}
-                      <i className="icon icon-apps" />
-                      <IntlMessages id="sidebar.ads" />
-                    </span>
+              <SubMenu
+                key="ads"
+                className={this.getNavStyleSubMenuClass(navStyle)}
+                title={(
+                  <span>
+                    {' '}
+                    <i className="icon icon-apps" />
+                    <IntlMessages id="sidebar.ads" />
+                  </span>
 )}
-                >
-                  <Menu.Item key="ads/add">
-                    <Link to="/admin/ads/add">
-                      <i className="icon icon-chat" />
-                      <IntlMessages id="sidebar.addads" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="ads/view">
-                    <Link to="/admin/ads/view">
-                      <i className="icon icon-chat" />
-                      <IntlMessages id="sidebar.viewads" />
-                    </Link>
-                  </Menu.Item>
-                </SubMenu>
-              ) : null}
-              {role === 'admin' ? (
+              >
+                <Menu.Item key="ads/add">
+                  <Link to="/admin/ads/add">
+                    <i className="icon icon-chat" />
+                    <IntlMessages id="sidebar.addads" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="ads/view">
+                  <Link to="/admin/ads/view">
+                    <i className="icon icon-chat" />
+                    <IntlMessages id="sidebar.viewads" />
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
+              {/* {role === 'admin' ? (
                 <SubMenu
                   key="newsletter"
                   className={this.getNavStyleSubMenuClass(navStyle)}
@@ -383,15 +381,15 @@ class SidebarContent extends Component {
                     </Link>
                   </Menu.Item>
                 </SubMenu>
-              ) : null}
-              {role === 'admin' ? (
+              ) : null} */}
+              {/* {role === 'admin' ? (
                 <Menu.Item key="MailBox">
                   <Link to="/admin/mailBox">
                     <i className="icon icon-email" />
                     <IntlMessages id="sidebar.MailBox" />
                   </Link>
                 </Menu.Item>
-              ) : null}
+              ) : null} */}
             </Menu>
           </CustomScrollbars>
         </div>

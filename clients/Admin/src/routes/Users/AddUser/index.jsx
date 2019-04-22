@@ -209,7 +209,7 @@ class Registration extends Component {
                 ],
               })(<Input id="email1" />)}
             </FormItem>
-            <FormItem {...formItemLayout} label={<span>role</span>}>
+            <FormItem {...formItemLayout} label={<span>Role</span>}>
               {getFieldDecorator('rule', {
                 rules: [
                   {
@@ -220,12 +220,12 @@ class Registration extends Component {
                 ],
               })(
                 <Select defaultValue="admin">
-                  <Option value="admin">admin</Option>
-                  <Option value="auther">auther</Option>
+                  <Option value="admin">Admin</Option>
+                  <Option value="Data Entery">Data Entery</Option>
                 </Select>,
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label="user profile">
+            <FormItem {...formItemLayout} label="User Profile">
               <Upload
                 action="/api/v1/uploadFile"
                 listType="picture-card"

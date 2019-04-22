@@ -25,6 +25,7 @@ const contact = require('./contact');
 const team = require('./teams');
 const titles = require('./titles');
 const clients = require('./clients');
+const gallery = require('./galleries');
 
 
 const router = express.Router();
@@ -37,6 +38,7 @@ router
   .get('/logout', logout.get)
   .post('/contact', contact.post)
   .get('/team/getAll', team.get)
+  .get('/gallery', gallery.get)
   .post('/comments/addComment', comments.post)
   .post('/visitorCounter', options.counterPlus)
   .get('/CatWithPosts/:seo_name', postsCat.get)
@@ -59,6 +61,7 @@ router
   .post('/uploadFile', upload.post)
   .post('/removeFile', upload.remove)
   .get('/lastposts', posts.lastPosts)
+  .get('/comments/getAll', comments.get)
   .use(Auth.checkToken)
   .get('/notification/getNotifications', notification.get)
   .post('/notification/seenNotification', notification.seen)
@@ -67,6 +70,7 @@ router
   .delete('/team/delete/:id', team.delete)
   .get('/team/get/:id', team.getOne)
   .post('/team/update/:id', team.update)
+  .post('/gallery', gallery.update)
   .post('/clients/add', clients.create)
   .get('/clients/get/:id', clients.getOne)
   .post('/clients/updateTitle', clients.updateTitle)
@@ -80,7 +84,6 @@ router
   .get('/getname', getName.get)
   .post('/comment/delete', comments.delete)
   .post('/comment/update', comments.update)
-  .get('/comments/getAll', comments.get)
   .get('/profile', users.getProfile)
   .post('/profile', users.updateProfile)
   .use(Auth.checkAdmin)

@@ -33,7 +33,7 @@ const notify = (request, response, clients, cb) => {
 exports.get = async (request, response) => {
   try {
     const { id, rule } = request;
-    if (rule === 'admin') {
+    if (rule !== 'admin') {
       const result = await comments.findAll({
         order: [['id', 'DESC']],
         include: [{ model: posts, include: [{ model: categories }] }],
