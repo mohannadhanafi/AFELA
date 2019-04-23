@@ -6,6 +6,7 @@ import SingleArticle from './components/pages/SingleArticle';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import About from './components/pages/AboutUs';
+import Category from './components/pages/Category';
 import ContactUs from './components/pages/ContactUs';
 import BackToTop from './components/common/BackToTop';
 
@@ -21,6 +22,7 @@ class App extends Component {
         <Router>
           <Header />
           <Switch>
+           <Route exact path="/news/:seoName" component={Category} />
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={ContactUs} />

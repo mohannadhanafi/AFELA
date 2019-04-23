@@ -139,8 +139,6 @@ componentDidMount() {
 }
 
 componentWillReceiveProps(props) {
-  console.log(545);
-
   $(document).ready(() => {
     (function ($) {
       $('.loader').show();
