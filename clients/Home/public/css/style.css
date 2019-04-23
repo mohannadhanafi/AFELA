@@ -4473,7 +4473,7 @@ article img {
 -------------------------------------------------------*/
 
 .widget.popular-latest .nav.nav-tabs > li {
-  width: 33.333%;
+  width: 50% !important;
   text-align: center;
 }
 

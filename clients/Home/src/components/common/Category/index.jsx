@@ -22,18 +22,17 @@ export default class Category extends Component {
         <h3 className="widget-title heading relative heading-small uppercase bottom-line style-2 left-align">
 
 
-
           Categories
-</h3>
+        </h3>
         <ul className="list-dividers">
           {categories.length
-            && categories.slice(0, 10).map(({ name, seo }) => (
+            ? categories.slice(0, 10).map(({ name, seo }) => (
               <li>
                 <Link to={`/news/${seo}`}>
                   {name}
                 </Link>
               </li>
-            ))}
+            )) : null}
         </ul>
       </div>
     );

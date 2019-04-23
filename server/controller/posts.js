@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 const validator = require('validator');
+const sequelize = require('sequelize');
+
 const {
   posts,
   categories,
@@ -172,9 +174,7 @@ exports.post = async (req, res) => {
     } = data;
     let heroValue;
     if (rule === 'admin') {
-      const {
-        hero,
-      } = data;
+      const { hero } = data;
       heroValue = hero;
     }
     if (
@@ -270,7 +270,12 @@ exports.updatePost = async (req, res) => {
     } = req.body;
 
     const {
-      post_intro, seo, title, header_media, description, breaking,
+      post_intro,
+      seo,
+      title,
+      header_media,
+      description,
+      breaking,
     } = data;
     if (
       !post_intro.trim()
@@ -289,7 +294,9 @@ exports.updatePost = async (req, res) => {
       if (postCheck && postCheck.id !== parseInt(id, 10)) {
         res
           .status(400)
-          .send({ message: 'Sorry !, Post with this Seo Name is already exist' });
+          .send({
+            message: 'Sorry !, Post with this Seo Name is already exist',
+          });
       } else if (rule === 'admin') {
         data.seo = seo.replace(/\s/g, '');
         posts.update(data, {
@@ -348,7 +355,8 @@ exports.postSeo = async (req, res) => {
       ],
     });
     if (result[0]) {
-      const { id } = result[0];
+      const { id, views } = result[0];
+      await posts.update({ views: views + 1 }, { where: { id } });
       const commentsResult = await comments.findAll({
         where: { post_id: id, approve: '1' },
         order: [['id', 'DESC']],
@@ -375,21 +383,71 @@ exports.postSeo = async (req, res) => {
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
-
-
 exports.lastPosts = async (req, res) => {
   try {
     const postsData = await posts.findAll({
       where: { approve: true },
       order: [['id', 'DESC']],
       limit: 5,
-      include: [{
-        model: categories,
-        attributes: ['seo'],
-      }],
+      include: [
+        {
+          model: categories,
+          attributes: ['seo'],
+        },
+      ],
     });
     res.status(200).send(postsData);
   } catch (error) {
     res.status(500).send({ message: 'Internal Server Error' });
+  }
+};
+
+exports.trendingPosts = async (request, response) => {
+  try {
+    const Trending = await posts.findAll({
+      limit: 6,
+      order: [['views', 'DESC']],
+      include: [
+        {
+          model: categories,
+          attributes: ['name', 'seo'],
+        },
+        {
+          model: users,
+          attributes: ['name', 'pic', 'bio'],
+        },
+      ],
+    });
+    const mostCategories = await posts.findAll({
+      attributes: [
+        [sequelize.fn('sum', sequelize.col('views')), 'totalviews'],
+        'category_id',
+      ],
+      group: ['category_id'],
+      raw: true,
+      limit: 4,
+      order: sequelize.literal('totalviews DESC'),
+    });
+    const finalData = await Promise.all(mostCategories.map(async (category) => {
+      const { category_id } = category;
+      const categoryPosts = await posts.findAll({
+        where: { category_id },
+        include: [
+          {
+            model: categories,
+            attributes: ['name', 'seo'],
+          },
+          {
+            model: users,
+            attributes: ['name', 'pic', 'bio'],
+          },
+        ],
+      });
+      const categoryDetails = await categories.findOne({ where: { id: category_id } });
+      return { categoryPosts, categoryDetails };
+    }));
+    response.send({ finalData, Trending });
+  } catch (error) {
+    response.status(500).send({ message: 'Internal Server Error' });
   }
 };

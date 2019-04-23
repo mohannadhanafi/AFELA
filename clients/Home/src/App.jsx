@@ -22,16 +22,16 @@ class App extends Component {
         <Router>
           <Header />
           <Switch>
-           <Route exact path="/news/:seoName" component={Category} />
+            <Route exact path="/news/:seoName" component={Category} />
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={ContactUs} />
             <Route exact path="/news/:category/:seoName" component={SingleArticle} />
           </Switch>
-          <Footer />
-          <BackToTop />
-
         </Router>
+        <Footer />
+        <BackToTop />
+
       </div>
     );
   }

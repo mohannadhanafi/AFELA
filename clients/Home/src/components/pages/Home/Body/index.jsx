@@ -10,7 +10,6 @@ import EditorPicks from '../../../common/layouts/EditorPicks';
 import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
 import Category from '../../../common/Category';
-import Feather from '../../../common/Feather';
 import TopRated from '../../../common/TopRated';
 import Tags from '../../../common/Tags';
 import LayoutOne from '../../../common/layouts/LayoutOne';
@@ -21,7 +20,7 @@ export default class index extends Component {
 
     render() {
       return (
-        <div className="container">
+        <div className="container pt-50">
           <div className="row">
             <div className="col-md-8 content">
               <TrendingPosts seo="main" />
@@ -39,7 +38,6 @@ export default class index extends Component {
               <Ads link="/" />
               <Galleries />
               <Category />
-              <Feather />
               <TopRated />
               <Tags />
             </aside>

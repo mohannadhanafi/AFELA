@@ -62,6 +62,7 @@ router
   .post('/removeFile', upload.remove)
   .get('/lastposts', posts.lastPosts)
   .get('/comments/getAll', comments.get)
+  .get('/posts/trendingPosts', posts.trendingPosts)
   .use(Auth.checkToken)
   .get('/notification/getNotifications', notification.get)
   .post('/notification/seenNotification', notification.seen)
@@ -119,7 +120,6 @@ router
   .get('/user/:id', users.getUser)
   .post('/sendPostToEmails', newsletter.sendPostToEmails)
   .post('/sendEmail', newsletter.sendEmail)
-  // ////mailRoutes
   .post('/edit/starred', mail.editStarred)
   .post('/edit/detele', mail.editDeleted)
   .post('/edit/important', mail.editImportant)

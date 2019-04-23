@@ -30,45 +30,47 @@ export default class index extends Component {
     render() {
       const { news, catName } = this.state;
       return (
-        <section className="section-wrap relative pb-0 pt-0">
-          <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align">{catName}</h2>
-          <div className="row">
+        news.length ? (
+          <section className="section-wrap relative pb-0 pt-0">
+            <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align">{catName}</h2>
+            <div className="row">
 
-            <ul className="posts-list">
-              {news.slice(0, 4).map(element => (
-                <div className="col-md-6 mb-50">
+              <ul className="posts-list">
+                {news.length && news.slice(0, 4).map(element => (
+                  <div className="col-md-6 mb-50">
 
-                  <li key={uuid()}>
-                    <article className="post-small clearfix">
-                      <div className="entry-img hover-scale">
-                        <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                          <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" />
-                        </Link>
-                      </div>
-                      <div className="entry">
-                        <h3 className="entry-title">
+                    <li key={uuid()}>
+                      <article className="post-small clearfix">
+                        <div className="entry-img hover-scale">
                           <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                            {element.title}
+                            <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" />
                           </Link>
-                        </h3>
-                        <ul className="entry-meta list-inline">
-                          <li className="entry-date">
+                        </div>
+                        <div className="entry">
+                          <h3 className="entry-title">
                             <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                              {moment(element.createdAt).calendar()}
+                              {element.title}
                             </Link>
-                          </li>
+                          </h3>
+                          <ul className="entry-meta list-inline">
+                            <li className="entry-date">
+                              <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
+                                {moment(element.createdAt).calendar()}
+                              </Link>
+                            </li>
 
-                        </ul>
-                      </div>
-                    </article>
-                  </li>
-                </div>
+                          </ul>
+                        </div>
+                      </article>
+                    </li>
+                  </div>
 
-              ))}
-            </ul>
+                ))}
+              </ul>
 
-          </div>
-        </section>
+            </div>
+          </section>
+        ) : null
       );
     }
 }

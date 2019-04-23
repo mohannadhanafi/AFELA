@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import Breaking from '../../common/Breaking';
 import Hero from '../../common/Hero';
 import Body from './Body';
-import $ from 'jquery';
 
 export default class index extends Component {
   state = {
@@ -11,17 +11,14 @@ export default class index extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-      $(document).ready(() => {
-        (function ($) {
-    
-          $('.loader').delay(1000).fadeOut();
-          $('.loader-mask').delay(1500).fadeOut('slow');
-    
-      $(window).trigger('resize');
-        }(window.jQuery));
-      });
-    
+    $(document).ready(() => {
+      (function ($) {
+        $('.loader').delay(1000).fadeOut();
+        $('.loader-mask').delay(1500).fadeOut('slow');
 
+        $(window).trigger('resize');
+      }(window.jQuery));
+    });
   }
 
   render() {
@@ -29,9 +26,9 @@ export default class index extends Component {
     return (
       <>
 
-               <div className="loader-mask">
-            <div className="loader">Loading...</div>
-            </div>
+        <div className="loader-mask">
+          <div className="loader">Loading...</div>
+        </div>
         <Breaking />
         <Hero />
         <Body />

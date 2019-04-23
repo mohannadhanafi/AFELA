@@ -35,9 +35,8 @@ export default class TrendingPosts extends Component {
           {catName}
         </h2>
         <div className="row">
-        {console.log(news)
-        }
-          {news && news.slice(0, 6).map(element => (
+
+          {news.length && news.slice(0, 6).map(element => (
             <div className="col-md-4 mb-50" key={uuid()}>
               <article>
                 <div className="entry-img hover-scale">

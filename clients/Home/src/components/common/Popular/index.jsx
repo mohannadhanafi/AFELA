@@ -49,9 +49,6 @@ export default class Popular extends Component {
             <li>
               <a href="#recent-news" data-toggle="tab">Recent</a>
             </li>
-            <li>
-              <a href="#recent-comments" data-toggle="tab">Comments</a>
-            </li>
           </ul>
           <div className="tab-content">
             <div className="tab-pane fade in active" id="popular-news">
@@ -114,22 +111,6 @@ export default class Popular extends Component {
               </ul>
             </div>
 
-            <div className="tab-pane fade" id="recent-comments">
-              <ul className="posts-list no-top-pad mt-0">
-                {comments && comments.slice(0, 3).map(({ title, username }) => (
-                  <li>
-                    <a href="#">{title}</a>
-                    <ul className="entry-meta">
-                      <li>
-                        <a href="#">
-                          {username}
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </div>

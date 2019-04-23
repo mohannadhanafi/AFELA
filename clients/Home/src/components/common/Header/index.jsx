@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import Top from './Top';
 import Middle from './Middle';
 import Bottom from './Bottom';
 
-export default class Header extends Component {
+class Header extends Component {
     state = { data: '' }
 
     componentWillMount() {
@@ -49,3 +50,5 @@ export default class Header extends Component {
       );
     }
 }
+
+export default withRouter(Header);

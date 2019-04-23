@@ -23,7 +23,7 @@ export default class Hero extends Component {
       hero.length ? (
         <div className="main-wrapper magazine oh">
           <div className="container">
-            <section className="section-wrap main-news pt-30 pb-50">
+            <section className="section-wrap main-news pt-30">
               <div className="row small-spacing">
                 <div className="col-md-7 ">
                   <article className="post-1">
