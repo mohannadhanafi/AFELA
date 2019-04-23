@@ -116,7 +116,7 @@ export default class Popular extends Component {
 
             <div className="tab-pane fade" id="recent-comments">
               <ul className="posts-list no-top-pad mt-0">
-                {comments && comments.map(({ title, username }) => (
+                {comments && comments.slice(0, 3).map(({ title, username }) => (
                   <li>
                     <a href="#">{title}</a>
                     <ul className="entry-meta">
