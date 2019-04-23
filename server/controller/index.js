@@ -21,13 +21,24 @@ const mail = require('./mail');
 const install = require('./install');
 const reset = require('./resetPassword');
 const search = require('./search');
+const contact = require('./contact');
+const team = require('./teams');
+const titles = require('./titles');
+const clients = require('./clients');
+const gallery = require('./galleries');
+
 
 const router = express.Router();
 router
   .post('/login', login.post)
   .get('/installCheck', install.installCheck)
   .post('/install', install.install)
+  .get('/getTitle', titles.getTitle)
+  .get('/clients/getAll', clients.getAll)
   .get('/logout', logout.get)
+  .post('/contact', contact.post)
+  .get('/team/getAll', team.get)
+  .get('/gallery', gallery.get)
   .post('/comments/addComment', comments.post)
   .post('/visitorCounter', options.counterPlus)
   .get('/CatWithPosts/:seo_name', postsCat.get)
@@ -49,9 +60,23 @@ router
   .post('/updatePassword', reset.updatePassword)
   .post('/uploadFile', upload.post)
   .post('/removeFile', upload.remove)
+  .get('/lastposts', posts.lastPosts)
+  .get('/comments/getAll', comments.get)
+  .get('/posts/trendingPosts', posts.trendingPosts)
   .use(Auth.checkToken)
   .get('/notification/getNotifications', notification.get)
   .post('/notification/seenNotification', notification.seen)
+  .post('/titles/update', titles.update)
+  .post('/team/create', team.post)
+  .delete('/team/delete/:id', team.delete)
+  .get('/team/get/:id', team.getOne)
+  .post('/team/update/:id', team.update)
+  .post('/gallery', gallery.update)
+  .post('/clients/add', clients.create)
+  .get('/clients/get/:id', clients.getOne)
+  .post('/clients/updateTitle', clients.updateTitle)
+  .delete('/clients/delete', clients.delete)
+  .post('/clients/update/:id', clients.update)
   .get('/post/:id', posts.getPost)
   .get('/posts', posts.get)
   .delete('/posts/delete', posts.delete)
@@ -60,8 +85,6 @@ router
   .get('/getname', getName.get)
   .post('/comment/delete', comments.delete)
   .post('/comment/update', comments.update)
-  .get('/comments/getAll', comments.get)
-  .get('/lastposts', posts.lastPosts)
   .get('/profile', users.getProfile)
   .post('/profile', users.updateProfile)
   .use(Auth.checkAdmin)
@@ -97,7 +120,6 @@ router
   .get('/user/:id', users.getUser)
   .post('/sendPostToEmails', newsletter.sendPostToEmails)
   .post('/sendEmail', newsletter.sendEmail)
-  // ////mailRoutes
   .post('/edit/starred', mail.editStarred)
   .post('/edit/detele', mail.editDeleted)
   .post('/edit/important', mail.editImportant)

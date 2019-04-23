@@ -40,6 +40,10 @@ const posts = connection.define('posts', {
     defaultValue: Sequelize.NOW,
     type: Sequelize.DATE,
   },
+  views: {
+    type: Sequelize.FLOAT,
+    defaultValue: 0,
+  },
   approve: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,

@@ -21,7 +21,9 @@ const App = ({ match }) => (
       <Route path={`${match.url}/mailBox`} component={asyncComponent(() => import('./MailBox'))} />
       <Route path={`${match.url}/profile`} component={asyncComponent(() => import('./Profile'))} />
       <Route path={`${match.url}/search`} component={asyncComponent(() => import('./SearchResult'))} />
-
+      <Route path={`${match.url}/teams`} component={asyncComponent(() => import('./Teams'))} />
+      <Route path={`${match.url}/testimonials`} component={asyncComponent(() => import('./Testimonials'))} />
+      <Route path={`${match.url}/gallery`} component={asyncComponent(() => import('./Gallery'))} />
       <Route
         path="*"
         render={() => (

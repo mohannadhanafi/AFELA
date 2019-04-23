@@ -1,58 +1,104 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
+import $ from 'jquery';
 import axios from 'axios';
-import Header from '../../common/Header';
-import Breadcrumb from '../../common/breadcrumb';
-import Body from './Body';
-import Footer from '../../common/Footer';
-import CopyRights from '../../common/CopyRights';
-import Loading from '../../common/Loading';
+import TopSection from './TopSection';
+import Results from './Results';
+import OurTeam from './OurTeam';
+import Testomonials from './Testomonials';
+import WhatWeDo from './WhatWeDo';
 
-export default class index extends Component {
-    state = {
-      statistics: [
-      ],
-      background: 'https://blogs.forbes.com/glennllopis/files/2018/02/shutterstock_1253381451.jpg',
-      loading: false,
-    }
+export default class AboutUs extends Component {
+  state = {
+    about_title: '',
+    about_desc: '',
+    about_story: '',
+    about_story_desc: '',
+    teamTitle: 'Creative Minds With The Extraordinary Skills',
+    team: [],
+    testomonials: [
+     
+    ],
+  };
 
 
-    componentWillMount() {
-      this.setState({ loading: true });
-      const intervalId = setInterval(this.switchLoading(), 1000);
-      setTimeout(() => {
-        this.setState({ loading: false }, () => {
-          clearInterval(intervalId);
-        });
-      }, 2000);
-      axios.get('/api/v1/frontCount').then((result) => {
-        const { data: { result: countResult } } = result;
-        this.setState(() => ({ statistics: countResult }));
+  componentDidMount() {
+    axios.get('/api/v1/getoptions').then((res) => {
+      axios.get('/api/v1/team/getAll').then((result) => {
+        const { data } = result;
+        this.setState({ team: data });
       });
-    }
-
-    switchLoading = () => {
-      this.setState({ loading: !this.state.loading });
-    }
-
-
-    render() {
+      axios.get('/api/v1/clients/getAll').then((testomonials) => {
+        const { data } = testomonials;
+        this.setState({ testomonials: data });
+      });
+      const { data } = res;
       const {
-        statistics, background, loading,
-      } = this.state;
-      return (
-        <>
-          {loading ? <Loading /> : null}
-          <Header />
-          <div className="container">
-            <Breadcrumb data="About us" />
-          </div>
-          <Body
-            statistics={statistics}
-            background={background}
-          />
-          <Footer />
-          <CopyRights />
-        </>
-      );
-    }
+        about_title, about_desc, about_story, about_story_desc,
+      } = data[0];
+      this.setState({
+        about_title, about_desc, about_story, about_story_desc,
+      });
+    });
+    window.scrollTo(0, 0);
+    $(document).ready(() => {
+      (function ($) {
+        $('.local-scroll').localScroll({ offset: { top: -60 }, duration: 1500, easing: 'easeInOutExpo' });
+        $('.statistic').appear(() => {
+          $('.timer').countTo({
+            speed: 4000,
+            refreshInterval: 60,
+            formatter(value, options) {
+              return value.toFixed(options.decimals);
+            },
+          });
+        });
+        const $section = $('#animated-skills').appear(function () {
+          const bar = $('.progress-bar');
+          let bar_width = $(this);
+
+          function loadDaBars() {
+            $(bar).each(function () {
+              bar_width = $(this).attr('aria-valuenow');
+              $(this).width(`${bar_width}%`);
+            });
+          }
+          loadDaBars();
+        });
+        $('#owl-testimonials').owlCarousel({
+
+          navigation: false,
+          autoHeight: true,
+          slideSpeed: 300,
+          pagination: true,
+          paginationSpeed: 400,
+          singleItem: true,
+          stopOnHover: true,
+
+        });
+        $('.loader').delay(1000).fadeOut();
+        $('.loader-mask').delay(1500).fadeOut('slow');
+        $(window).trigger('resize');
+      }(window.jQuery));
+    });
+  }
+
+  render() {
+    const {
+      teamTitle, team, testomonials, about_title, about_desc,
+    } = this.state;
+    return (
+      <>
+        <div className="loader-mask">
+          <div className="loader">Loading...</div>
+        </div>
+        <TopSection about_title={about_title} />
+        <WhatWeDo about_desc={about_desc} />
+        <Results />
+        <OurTeam teamTitle={teamTitle} team={team} />
+        <Testomonials testomonials={testomonials} />
+      </>
+    );
+  }
 }

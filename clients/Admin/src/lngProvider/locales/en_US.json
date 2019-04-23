@@ -338,5 +338,13 @@
   "sidebar.addNews": "Send New Email",
   "sidebar.MailBox": "Mail Box - UNDER DEV.fg",
   "sidebar.Contact":"Contact",
+  "sidebar.teams": "Teams",
+  "sidebar.teams.view": "View Teams",
+  "sidebar.teams.add": "Add Team",
+  "sidebar.settings": "Settings",
+  "sidebar.testimonials": "Testimonials",
+  "sidebar.testimonials.view": "View Testimonials",
+  "sidebar.testimonials.add": "Add Testimonials",
+  "sidebar.gallery":"Gallery",
   "sidebar.socialStatistic":"Social Statistic"
 }

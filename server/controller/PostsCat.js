@@ -12,7 +12,9 @@ exports.get = async (req, res) => {
     const cat = await categories.findOne({ where: { seo }, raw: true });
     if (cat) {
       const { id } = cat;
-      const childId = await categories.findAll({ where: { parent: id }, attributes: ['id'], raw: true, order: [['id', 'DESC']] });
+      const childId = await categories.findAll({
+        where: { parent: id }, attributes: ['id'], raw: true, order: [['id', 'DESC']],
+      });
       const idArray = [];
       childId.map((element) => {
         idArray.push(element.id);

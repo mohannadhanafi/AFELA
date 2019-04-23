@@ -235,7 +235,7 @@ class Registration extends Component {
             {...formItemLayout}
             label={(
               <span>
-                Nickname&nbsp;
+                Name&nbsp;
                 <Tooltip title="What do you want others to call you?">
                   <Icon type="question-circle-o" />
                 </Tooltip>
@@ -264,22 +264,18 @@ class Registration extends Component {
               ],
             })(<Input />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={<span>role</span>}>
+          <FormItem {...formItemLayout} label={<span>Role</span>}>
             {getFieldDecorator('rule', {
               initialValue: rule || null,
             })(
               <Select defaultValue="admin">
-                <Option value="admin">admin</Option>
-                <Option value="user">Auther</Option>
+                <Option value="admin">Admin</Option>
+                <Option value="Data Entery">Data Entery</Option>
               </Select>,
             )}
           </FormItem>
-          <FormItem {...formItemLayout} label="bio">
-            {getFieldDecorator('bio', {
-              initialValue: bio,
-            })(<TextArea />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label="user profile">
+   
+          <FormItem {...formItemLayout} label="User Profile">
             <Upload
               action="/api/v1/uploadFile"
               listType="picture-card"
