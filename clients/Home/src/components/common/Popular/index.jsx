@@ -39,7 +39,7 @@ class Popular extends Component {
                         </a>
                       </div>
                       <div className="entry">
-                        <h3 className="entry-title"><a href="#">{element.title}</a></h3>
+                        <h3 className="entry-title"><a href={`/news/${element.category.seo}/${element.seo}`}>{element.title}</a></h3>
                         <ul className="entry-meta list-inline">
                           <li className="entry-date">
                             <a href={`/news/${element.category.seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
