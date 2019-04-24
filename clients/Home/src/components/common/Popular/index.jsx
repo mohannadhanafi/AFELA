@@ -6,42 +6,11 @@ import moment from 'moment';
 
 class Popular extends Component {
   state = {
-    Popular: [
-      {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/hero_1.jpg',
-        title:
-      '6 Ways to Be More Productive by Working Less',
-        date: '19 Dec, 201',
-        commentsNumber: 15,
-      },
-      {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/hero_2.jpg',
-        title:
-      '3 Key Lessons for My Kids About Becoming Entrepreneurs',
-        date: '19 Dec, 201',
-        commentsNumber: 15,
-      },
-      {
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/thumb_7.jpg',
-        title:
-      '7 Traits That Define Work Productivity Superstars',
-        date: '19 Dec, 201',
-        commentsNumber: 15,
-      },
-    ],
-    comments: [],
+
   };
 
-  componentDidMount = async () => {
-    const result = await axios('/api/v1/comments/getAll');
-    const { data } = result;
-    this.setState({ comments: data });
-  }
-
   render() {
-    const { Popular, comments } = this.state;
-    const { recentData: recentPosts } = this.props;
-
+    const { recentData: recentPosts, Trending: Popular } = this.props;
     return (
       <div className="widget popular-latest">
         <div className="tabs">
@@ -56,25 +25,24 @@ class Popular extends Component {
           <div className="tab-content">
             <div className="tab-pane fade in active" id="popular-news">
               <ul className="posts-list no-top-pad">
-                {Popular && Popular.map(({
-                  image, date, commentsNumber, title,
-                }) => (
+                {Popular.length && Popular.slice(0, 3).map(element => (
                   <li>
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
-                        <a href="#">
-                          <img src={image} alt="" className="popular__image" />
+                        <a href={`/news/${element.category.seo}/${element.seo}`}>
+
+                          <img
+                            src={`/api/v1/getFile/${element.header_media[0]}`}
+                            alt=""
+                            className="popular__image"
+                          />
                         </a>
                       </div>
                       <div className="entry">
-                        <h3 className="entry-title"><a href="#">{title}</a></h3>
+                        <h3 className="entry-title"><a href="#">{element.title}</a></h3>
                         <ul className="entry-meta list-inline">
                           <li className="entry-date">
-                            <a href="#">{date}</a>
-                          </li>
-                          <li className="entry-comments">
-                            <i className="fa fa-comments" />
-                            <a href="#">{commentsNumber}</a>
+                            <a href={`/news/${element.category.seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
                           </li>
                         </ul>
                       </div>
@@ -90,21 +58,21 @@ class Popular extends Component {
                   <li>
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
-                        <a href="magazine-single-article.html">
-                          <a href={`/news/${element.seo}`}>
-                            <img
-                              src={`/api/v1/getFile/${element.header_media[0]}`}
-                              alt=""
-                              className="popular__image"
-                            />
-                          </a>
+
+                        <a href={`/news/${element.category.seo}/${element.seo}`}>
+                          <img
+                            src={`/api/v1/getFile/${element.header_media[0]}`}
+                            alt=""
+                            className="popular__image"
+                          />
                         </a>
+
                       </div>
                       <div className="entry">
-                        <h3 className="entry-title"><a href={`/news/${element.seo}`}>{element.title}</a></h3>
+                        <h3 className="entry-title"><a href={`/news/${element.category.seo}/${element.seo}`}>{element.title}</a></h3>
                         <ul className="entry-meta list-inline">
                           <li className="entry-date">
-                            <a href={`/news/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
+                            <a href={`/news/${element.category.seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
                           </li>
 
                         </ul>
@@ -122,10 +90,12 @@ class Popular extends Component {
   }
 }
 
-const mapStateToProps = ({ recent }) => {
+const mapStateToProps = ({ recent, trending }) => {
+  const { trendingPosts: { Trending } } = trending;
   const { recent: recentData } = recent;
   return {
     recentData,
+    Trending,
   };
 };
 
