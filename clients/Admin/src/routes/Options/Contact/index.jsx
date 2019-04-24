@@ -13,14 +13,17 @@ const FormItem = Form.Item;
 class Registration extends Component {
   state = {
     contact: '',
+    mobile: '',
+    email: '',
+    address:'',
   };
 
   componentDidMount = async () => {
     const res = await axios.get('/api/v1/getoptions');
     const { data } = res;
 
-    const { contact } = data[0];
-    this.setState({ contact });
+    const { contact, mobile, email ,address} = data[0];
+    this.setState({ contact, mobile, email ,address});
   };
 
   handleSubmit = (e) => {
@@ -48,7 +51,7 @@ class Registration extends Component {
 
   render() {
     const { form } = this.props;
-    const { contact } = this.state;
+    const { contact, mobile, email, address } = this.state;
     const { getFieldDecorator } = form;
     const formItemLayout = {
       labelCol: {
@@ -96,6 +99,27 @@ class Registration extends Component {
                 autosize={{ minRows: 2, maxRows: 6 }}
               />,
             )}
+          </FormItem>
+          <FormItem {...formItemLayout} label="E-mail">
+            {getFieldDecorator('email', {
+              initialValue: email,
+              rules: [
+                {
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
+                },
+              ],
+            })(<Input />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label={<span>Mobile</span>}>
+            {getFieldDecorator('mobile', {
+              initialValue: mobile,
+            })(<Input />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label={<span>Address</span>}>
+            {getFieldDecorator('address', {
+              initialValue: address,
+            })(<Input />)}
           </FormItem>
           <FormItem {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">

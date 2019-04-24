@@ -212,22 +212,6 @@ class Registration extends Component {
               initialValue: footer_description,
             })(<Input />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={<span>Mobile</span>}>
-            {getFieldDecorator('mobile', {
-              initialValue: mobile,
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label="E-mail">
-            {getFieldDecorator('email', {
-              initialValue: email,
-              rules: [
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-              ],
-            })(<Input />)}
-          </FormItem>
           <FormItem {...formItemLayout} label={<span>Copyrights</span>}>
             {getFieldDecorator('copyrights', {
               initialValue: copyrights,

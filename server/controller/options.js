@@ -4,7 +4,7 @@ const { options, visitors } = require('../database/models');
 
 exports.update = async (req, res) => {
   try {
-    const newData = req.body;
+    const newData = req.body;    
     const {
       logo,
       contact,
@@ -23,6 +23,7 @@ exports.update = async (req, res) => {
       about_story,
       mobile,
       email,
+      address,
       copyrights,
     } = newData;
 
@@ -98,8 +99,7 @@ exports.update = async (req, res) => {
       });
     } else {
       await options.update(newData, {
-        where: {
-          id: 1,
+        where: {     
         },
       });
       res.status(200).send({
