@@ -114,8 +114,6 @@ exports.update = async (req, res) => {
 };
 
 exports.get = async (req, res) => {
-  console.log(15);
-
   try {
     const result = await options.findAll();
     res.status(200).send(result);

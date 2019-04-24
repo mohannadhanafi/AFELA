@@ -55,8 +55,6 @@ exports.get = async (req, res) => {
             order: [['createdAt', 'DESC']],
           },
         );
-        console.log(55);
-
         res.status(200).send({ result, catName: cat.name });
       }
     } else {
