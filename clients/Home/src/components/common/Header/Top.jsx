@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import moment from "moment";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 export default class Header extends Component {
   state = {
     links: [
-      { name: "facebook" },
-      { name: "google-plus" },
-      { name: "youtube" },
-      { name: "linkedin" },
-      { name: "vimeo" }
-    ]
+      { name: 'facebook' },
+      { name: 'google-plus' },
+      { name: 'youtube' },
+      { name: 'linkedin' },
+      { name: 'vimeo' },
+    ],
   };
 
   render() {
     const { links } = this.state;
-    const { data } = this.props;
+    const { options } = this.props;
     return (
       <>
         <div className="top-bar hidden-xs">
@@ -24,7 +24,7 @@ export default class Header extends Component {
               <div className="top-bar-links">
                 <ul className="col-sm-6">
                   <li className="top-bar-date">
-                    <span>{moment().format("dddd, MMMM D, YYYY")}</span>
+                    <span>{moment().format('dddd, MMMM D, YYYY')}</span>
                   </li>
                   <li className="top-bar-link">
                     <Link to="/contact">ADVERTISE</Link>
@@ -32,11 +32,11 @@ export default class Header extends Component {
                 </ul>
 
                 <ul className="col-sm-6 top-bar-acc text-right">
-                  {data ? (
+                  {options.length ? (
                     <li className="social-icons dark">
                       {links.map(link => (
                         <a
-                          href={data[0][link.name] ? data[0][link.name] : null}
+                          href={options[0][link.name] ? options[0][link.name] : null}
                         >
                           <i className={`fab fa-${link.name}`} />
                         </a>

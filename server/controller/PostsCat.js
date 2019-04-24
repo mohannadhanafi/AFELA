@@ -2,12 +2,12 @@
 // const { posts, categories } = require('../database/models');
 // var querystring = require('querystring');
 const Sequelize = require('../database/config');
-const { posts, categories } = require('../database/models');
+const { posts, categories, users } = require('../database/models');
 
 exports.get = async (req, res) => {
   try {
     const { limit, offset } = req.query;
-    const offSetValue = parseInt(offset, 10) * 10;
+    const offSetValue = parseInt(offset, 10) * 5;
     const { seo_name: seo } = req.params;
     const cat = await categories.findOne({ where: { seo }, raw: true });
     if (cat) {
@@ -28,6 +28,10 @@ exports.get = async (req, res) => {
               {
                 model: categories,
                 attributes: [['name', 'category_name'], ['seo', 'category_seo']],
+              },
+              {
+                model: users,
+                attributes: [['name', 'name']],
               }],
             limit,
             offset: offSetValue,
@@ -43,16 +47,24 @@ exports.get = async (req, res) => {
               {
                 model: categories,
                 attributes: [['name', 'category_name'], ['seo', 'category_seo']],
+              },
+              {
+                model: users,
+                attributes: [['name', 'name']],
               }],
             order: [['createdAt', 'DESC']],
           },
         );
+        console.log(55);
+
         res.status(200).send({ result, catName: cat.name });
       }
     } else {
       res.status(404).send({ message: 'Wrong Category title' });
     }
   } catch (error) {
+    console.log(error);
+
     res.status(500).send('Internal Server Error');
   }
 };

@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import { connect } from 'react-redux/es';
 
-export default class Footer extends Component {
+class Footer extends Component {
   state = {
     categories: [],
     email: '',
@@ -23,18 +24,13 @@ export default class Footer extends Component {
     axios.get('/api/v1/categories/allWithCount').then((result) => {
       const { data } = result;
       this.setState(() => ({ categories: data }));
-    }).then(() => {
-      axios.get('/api/v1/getoptions').then((result) => {
-        const { data } = result;
-
-        this.setState(() => ({ options: data }));
-      }).then(async () => {
-        const result = await axios('/api/v1/lastposts');
-        const { data } = result;
-        this.setState({ recentPosts: data });
-      });
+    }).then(async () => {
+      const result = await axios('/api/v1/lastposts');
+      const { data } = result;
+      this.setState({ recentPosts: data });
     });
   }
+
 
   addNewletter= async (e) => {
     e.preventDefault();
@@ -77,9 +73,10 @@ export default class Footer extends Component {
 
   render() {
     const {
-      aboutUs, recentPosts, categories, links, options,email
+      aboutUs, recentPosts, categories, links, email,
     } = this.state;
 
+    const { options } = this.props;
     return (
       <footer className="footer footer-type-4">
         <div className="container">
@@ -206,3 +203,6 @@ export default class Footer extends Component {
     );
   }
 }
+const mapStateToProps = ({ options }) => options;
+
+export default connect(mapStateToProps, null)(Footer);

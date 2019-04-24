@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux/es';
 
-export default class FollowUs extends Component {
+class FollowUs extends Component {
   state = {
-    data: '',
     links: [
       { name: 'facebook' },
       { name: 'google-plus' },
@@ -15,17 +14,10 @@ export default class FollowUs extends Component {
 
   };
 
-  componentDidMount() {
-    axios.get('/api/v1/getoptions').then((result) => {
-      const { data } = result;
-      this.setState(() => ({
-        data,
-      }));
-    });
-  }
 
   render() {
-    const { data, links } = this.state;
+    const { links } = this.state;
+    const { options: data } = this.props;
     return (
       <div className="widget follow-us">
         <h3 className="widget-title heading relative heading-small uppercase bottom-line style-2 left-align">
@@ -33,7 +25,7 @@ export default class FollowUs extends Component {
           Follow Us
         </h3>
         <div className="social-icons colored large">
-          {data
+          {data.length
             && links.map(link => (
               <a
                 href={data[0][link.name] ? data[0][link.name] : null}
@@ -50,3 +42,6 @@ export default class FollowUs extends Component {
     );
   }
 }
+const mapStateToProps = ({ options }) => options;
+
+export default connect(mapStateToProps, null)(FollowUs);

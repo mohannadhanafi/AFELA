@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux/es';
 import Top from './Top';
 import Middle from './Middle';
 import Bottom from './Bottom';
 
-export default class Header extends Component {
+class Header extends Component {
     state = { data: '' }
 
-    componentWillMount() {
-      axios.get('/api/v1/getoptions').then((result) => {
-        const { data } = result;
-        this.setState(() => ({ data }));
-      });
-    }
-
     render() {
-      const { data } = this.state;
+      const { options } = this.props;
       return (
         <header className="nav-type-4">
-          <Top data={data} />
+
+          <Top options={options} />
           <nav className="navbar navbar-static-top">
             <div className="navigation">
               <div className="container-fluid relative">
@@ -49,3 +44,6 @@ export default class Header extends Component {
       );
     }
 }
+const mapStateToProps = ({ options }) => options;
+
+export default connect(mapStateToProps, null)(withRouter(Header));
