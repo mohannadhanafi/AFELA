@@ -24,10 +24,6 @@ class Footer extends Component {
     axios.get('/api/v1/categories/allWithCount').then((result) => {
       const { data } = result;
       this.setState(() => ({ categories: data }));
-    }).then(async () => {
-      const result = await axios('/api/v1/lastposts');
-      const { data } = result;
-      this.setState({ recentPosts: data });
     });
   }
 
@@ -73,10 +69,11 @@ class Footer extends Component {
 
   render() {
     const {
-      aboutUs, recentPosts, categories, links, email,
+      aboutUs, categories, links, email,
     } = this.state;
 
-    const { options } = this.props;
+    const { optionsData: options, recentData: recentPosts } = this.props;
+
     return (
       <footer className="footer footer-type-4">
         <div className="container">
@@ -115,7 +112,7 @@ class Footer extends Component {
                   <h5 className="uppercase">Recent Posts</h5>
                   <div className="footer-entry-list">
                     <ul className="posts-list no-top-pad">
-                      {recentPosts.slice(0, 2).map(post => (
+                      {recentPosts.length ? recentPosts.slice(0, 2).map(post => (
                         <li className="footer-entry">
                           <article className="post-small clearfix">
                             <div className="entry-img hover-scale">
@@ -137,7 +134,7 @@ class Footer extends Component {
                             </div>
                           </article>
                         </li>
-                      ))}
+                      )) : null}
                     </ul>
                   </div>
                 </div>
@@ -203,6 +200,12 @@ class Footer extends Component {
     );
   }
 }
-const mapStateToProps = ({ options }) => options;
+const mapStateToProps = ({ options, recent }) => {
+  const { options: optionsData } = options;
+  const { recent: recentData } = recent;
+  return {
+    optionsData, recentData,
+  };
+};
 
 export default connect(mapStateToProps, null)(Footer);

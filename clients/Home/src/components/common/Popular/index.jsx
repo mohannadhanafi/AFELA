@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './style.css';
 import axios from 'axios';
+import { connect } from 'react-redux/es';
+import moment from 'moment';
 
-
-export default class Popular extends Component {
+class Popular extends Component {
   state = {
     Popular: [
       {
@@ -39,6 +40,8 @@ export default class Popular extends Component {
 
   render() {
     const { Popular, comments } = this.state;
+    const { recentData: recentPosts } = this.props;
+
     return (
       <div className="widget popular-latest">
         <div className="tabs">
@@ -83,31 +86,32 @@ export default class Popular extends Component {
 
             <div className="tab-pane fade" id="recent-news">
               <ul className="posts-list no-top-pad">
-                {Popular && Popular.map(({
-                  image, date, commentsNumber, title,
-                }) => (
+                {recentPosts.length ? recentPosts.slice(0, 3).map(element => (
                   <li>
                     <article className="post-small clearfix">
                       <div className="entry-img hover-scale">
                         <a href="magazine-single-article.html">
-                          <img src={image} alt="" className="popular__image" />
+                          <a href={`/news/${element.seo}`}>
+                            <img
+                              src={`/api/v1/getFile/${element.header_media[0]}`}
+                              alt=""
+                              className="popular__image"
+                            />
+                          </a>
                         </a>
                       </div>
                       <div className="entry">
-                        <h3 className="entry-title"><a href="#">{title}</a></h3>
+                        <h3 className="entry-title"><a href={`/news/${element.seo}`}>{element.title}</a></h3>
                         <ul className="entry-meta list-inline">
                           <li className="entry-date">
-                            <a href="#">{date}</a>
+                            <a href={`/news/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
                           </li>
-                          <li className="entry-comments">
-                            <i className="fa fa-comments" />
-                            <a href="#">{commentsNumber}</a>
-                          </li>
+
                         </ul>
                       </div>
                     </article>
                   </li>
-                ))}
+                )) : null}
               </ul>
             </div>
 
@@ -117,3 +121,12 @@ export default class Popular extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ recent }) => {
+  const { recent: recentData } = recent;
+  return {
+    recentData,
+  };
+};
+
+export default connect(mapStateToProps, null)(Popular);
