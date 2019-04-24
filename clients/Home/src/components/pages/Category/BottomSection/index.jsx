@@ -10,7 +10,7 @@ export default function index({ posts, total, changeData }) {
   return (
     <div className="container margin-content">
       <div className="row">
-        <div className="col-md-8 content ">
+        <div className="col-md-8 post-content mb-50 ">
           <Continer posts={posts} changeData={changeData} total={total} />
         </div>
         <aside className="col-md-4 sidebar pb-50">

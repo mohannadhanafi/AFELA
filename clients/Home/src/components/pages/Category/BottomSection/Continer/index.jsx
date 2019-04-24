@@ -62,7 +62,7 @@ export default class index extends Component {
               </div>
             </article>
           ))}
-        <div className="pagination">
+        <div className="pagination clear">
           <Pagination
             hideOnSinglePage
             total={total}
