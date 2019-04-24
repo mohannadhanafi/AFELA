@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_OPTIONS, GET_OPTIONS_FAILD } from './types';
+import { SET_OPTIONS } from './types';
 
 const setOptions = options => ({
   type: SET_OPTIONS,

@@ -12,13 +12,14 @@ import Category from './components/pages/Category';
 import ContactUs from './components/pages/ContactUs';
 import BackToTop from './components/common/BackToTop';
 import getOptions from './appRedux/actions/options';
-
+import getRecent from './appRedux/actions/recent';
 
 class App extends Component {
   state = {};
 
   componentWillMount() {
     this.props.getOptions();
+    this.props.getRecent();
   }
 
   render() {
@@ -43,4 +44,4 @@ class App extends Component {
 }
 const mapStateToProps = ({ options }) => options;
 
-export default connect(mapStateToProps, { getOptions })(App);
+export default connect(mapStateToProps, { getOptions, getRecent })(App);
