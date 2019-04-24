@@ -12,22 +12,12 @@ class index extends Component {
     posts: [],
   };
 
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   const { data: { result: { rows, count }, catName: name } } = nextProps;
-
-  //   if (prevState.name !== name) {
-  //     return {
-  //       posts: rows,
-  //       name,
-  //       total: count,
-  //     };
-  //   }
-  //   return null;
-  // }
 
   componentDidMount() {
     this.getData(this.props);
-    window.scrollTo(0, 0);
+  }
+
+  closeLoading = () => {
     $(document).ready(() => {
       (function ($) {
         $('.loader')
@@ -41,7 +31,24 @@ class index extends Component {
     });
   }
 
+  componentWillReceiveProps(props) {
+    this.getData(props);
+  }
+
+runLoading = () => {
+  $(document).ready(() => {
+    (function ($) {
+      $('.loader').show();
+      $('.loader-mask').show();
+    }(window.jQuery));
+  });
+}
+
   getData = (props) => {
+    this.runLoading();
+    this.closeLoading();
+    window.scrollTo(0, 0);
+
     const {
       history: {
         location: { pathname },
@@ -60,21 +67,14 @@ class index extends Component {
         const { result, catName } = data;
         const { rows, count } = result;
         this.setState({ posts: rows, catName, total: count });
-        console.log(this.state.posts);
       })
       .catch((error) => {});
   };
-
-  componentWillReceiveProps(props) {
-    this.getData(props);
-  }
 
 
   changeData = (current) => {
     const { history: { location: { pathname } } } = this.props;
     const seo = pathname.split('/')[2];
-    console.log(current);
-    
     axios(
       `/api/v1/CatWithPosts/${seo}`, {
         params: {
