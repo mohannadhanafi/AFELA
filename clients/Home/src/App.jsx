@@ -11,14 +11,14 @@ import About from './components/pages/AboutUs';
 import Category from './components/pages/Category';
 import ContactUs from './components/pages/ContactUs';
 import BackToTop from './components/common/BackToTop';
-import getOptions from './appRedux/actions/options';
-
+import { getOptions, getTrending } from './appRedux/actions';
 
 class App extends Component {
   state = {};
 
   componentWillMount() {
     this.props.getOptions();
+    this.props.getTrending();
   }
 
   render() {
@@ -43,4 +43,4 @@ class App extends Component {
 }
 const mapStateToProps = ({ options }) => options;
 
-export default connect(mapStateToProps, { getOptions })(App);
+export default connect(mapStateToProps, { getOptions, getTrending })(App);

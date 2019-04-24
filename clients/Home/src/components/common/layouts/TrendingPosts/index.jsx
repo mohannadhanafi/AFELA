@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
+import { connect } from 'react-redux/es';
+
 import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
@@ -13,93 +15,29 @@ class TrendingPosts extends Component {
     finalData: [],
     Trending: [],
     categories: ['WORLD', 'SPORTS', 'TRAVEL', 'fashion'],
-    news: [
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'fashion',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'fashion',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-      {
-        title:
-          'WORLD The Golden Age: How the PR Industry Is Coming Into its Own.',
-        category: 'sports',
-        image: 'http://deothemes.com/envato/afela/html/img/magazine/1.jpg',
-        description:
-          'We possess within us two minds. So far I have writtenonly of the conscious mind.',
-        date: '19 Dec, 2015',
-        comments: 15,
-      },
-    ],
+
   };
 
   componentDidMount() {
     axios('/api/v1/posts/trendingPosts').then((result) => {
       const { data: { Trending, finalData } } = result;
-      console.log(result.data);
 
       this.setState(() => ({ Trending, finalData }));
     });
     const { seo } = this.props;
-    // axios.get(`/api/v1/CatWithPosts/${seo}`).then((results) => {
-    //   const { data } = results;
-    //   const { result } = data;
-    //   const { rows } = result;
-
-    //   this.setState({ news: rows });
-    // });
   }
 
   render() {
+    console.log(this.props);
+
     const {
-      categories, news, Trending, finalData,
+      categories, news,
     } = this.state;
+    const { trendingPosts: { Trending, finalData } } = this.props;
+
+
     return (
-      news.length ? (
+      Trending.length ? (
         <section className="section-wrap relative pb-0 pt-0">
           <h2 className="heading relative heading-small uppercase bottom-line style-2 left-align">
           trending news
@@ -277,5 +215,6 @@ class TrendingPosts extends Component {
     );
   }
 }
+const mapStateToProps = ({ trending }) => trending;
 
-export default withRouter(TrendingPosts);
+export default connect(mapStateToProps, null)(withRouter(TrendingPosts));
