@@ -16,18 +16,18 @@ render() {
           <article>
             <div className="entry-img hover-scale">
               <a
-                href="magazine-single-article.html"
+                href={`/news/${categoryPosts[0].category.seo}/${categoryPosts[0].seo}`}
                 className="entry-category-label blue"
               >
-                {categoryPosts[0].category.category_name}
+                {categoryPosts[0].category.name}
               </a>
-              <a href="magazine-single-article.html">
+              <a href={`/news/${categoryPosts[0].category.seo}/${categoryPosts[0].seo}`}>
                 <img src={`/api/v1/getFile/${categoryPosts[0].header_media[0]}`} alt="" />
               </a>
             </div>
             <div className="entry mb-0">
               <h2 className="entry-title">
-                <a href="magazine-single-article.html">
+                <a href={`/news/${categoryPosts[0].category.seo}/${categoryPosts[0].seo}`}>
                   {categoryPosts[0].title}
                 </a>
               </h2>
@@ -41,7 +41,7 @@ render() {
                   {ReactHtmlParser(categoryPosts[0].description)}
                 </p>
                 <a
-                  href="magazine-single-article.html"
+                  href={`/news/${categoryPosts[0].category.seo}/${categoryPosts[0].seo}`}
                   className="read-more dark-link"
                 >
       Read More <i className="fa fa-angle-right" />
@@ -56,24 +56,21 @@ render() {
             <li>
               <article className="post-small clearfix">
                 <div className="entry-img hover-scale">
-                  <a href="magazine-single-article.html">
+                  <a href={`/news/${post.category.seo}/${post.seo}`}>
                     <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
                   </a>
                 </div>
                 <div className="entry">
                   <h3 className="entry-title">
-                    <a href="magazine-single-article.html">
+                    <a href={`/news/${post.category.seo}/${post.seo}`}>
                       {post.title}
                     </a>
                   </h3>
                   <ul className="entry-meta list-inline">
                     <li className="entry-date">
-                      <a href="#">19 Dec, 2015</a>
+                      {moment(post.createdAt).calendar()}
                     </li>
-                    <li className="entry-comments">
-                      <i className="fa fa-comments" />
-                      <a href="magazine-single-article.html">15</a>
-                    </li>
+
                   </ul>
                 </div>
               </article>
@@ -87,24 +84,24 @@ render() {
           <article>
             <div className="entry-img hover-scale">
               <a
-                href="magazine-single-article.html"
+                href={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}
                 className="entry-category-label blue"
               >
-                {categoryPosts[4].category.category_name}
+                {categoryPosts[4].category.name}
               </a>
-              <a href="magazine-single-article.html">
+              <a href={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}>
                 <img src={`/api/v1/getFile/${categoryPosts[4].header_media[0]}`} alt="" />
               </a>
             </div>
             <div className="entry mb-0">
               <h2 className="entry-title">
-                <a href="magazine-single-article.html">
+                <a href={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}>
                   {categoryPosts[4].title}
                 </a>
               </h2>
               <ul className="entry-meta list-inline">
                 <li className="entry-date">
-                  <Link to={`/news/${categoryPosts[4].category.category_seo}/${categoryPosts[4].seo}`}>{moment(categoryPosts[4].createdAt).calendar()}</Link>
+                  <Link to={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}>{moment(categoryPosts[4].createdAt).calendar()}</Link>
                 </li>
               </ul>
               <div className="entry-content">
@@ -112,7 +109,7 @@ render() {
                   {ReactHtmlParser(categoryPosts[4].description)}
                 </p>
                 <a
-                  href="magazine-single-article.html"
+                  href={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}
                   className="read-more dark-link"
                 >
       Read More <i className="fa fa-angle-right" />
@@ -127,24 +124,21 @@ render() {
             <li>
               <article className="post-small clearfix">
                 <div className="entry-img hover-scale">
-                  <a href="magazine-single-article.html">
+                  <a href={`/news/${post.category.seo}/${post.seo}`}>
                     <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
                   </a>
                 </div>
                 <div className="entry">
                   <h3 className="entry-title">
-                    <a href="magazine-single-article.html">
+                    <a href={`/news/${post.category.seo}/${post.seo}`}>
                       {post.title}
                     </a>
                   </h3>
                   <ul className="entry-meta list-inline">
                     <li className="entry-date">
-                      <a href="#">19 Dec, 2015</a>
+                      {moment(post.createdAt).calendar()}
                     </li>
-                    <li className="entry-comments">
-                      <i className="fa fa-comments" />
-                      <a href="magazine-single-article.html">15</a>
-                    </li>
+
                   </ul>
                 </div>
               </article>

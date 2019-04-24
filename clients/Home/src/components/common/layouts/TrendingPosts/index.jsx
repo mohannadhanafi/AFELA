@@ -18,18 +18,8 @@ class TrendingPosts extends Component {
 
   };
 
-  componentDidMount() {
-    axios('/api/v1/posts/trendingPosts').then((result) => {
-      const { data: { Trending, finalData } } = result;
-
-      this.setState(() => ({ Trending, finalData }));
-    });
-    const { seo } = this.props;
-  }
 
   render() {
-    console.log(this.props);
-
     const {
       categories, news,
     } = this.state;
@@ -67,24 +57,23 @@ class TrendingPosts extends Component {
                     <article>
                       <div className="entry-img hover-scale">
                         <a
-                          href="magazine-single-article.html"
+                          href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}
                           className="entry-category-label blue"
                         >
-                          {Trending[0].category.category_name}
+                          {Trending[0].category.name}
                         </a>
-                        <a href="magazine-single-article.html">
-                          <img src={`/api/v1/getFile/${Trending[0].header_media[0]}`} alt="" />
+                        <a href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}>     <img src={`/api/v1/getFile/${Trending[0].header_media[0]}`} alt="" />
                         </a>
                       </div>
                       <div className="entry mb-0">
                         <h2 className="entry-title">
-                          <a href="magazine-single-article.html">
+                          <a href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}>
                             {Trending[0].title}
                           </a>
                         </h2>
                         <ul className="entry-meta list-inline">
                           <li className="entry-date">
-                            <Link to={`/news/${Trending[0].category.category_seo}/${Trending[0].seo}`}>{moment(Trending[0].createdAt).calendar()}</Link>
+                            {moment(Trending[0].createdAt).calendar()}
                           </li>
                         </ul>
                         <div className="entry-content">
@@ -92,7 +81,7 @@ class TrendingPosts extends Component {
                             {ReactHtmlParser(Trending[0].description)}
                           </p>
                           <a
-                            href="magazine-single-article.html"
+                            href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}
                             className="read-more dark-link"
                           >
       Read More <i className="fa fa-angle-right" />
@@ -107,24 +96,21 @@ class TrendingPosts extends Component {
                       <li>
                         <article className="post-small clearfix">
                           <div className="entry-img hover-scale">
-                            <a href="magazine-single-article.html">
+                            <a href={`/news/${post.category.seo}/${post.seo}`}>
                               <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
                             </a>
                           </div>
                           <div className="entry">
                             <h3 className="entry-title">
-                              <a href="magazine-single-article.html">
+                              <a href={`/news/${post.category.seo}/${post.seo}`}>
                                 {post.title}
                               </a>
                             </h3>
                             <ul className="entry-meta list-inline">
                               <li className="entry-date">
-                                <a href="#">19 Dec, 2015</a>
+                                {moment(post.createdAt).calendar()}
                               </li>
-                              <li className="entry-comments">
-                                <i className="fa fa-comments" />
-                                <a href="magazine-single-article.html">15</a>
-                              </li>
+
                             </ul>
                           </div>
                         </article>
@@ -138,24 +124,24 @@ class TrendingPosts extends Component {
                     <article>
                       <div className="entry-img hover-scale">
                         <a
-                          href="magazine-single-article.html"
+                          href={`/news/${Trending[4].category.seo}/${Trending[4].seo}`}
                           className="entry-category-label blue"
                         >
-                          {Trending[4].category.category_name}
+                          {Trending[4].category.name}
                         </a>
-                        <a href="magazine-single-article.html">
+                        <a href={`/news/${Trending[4].category.seo}/${Trending[4].seo}`}>
                           <img src={`/api/v1/getFile/${Trending[4].header_media[0]}`} alt="" />
                         </a>
                       </div>
                       <div className="entry mb-0">
                         <h2 className="entry-title">
-                          <a href="magazine-single-article.html">
+                          <a href={`/news/${Trending[4].category.seo}/${Trending[4].seo}`}>
                             {Trending[4].title}
                           </a>
                         </h2>
                         <ul className="entry-meta list-inline">
                           <li className="entry-date">
-                            <Link to={`/news/${Trending[4].category.category_seo}/${Trending[4].seo}`}>{moment(Trending[4].createdAt).calendar()}</Link>
+                            {moment(Trending[4].createdAt).calendar()}
                           </li>
                         </ul>
                         <div className="entry-content">
@@ -163,7 +149,7 @@ class TrendingPosts extends Component {
                             {ReactHtmlParser(Trending[4].description)}
                           </p>
                           <a
-                            href="magazine-single-article.html"
+                            href={`/news/${Trending[4].category.seo}/${Trending[4].seo}`}
                             className="read-more dark-link"
                           >
       Read More <i className="fa fa-angle-right" />
@@ -178,24 +164,21 @@ class TrendingPosts extends Component {
                       <li>
                         <article className="post-small clearfix">
                           <div className="entry-img hover-scale">
-                            <a href="magazine-single-article.html">
+                            <a href={`/news/${post.category.seo}/${post.seo}`}>
                               <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
                             </a>
                           </div>
                           <div className="entry">
                             <h3 className="entry-title">
-                              <a href="magazine-single-article.html">
+                              <a href={`/news/${post.category.seo}/${post.seo}`}>
                                 {post.title}
                               </a>
                             </h3>
                             <ul className="entry-meta list-inline">
                               <li className="entry-date">
-                                <a href="#">19 Dec, 2015</a>
+                                {moment(post.createdAt).calendar()}
                               </li>
-                              <li className="entry-comments">
-                                <i className="fa fa-comments" />
-                                <a href="magazine-single-article.html">15</a>
-                              </li>
+
                             </ul>
                           </div>
                         </article>
