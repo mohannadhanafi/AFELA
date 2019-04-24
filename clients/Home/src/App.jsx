@@ -10,8 +10,6 @@ import ContactUs from './components/pages/ContactUs';
 import BackToTop from './components/common/BackToTop';
 
 
-import './App.scss';
-
 class App extends Component {
   state = {};
 
