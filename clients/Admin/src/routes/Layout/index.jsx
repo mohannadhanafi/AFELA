@@ -23,7 +23,7 @@ const Contacts = SortableContainer(({
     </Col>
     <Col span={19}>
       {contacts.map((contact, index) => (
-        <ContactCell key={index} index={index} contact={contact} changeState={changeState} onDelete={onDelete} />
+        <ContactCell disabled={contact.type !== 'category'} key={index} index={index} contact={contact} changeState={changeState} onDelete={onDelete} />
       ))}
     </Col>
   </Row>

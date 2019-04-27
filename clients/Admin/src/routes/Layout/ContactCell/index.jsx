@@ -5,15 +5,22 @@ import './style.css';
 const DragHandle = SortableHandle(({ onDelete }) => (
   <div className="handle">
     <span className="gx-draggable-icon gx-pt-2">
+
+
       <i
         className="fas fa-trash-alt"
         onClick={onDelete}
         style={{
-          fontSize: 20, color: 'red', margin: 10, cursor: 'pointer',
+          fontSize: 20,
+          color: 'red',
+          margin: 10,
+          cursor: 'pointer',
         }}
       />
-      <i className="icon icon-expand" style={{ fontSize: 20, color: 'green', margin: 10 }} />
-
+      <i
+        className="icon icon-expand"
+        style={{ fontSize: 20, color: 'green', margin: 10 }}
+      />
 
     </span>
   </div>
@@ -34,11 +41,24 @@ class ContactCell extends React.Component {
       <>
         <div className="gx-contact-item gx-dragndrop-item item-drag-drop">
           <span className="title-drag">{name}</span>
-          <DragHandle onDelete={() => onDelete(contact)} />
+          {contact.type === 'category' ? (
+            <>
+              <img
+                className="layout-image-small"
+                alt=""
+                src={require(`../layouts/${contact.layout_number}.JPG`)}
+              />
+              <DragHandle contact={contact} onDelete={() => onDelete(contact)} />
+            </>
+          )
+            : null}
           <i
             className={`fas ${!show ? 'fa-eye-slash' : 'fa-eye'}`}
             style={{
-              fontSize: 20, color: !show ? 'red' : 'green', margin: 10, cursor: 'pointer',
+              fontSize: 20,
+              color: !show ? 'red' : 'green',
+              margin: 10,
+              cursor: 'pointer',
             }}
             onClick={() => this.props.changeState(id)}
           />
@@ -47,5 +67,6 @@ class ContactCell extends React.Component {
     );
   }
 }
+
 
 export default SortableElement(ContactCell);

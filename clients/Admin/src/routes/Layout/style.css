@@ -2,3 +2,13 @@
     width: 135px;
     text-align: center;
 }
+
+.layout-image-small{
+    width: auto;
+    height: 150px;
+    z-index: 99;
+}
+
+.layout-image-threeC{
+    margin-top: 30px;
+}
