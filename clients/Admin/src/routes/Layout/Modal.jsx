@@ -67,7 +67,7 @@ class Modall extends Component {
         onOk={this.handleOk}
         onCancel={handleCancel}
         footer={[
-          <Button key="back" onClick={this.handleCancel}>
+          <Button key="back" onClick={handleCancel}>
 
             Cancel
           </Button>,
