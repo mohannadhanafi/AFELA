@@ -8,6 +8,7 @@ const homepage = connection.define('homepage', {
   },
   position: Sequelize.INTEGER,
   name: Sequelize.TEXT,
+  seo: Sequelize.TEXT,
   show: {
     type: Sequelize.BOOLEAN,
     defaultValue: true,

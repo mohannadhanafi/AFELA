@@ -4,9 +4,10 @@
 }
 
 .layout-image-small{
-    width: auto;
+    width: 200px;
     height: 150px;
     z-index: 99;
+
 }
 
 .layout-image-threeC{

@@ -34,13 +34,10 @@ class Modall extends Component {
     });
   }
 
-  handleChange = (value) => {
-    this.setState(() => ({ type: value }));
-  }
+  // handleChange = (value) => {
+  //   this.setState(() => ({ type: value }));
+  // }
 
-  setCatName = (value) => {
-    this.setState(() => ({ catName: value }));
-  }
 
   threeCats = (threeCats) => {
     this.setState(() => ({ threeCats }));
@@ -48,8 +45,10 @@ class Modall extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { visible, handleCancel } = this.props;
-    const { categories, type, threeCats } = this.state;
+    const {
+      visible, handleCancel, onSubmit, category, setCatName, radioChange, handleChange, type,
+    } = this.props;
+    const { categories, threeCats } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -64,14 +63,14 @@ class Modall extends Component {
       <Modal
         visible={visible}
         title="Layouts List"
-        onOk={this.handleOk}
+        onOk={onSubmit}
         onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
 
             Cancel
           </Button>,
-          <Button key="submit" type="primary" onClick={this.handleOk}>
+          <Button key="submit" type="primary" onClick={onSubmit}>
 
             Submit
           </Button>,
@@ -81,7 +80,7 @@ class Modall extends Component {
 
         <FormItem {...formItemLayout} label={<span>Type</span>}>
           {getFieldDecorator('Hero')(
-            <Select defaultValue="category" style={{ width: '100%' }} onChange={this.handleChange}>
+            <Select defaultValue="category" style={{ width: '100%' }} onChange={handleChange}>
               <Option value="category">Specific Category</Option>
               <Option value="three">Three Columns</Option>
             </Select>,
@@ -91,7 +90,7 @@ class Modall extends Component {
           <div>
             <FormItem {...formItemLayout} label="Cat. Name">
               {getFieldDecorator('catName')(
-                <Select defaultValue="category" style={{ width: '100%' }} onChange={this.setCatName}>
+                <Select defaultValue="category" style={{ width: '100%' }} onChange={setCatName}>
                   {categories.map(category => (
                     <Option value={category.seo}>{category.name}</Option>
                   ))}
@@ -99,7 +98,7 @@ class Modall extends Component {
               )}
             </FormItem>
             <RadioGroup
-              onChange={this.radioChange}
+              onChange={radioChange}
               className="layouts-group"
           >
               <RadioButton value="1" className="image__wrap">
@@ -156,7 +155,7 @@ class Modall extends Component {
                 {' '}
                 <p className="img__description">Click To Choose</p>
               </RadioButton>
-              <RadioButton value="6" className="image__wrap">
+              <RadioButton value="7" className="image__wrap">
                 <img
                   className="layout-image"
                   alt=""
@@ -165,7 +164,7 @@ class Modall extends Component {
                 {' '}
                 <p className="img__description">Click To Choose</p>
               </RadioButton>
-              <RadioButton value="6" className="image__wrap">
+              <RadioButton value="8" className="image__wrap">
                 <img
                   className="layout-image"
                   alt=""
