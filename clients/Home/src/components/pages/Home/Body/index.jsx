@@ -41,16 +41,21 @@ export default class index extends Component {
       }
       if (type === 'category') {
         switch (layout_number) {
-          case 1:
-            return <LayoutOne seo={category.name} />;
+          case 5:
+            if (show) return <LayoutOne seo={category.seo} />;
+            break;
+          case 6:
+            if (show) return <LayoutTwo seo={category.seo} />; break;
+
           case 2:
-            return <LayoutTwo seo={category.name} />;
-          case 3:
-            return <LayoutThree seo={category.name} />;
-          case 4:
-            return <LayoutFour seo={category.name} />;
+            if (show) return <LayoutThree seo={category.seo} />; break;
+
+          case 8:
+            if (show) return <LayoutFour seo={category.seo} />; break;
+
           case 7:
-            return <LayoutFour seo={category.name} />;
+            if (show) return <LayoutFive seo={category.seo} />; break;
+
           default:
             return null;
         }

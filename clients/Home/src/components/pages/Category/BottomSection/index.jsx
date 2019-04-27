@@ -30,7 +30,7 @@ class index extends Component {
       <div className="container margin-content">
         <div className="row">
           <div className="col-md-8 post-content mb-50 ">
-            { this.setLayout('One')}
+            { this.setLayout('Two')}
 
           </div>
           <aside className="col-md-4 sidebar pb-50">

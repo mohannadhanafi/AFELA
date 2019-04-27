@@ -101,42 +101,6 @@ class Modall extends Component {
               onChange={radioChange}
               className="layouts-group"
           >
-              <RadioButton value="1" className="image__wrap">
-                <img
-                  className="layout-image"
-                  alt=""
-                  src={require('./layouts/1.JPG')}
-              />
-                {' '}
-                <p className="img__description">Click To Choose</p>
-              </RadioButton>
-              <RadioButton value="2" className="image__wrap">
-                <img
-                  className="layout-image"
-                  alt=""
-                  src={require('./layouts/2.JPG')}
-              />
-                {' '}
-                <p className="img__description">Horizontal Slider</p>
-              </RadioButton>
-              <RadioButton value="3" className="image__wrap">
-                <img
-                  className="layout-image"
-                  alt=""
-                  src={require('./layouts/3.JPG')}
-              />
-                {' '}
-                <p className="img__description">Click To Choose</p>
-              </RadioButton>
-              <RadioButton value="4" className="image__wrap">
-                <img
-                  className="layout-image"
-                  alt=""
-                  src={require('./layouts/4.JPG')}
-              />
-                {' '}
-                <p className="img__description">Click To Choose</p>
-              </RadioButton>
               <RadioButton value="5" className="image__wrap">
                 <img
                   className="layout-image"
@@ -144,7 +108,7 @@ class Modall extends Component {
                   src={require('./layouts/5.JPG')}
               />
                 {' '}
-                <p className="img__description">Slider</p>
+                <p className="img__description">Click To Choose</p>
               </RadioButton>
               <RadioButton value="6" className="image__wrap">
                 <img
@@ -153,13 +117,49 @@ class Modall extends Component {
                   src={require('./layouts/6.JPG')}
               />
                 {' '}
+                <p className="img__description">Horizontal Slider</p>
+              </RadioButton>
+              <RadioButton value="2" className="image__wrap">
+                <img
+                  className="layout-image"
+                  alt=""
+                  src={require('./layouts/2.JPG')}
+              />
+                {' '}
+                <p className="img__description">Click To Choose</p>
+              </RadioButton>
+              <RadioButton value="8" className="image__wrap">
+                <img
+                  className="layout-image"
+                  alt=""
+                  src={require('./layouts/8.JPG')}
+              />
+                {' '}
                 <p className="img__description">Click To Choose</p>
               </RadioButton>
               <RadioButton value="7" className="image__wrap">
                 <img
                   className="layout-image"
                   alt=""
-                  src={require('./layouts/4.JPG')}
+                  src={require('./layouts/7.JPG')}
+              />
+                {' '}
+                <p className="img__description">Slider</p>
+              </RadioButton>
+              <RadioButton value="2" className="image__wrap">
+                <img
+                  className="layout-image"
+                  alt=""
+                  src={require('./layouts/2.JPG')}
+              />
+                {' '}
+                <p className="img__description">Click To Choose</p>
+              </RadioButton>
+              <RadioButton value="7" className="image__wrap">
+                <img
+                  className="layout-image"
+                  alt=""
+                  src={require('./layouts/7.JPG')}
               />
                 {' '}
                 <p className="img__description">Click To Choose</p>
