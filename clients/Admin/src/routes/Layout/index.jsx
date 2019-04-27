@@ -69,11 +69,9 @@ onSortEnd = ({ oldIndex, newIndex }) => {
 
 handleSave = () => {
   const { contacts } = this.state;
-  console.log(contacts);
+  axios.post('/api/v1/home/layouts', contacts).then((r) => {
 
-  // axios.post('/api/v1/home/layouts', contacts).then((r) => {
-
-  // });
+  });
 }
 
 handleCancel = () => {

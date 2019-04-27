@@ -4,7 +4,7 @@ const { options, visitors } = require('../database/models');
 
 exports.update = async (req, res) => {
   try {
-    const newData = req.body;    
+    const newData = req.body;
     const {
       logo,
       contact,
@@ -99,7 +99,7 @@ exports.update = async (req, res) => {
       });
     } else {
       await options.update(newData, {
-        where: {     
+        where: {
         },
       });
       res.status(200).send({
@@ -118,6 +118,8 @@ exports.get = async (req, res) => {
     const result = await options.findAll();
     res.status(200).send(result);
   } catch (error) {
+    console.log(error);
+
     res.status(500).send({
       message: 'Internal server error',
     });

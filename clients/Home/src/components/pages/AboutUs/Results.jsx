@@ -3,6 +3,8 @@
 import React from 'react';
 
 export default function WhatWeDo({ statistics }) {
+  console.log(statistics);
+
   return (
     <section className="section-wrap results parallax-counters relative pt-mdm-40">
       <div className="container">
