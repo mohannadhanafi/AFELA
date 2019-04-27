@@ -53,7 +53,7 @@ export default class index extends Component {
               <LayoutOne seo="main" />
               <LayoutTwo seo="main" />
               <LayoutThree seo="main" />
-              <LayoutFive />
+              <LayoutFive seo="main" />
 
             </div>
             <aside className="col-md-4 sidebar pb-50">

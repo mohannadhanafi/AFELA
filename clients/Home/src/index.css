@@ -20,3 +20,30 @@ code {
 .swal2-toast-shown .swal2-shown{
   /* position: absolute !important */
 }
+
+.post-small img {
+  width: auto;
+  height: auto;
+}.categories img {
+  height: auto;
+  width: auto
+} 
+.footer-entry .post-small img {
+  width: 100px;
+  height: 72px;
+ }
+.popular__image{
+  width: auto !important;
+  height: auto !important;
+} 
+.latest--image {
+  height: auto;
+}
+.editor--img {
+  height: auto;
+  width: auto;
+} 
+
+.entry__img {
+  height: auto !important;
+}

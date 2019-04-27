@@ -95,23 +95,28 @@ class TrendingPosts extends Component {
                     {Trending.length ? Trending.slice(1, 3).map(post => (
                       <li>
                         <article className="post-small clearfix">
-                          <div className="entry-img hover-scale">
-                            <a href={`/news/${post.category.seo}/${post.seo}`}>
-                              <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
-                            </a>
-                          </div>
-                          <div className="entry">
-                            <h3 className="entry-title">
+                          <div className="col-sm-5 nopadding pl-15">
+                            <div className="entry-img hover-scale">
                               <a href={`/news/${post.category.seo}/${post.seo}`}>
-                                {post.title}
+                                <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
                               </a>
-                            </h3>
-                            <ul className="entry-meta list-inline">
-                              <li className="entry-date">
-                                {moment(post.createdAt).calendar()}
-                              </li>
+                            </div>
+                          </div>
+                          <div className="col-sm-7 pl-15">
 
-                            </ul>
+                            <div className="entry">
+                              <h3 className="entry-title">
+                                <a href={`/news/${post.category.seo}/${post.seo}`}>
+                                  {post.title}
+                                </a>
+                              </h3>
+                              <ul className="entry-meta list-inline">
+                                <li className="entry-date">
+                                  {moment(post.createdAt).calendar()}
+                                </li>
+
+                              </ul>
+                            </div>
                           </div>
                         </article>
                       </li>
@@ -163,23 +168,28 @@ class TrendingPosts extends Component {
                     {Trending.length ? Trending.slice(3, 6).map(post => (
                       <li>
                         <article className="post-small clearfix">
-                          <div className="entry-img hover-scale">
-                            <a href={`/news/${post.category.seo}/${post.seo}`}>
-                              <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
-                            </a>
-                          </div>
-                          <div className="entry">
-                            <h3 className="entry-title">
-                              <a href={`/news/${post.category.seo}/${post.seo}`}>
-                                {post.title}
-                              </a>
-                            </h3>
-                            <ul className="entry-meta list-inline">
-                              <li className="entry-date">
-                                {moment(post.createdAt).calendar()}
-                              </li>
+                          <div className="col-sm-5 nopadding pl-15">
 
-                            </ul>
+                            <div className="entry-img hover-scale">
+                              <a href={`/news/${post.category.seo}/${post.seo}`}>
+                                <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
+                              </a>
+                            </div>
+                          </div>
+                          <div className="col-sm-7 pl-15">
+                            <div className="entry">
+                              <h3 className="entry-title">
+                                <a href={`/news/${post.category.seo}/${post.seo}`}>
+                                  {post.title}
+                                </a>
+                              </h3>
+                              <ul className="entry-meta list-inline">
+                                <li className="entry-date">
+                                  {moment(post.createdAt).calendar()}
+                                </li>
+
+                              </ul>
+                            </div>
                           </div>
                         </article>
                       </li>

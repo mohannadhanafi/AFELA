@@ -41,24 +41,29 @@ export default class index extends Component {
 
                     <li key={uuid()}>
                       <article className="post-small clearfix">
-                        <div className="entry-img hover-scale">
-                          <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                            <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" />
-                          </Link>
-                        </div>
-                        <div className="entry">
-                          <h3 className="entry-title">
+                        <div className="col-sm-6 nopadding">
+                          <div className="entry-img hover-scale">
                             <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                              {element.title}
+                              <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" />
                             </Link>
-                          </h3>
-                          <ul className="entry-meta list-inline">
-                            <li className="entry-date">
+                          </div>
+                        </div>
+                        <div className="col-sm-6 ">
 
-                              {moment(element.createdAt).calendar()}
-                            </li>
+                          <div className="entry">
+                            <h3 className="entry-title">
+                              <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
+                                {element.title}
+                              </Link>
+                            </h3>
+                            <ul className="entry-meta list-inline">
+                              <li className="entry-date">
 
-                          </ul>
+                                {moment(element.createdAt).calendar()}
+                              </li>
+
+                            </ul>
+                          </div>
                         </div>
                       </article>
                     </li>

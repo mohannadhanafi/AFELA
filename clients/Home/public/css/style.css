@@ -1129,6 +1129,7 @@ p.footer-address {
 
 .footer-entry-list .posts-list .entry-img {
   float: left;
+  margin-right: 20px;
   margin-bottom: 0;
 }
 
@@ -4194,7 +4195,7 @@ article img {
 }
 
 .entry-title {
-  font-size: 16px;
+  font-size: 12px;
   line-height: 24px;
   margin-bottom: 0;
 }
@@ -4282,7 +4283,6 @@ article img {
 
 .posts-list .entry-img {
   float: left;
-  margin-right: 20px;
 }
 
 .post-small .entry-title {
