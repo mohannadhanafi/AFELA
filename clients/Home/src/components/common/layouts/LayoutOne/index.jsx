@@ -38,25 +38,25 @@ class index extends Component {
               <div className="col-md-7 mb-20">
                 <article>
                   <div className="entry-img hover-scale">
-                    <a href="magazine-single-article.html" className="entry-category-label green">{
+                    <a href={`/news/${news[0].category.category_seo}/${news[0].seo}`} className="entry-category-label green">{
                     news[0].category.category_name
                   }
                     </a>
-                    <a href="magazine-single-article.html">
+                    <a href={`/news/${news[0].category.category_seo}/${news[0].seo}`}>
                       <img className="latest--image" src={`/api/v1/getFile/${news[0].header_media[0]}`} alt="" />
                     </a>
                   </div>
                   <div className="entry">
-                    <h2 className="entry-title"><a href="magazine-single-article.html">{this.state && news[0].title}</a></h2>
+                    <h2 className="entry-title"><a href={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{this.state && news[0].title}</a></h2>
                     <ul className="entry-meta list-inline">
                       <li className="entry-date">
-                        <Link to={`/news/${news[0].category.category_seo}/${news[0].seo}`}>{moment(news[0].createdAt).calendar()}</Link>
+                        {moment(news[0].createdAt).calendar()}
                       </li>
 
                     </ul>
                     <div className="entry-content">
                       <p>{news[0].post_intro}</p>
-                      <a href="magazine-single-article.html" className="read-more dark-link">Read More<i className="fa fa-angle-right" />
+                      <a href={`/news/${news[0].category.category_seo}/${news[0].seo}`} className="read-more dark-link">Read More<i className="fa fa-angle-right" />
                       </a>
                     </div>
                   </div>
@@ -76,9 +76,8 @@ class index extends Component {
                           </h3>
                           <ul className="entry-meta list-inline">
                             <li className="entry-date">
-                              <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                                {moment(news.createdAt).calendar()}
-                              </Link>
+
+                              {moment(news.createdAt).calendar()}
                             </li>
                           </ul>
                         </div>

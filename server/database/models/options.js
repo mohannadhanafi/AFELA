@@ -74,6 +74,7 @@ const posts = connection.define('options', {
     type: Sequelize.DATE,
   },
   mobile: Sequelize.TEXT,
+  address: Sequelize.TEXT,
 
 });
 

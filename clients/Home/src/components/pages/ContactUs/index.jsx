@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { connect } from 'react-redux/es';
 import Background from './Background';
 import ContactForm from './ContactForm';
 
-export default class index extends Component {
+class index extends Component {
   state = {
     background:
       'http://deothemes.com/envato/afela/html/img/blog/blog_title_bg.jpg',
-    address: 'California CA',
-    mobile: '+1 888 5146 3269',
-    email2: 'afelasupport@gmail.com',
+
     email: '',
     name: '',
     message: '',
   };
 
   componentDidMount() {
+    console.log(this.props.options);
     window.scrollTo(0, 0);
     $(document).ready(() => {
       (function ($) {
@@ -77,16 +77,31 @@ export default class index extends Component {
 
   render() {
     const {
-      background, mobile, address, email, email2, name, massage,
+      background, email, name, massage,
     } = this.state;
+    const { options } = this.props;
+
+
     return (
       <>
         <div className="loader-mask">
           <div className="loader">Loading...</div>
         </div>
         <Background background={background} />
-        <ContactForm mobile={mobile} address={address} email2={email2} onClick={this.onClick} onChange={this.onChange} email={email} name={name} massage={massage} />
+        <ContactForm
+          optionsData={options.length ? options[0] : null}
+          onClick={this.onClick}
+          onChange={this.onChange}
+          email={email}
+          name={name}
+          massage={massage}
+        />
       </>
     );
   }
 }
+
+
+const mapStateToProps = ({ options }) => options;
+
+export default connect(mapStateToProps, null)(index);

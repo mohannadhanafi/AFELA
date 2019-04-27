@@ -58,7 +58,7 @@ export default class TrendingPosts extends Component {
                   </h2>
                   <ul className="entry-meta list-inline">
                     <li className="entry-date">
-                      <Link to={`/news/${element.category.category_seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</Link>
+                      {moment(element.createdAt).calendar()}
                     </li>
 
                   </ul>
