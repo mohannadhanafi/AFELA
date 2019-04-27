@@ -9,10 +9,8 @@ export default function WhatWeDo({ statistics }) {
     <section className="section-wrap results parallax-counters relative pt-mdm-40">
       <div className="container">
         <div className="row">
-          {statistics.length && statistics.slice(0, 6).map(element => (
-
+          {statistics && statistics.slice(0, 6).map(element => (
             <div className="col-md-2 col-sm-4 text-center">
-              {console.log(element)}
               <div className="statistic mt-mdm-40">
                 <span className="timer" data-from="0" data-to={element.count}>
                 &nbsp;
