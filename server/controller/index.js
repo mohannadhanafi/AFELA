@@ -26,7 +26,8 @@ const team = require('./teams');
 const titles = require('./titles');
 const clients = require('./clients');
 const gallery = require('./galleries');
-const homeLayouts = require('./layouts')
+const statistics = require('./statistics');
+const homeLayouts = require('./layouts');
 
 
 const router = express.Router();
@@ -66,8 +67,14 @@ router
   .get('/posts/trendingPosts', posts.trendingPosts)
   .get('/home/layouts', homeLayouts.get)
   .post('/home/layouts', homeLayouts.update)
+  .get('/statistics', statistics.get)
+
 
   .use(Auth.checkToken)
+  .post('/statistics', statistics.post)
+  .get('/statistics/:id', statistics.getById)
+  .post('/statistics/:id', statistics.update)
+  .delete('/statistics/:id', statistics.delete)
   .get('/notification/getNotifications', notification.get)
   .post('/notification/seenNotification', notification.seen)
   .post('/titles/update', titles.update)

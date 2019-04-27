@@ -3,44 +3,38 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import axios from 'axios';
+import { connect } from 'react-redux/es';
 import TopSection from './TopSection';
 import Results from './Results';
 import OurTeam from './OurTeam';
 import Testomonials from './Testomonials';
 import WhatWeDo from './WhatWeDo';
 
-export default class AboutUs extends Component {
+class AboutUs extends Component {
   state = {
-    about_title: '',
-    about_desc: '',
-    about_story: '',
-    about_story_desc: '',
+    statistics: [],
     teamTitle: 'Creative Minds With The Extraordinary Skills',
     team: [],
     testomonials: [
-     
+
     ],
   };
 
 
   componentDidMount() {
-    axios.get('/api/v1/getoptions').then((res) => {
-      axios.get('/api/v1/team/getAll').then((result) => {
-        const { data } = result;
-        this.setState({ team: data });
-      });
-      axios.get('/api/v1/clients/getAll').then((testomonials) => {
-        const { data } = testomonials;
-        this.setState({ testomonials: data });
-      });
-      const { data } = res;
-      const {
-        about_title, about_desc, about_story, about_story_desc,
-      } = data[0];
-      this.setState({
-        about_title, about_desc, about_story, about_story_desc,
-      });
+    axios.get('/api/v1/team/getAll').then((result) => {
+      const { data } = result;
+      this.setState({ team: data });
     });
+    axios.get('/api/v1/clients/getAll').then((testomonials) => {
+      const { data } = testomonials;
+      this.setState({ testomonials: data });
+    });
+    axios.get('/api/v1/statistics').then((statistics) => {
+      const { data } = statistics;
+      this.setState({ statistics: data });
+    });
+
     window.scrollTo(0, 0);
     $(document).ready(() => {
       (function ($) {
@@ -86,19 +80,23 @@ export default class AboutUs extends Component {
 
   render() {
     const {
-      teamTitle, team, testomonials, about_title, about_desc,
+      teamTitle, team, testomonials,statistics
     } = this.state;
+    const { options } = this.props;
+
     return (
       <>
         <div className="loader-mask">
           <div className="loader">Loading...</div>
         </div>
-        <TopSection about_title={about_title} />
-        <WhatWeDo about_desc={about_desc} />
-        <Results />
+        <TopSection about_title={options.length ? options[0].about_title : null} />
+        <WhatWeDo about_desc={options.length ? options[0].about_desc : null} />
+        <Results statistics={statistics} />
         <OurTeam teamTitle={teamTitle} team={team} />
         <Testomonials testomonials={testomonials} />
       </>
     );
   }
 }
+const mapStateToProps = ({ options }) => options;
+export default connect(mapStateToProps, null)(AboutUs);
