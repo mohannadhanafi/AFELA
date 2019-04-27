@@ -75,7 +75,9 @@
     /* transition effect. not necessary */
     transition: opacity 0.2s, visibility 0.2s;
   }
-  
+  .ant-modal {
+    width: 700px !important;
+  }
   .layouts-group {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));

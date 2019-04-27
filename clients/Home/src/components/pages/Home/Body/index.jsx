@@ -26,8 +26,8 @@ export default class index extends Component {
       });
     }
 
-    setLayout = (category) => {      
-      const { type, layout_number } = category;      
+    setLayout = (category) => {
+      const { type, layout_number } = category;
       if (type === 'category') {
         switch (layout_number) {
           case 0:
@@ -48,12 +48,12 @@ export default class index extends Component {
             <div className="col-md-8 content">
               <TrendingPosts seo="main" />
               <Categories seo="main" />
-              {array.map(element => this.setLayout(element))}
-              {/* <NewsInPicture seo="main" />
+              {/* {array.map(element => this.setLayout(element))} */}
+              <NewsInPicture seo="main" />
               <LayoutOne seo="main" />
               <LayoutTwo seo="main" />
               <LayoutThree seo="main" />
-              <EditorPicks /> */}
+              <EditorPicks />
 
             </div>
             <aside className="col-md-4 sidebar pb-50">
