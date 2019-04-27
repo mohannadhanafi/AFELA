@@ -8,7 +8,6 @@ export default function WhatWeDo({ statistics }) {
       <div className="container">
         <div className="row">
           {statistics && statistics.slice(0, 6).map(element => (
-
             <div className="col-md-2 col-sm-4 text-center">
               <div className="statistic mt-mdm-40">
                 <span className="timer" data-from="0" data-to={element.count}>

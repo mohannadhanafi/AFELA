@@ -80,7 +80,7 @@ class AboutUs extends Component {
 
   render() {
     const {
-      teamTitle, team, testomonials,statistics
+      teamTitle, team, testomonials, statistics,
     } = this.state;
     const { options } = this.props;
 
