@@ -28,23 +28,27 @@ class Popular extends Component {
                 {Popular.length && Popular.slice(0, 3).map(element => (
                   <li>
                     <article className="post-small clearfix">
-                      <div className="entry-img hover-scale">
-                        <a href={`/news/${element.category.seo}/${element.seo}`}>
+                      <div className="col-sm-4 nopadding">
+                        <div className="entry-img hover-scale">
+                          <a href={`/news/${element.category.seo}/${element.seo}`}>
 
-                          <img
-                            src={`/api/v1/getFile/${element.header_media[0]}`}
-                            alt=""
-                            className="popular__image"
-                          />
-                        </a>
+                            <img
+                              src={`/api/v1/getFile/${element.header_media[0]}`}
+                              alt=""
+                              className="popular__image"
+                            />
+                          </a>
+                        </div>
                       </div>
-                      <div className="entry">
-                        <h3 className="entry-title"><a href={`/news/${element.category.seo}/${element.seo}`}>{element.title}</a></h3>
-                        <ul className="entry-meta list-inline">
-                          <li className="entry-date">
-                            <a href={`/news/${element.category.seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
-                          </li>
-                        </ul>
+                      <div className="col-sm-8">
+                        <div className="entry">
+                          <h3 className="entry-title"><a href={`/news/${element.category.seo}/${element.seo}`}>{element.title}</a></h3>
+                          <ul className="entry-meta list-inline">
+                            <li className="entry-date">
+                              <a href={`/news/${element.category.seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </article>
                   </li>
@@ -57,25 +61,31 @@ class Popular extends Component {
                 {recentPosts.length ? recentPosts.slice(0, 3).map(element => (
                   <li>
                     <article className="post-small clearfix">
-                      <div className="entry-img hover-scale">
+                      <div className="col-sm-4 nopadding">
 
-                        <a href={`/news/${element.category.seo}/${element.seo}`}>
-                          <img
-                            src={`/api/v1/getFile/${element.header_media[0]}`}
-                            alt=""
-                            className="popular__image"
-                          />
-                        </a>
+                        <div className="entry-img hover-scale">
 
+                          <a href={`/news/${element.category.seo}/${element.seo}`}>
+                            <img
+                              src={`/api/v1/getFile/${element.header_media[0]}`}
+                              alt=""
+                              className="popular__image"
+                            />
+                          </a>
+
+                        </div>
                       </div>
-                      <div className="entry">
-                        <h3 className="entry-title"><a href={`/news/${element.category.seo}/${element.seo}`}>{element.title}</a></h3>
-                        <ul className="entry-meta list-inline">
-                          <li className="entry-date">
-                            <a href={`/news/${element.category.seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
-                          </li>
+                      <div className="col-sm-8">
 
-                        </ul>
+                        <div className="entry">
+                          <h3 className="entry-title"><a href={`/news/${element.category.seo}/${element.seo}`}>{element.title}</a></h3>
+                          <ul className="entry-meta list-inline">
+                            <li className="entry-date">
+                              <a href={`/news/${element.category.seo}/${element.seo}`}>{moment(element.createdAt).calendar()}</a>
+                            </li>
+
+                          </ul>
+                        </div>
                       </div>
                     </article>
                   </li>
