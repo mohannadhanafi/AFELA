@@ -349,5 +349,6 @@
   "sidebar.statistics": "Statistics",
   "sidebar.statistics.view": "View Statistics",
   "sidebar.statistics.add": "Add Statistic",
-  "sidebar.socialStatistic":"Social Statistic"
+  "sidebar.socialStatistic":"Social Statistic",
+  "sidebar.layout": "Layout"
 }

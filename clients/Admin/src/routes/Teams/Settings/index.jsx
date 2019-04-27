@@ -52,8 +52,6 @@ class Registration extends Component {
             }, 3000);
           })
           .catch(async (error) => {
-            console.log(error);
-
             const {
               data: { message },
               statusText,

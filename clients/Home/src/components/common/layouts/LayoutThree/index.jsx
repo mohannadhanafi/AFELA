@@ -36,7 +36,7 @@ export default class index extends Component {
             <div className="row">
 
               <ul className="posts-list">
-                {news.length && news.slice(0, 4).map(element => (
+                {news.length && news.slice(0, 6).map(element => (
                   <div className="col-md-6 mb-50">
 
                     <li key={uuid()}>

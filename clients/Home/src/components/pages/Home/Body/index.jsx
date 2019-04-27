@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TrendingPosts from '../../../common/layouts/TrendingPosts';
 import LayoutThree from '../../../common/layouts/LayoutThree';
-import NewsInPicture from '../../../common/layouts/NewsInPicture';
+import LayoutFour from '../../../common/layouts/LayoutFour';
 import Categories from '../../../common/layouts/Categories';
 import FollowUs from '../../../common/FollowUs';
 import Popular from '../../../common/Popular';
 import Weather from '../../../common/Weather';
-import EditorPicks from '../../../common/layouts/EditorPicks';
+import LayoutFive from '../../../common/layouts/LayoutFive';
 import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
 import Category from '../../../common/Category';
@@ -26,12 +26,12 @@ export default class index extends Component {
       });
     }
 
-    setLayout = (category) => {      
-      const { type, layout_number } = category;      
+    setLayout = (category) => {
+      const { type, layout_number } = category;
       if (type === 'category') {
         switch (layout_number) {
           case 0:
-            return <NewsInPicture seo={category.name} />;
+            return <LayoutFour seo={category.name} />;
           case 1:
             return <LayoutTwo seo={category.name} />;
           default:
@@ -48,12 +48,12 @@ export default class index extends Component {
             <div className="col-md-8 content">
               <TrendingPosts seo="main" />
               <Categories seo="main" />
-              {array.map(element => this.setLayout(element))}
-              {/* <NewsInPicture seo="main" />
+              {/* {array.map(element => this.setLayout(element))} */}
+              <LayoutFour seo="main" />
               <LayoutOne seo="main" />
               <LayoutTwo seo="main" />
               <LayoutThree seo="main" />
-              <EditorPicks /> */}
+              <LayoutFive />
 
             </div>
             <aside className="col-md-4 sidebar pb-50">

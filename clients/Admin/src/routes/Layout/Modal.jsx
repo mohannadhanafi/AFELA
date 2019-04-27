@@ -88,6 +88,24 @@ export default class Modall extends Component {
               {' '}
               <p className="img__description">Click To Choose</p>
             </RadioButton>
+            <RadioButton value="6" className="image__wrap">
+              <img
+                className="layout-image"
+                alt=""
+                src={require('./layouts/seventh.jpg')}
+              />
+              {' '}
+              <p className="img__description">Click To Choose</p>
+            </RadioButton>
+            <RadioButton value="6" className="image__wrap">
+              <img
+                className="layout-image"
+                alt=""
+                src={require('./layouts/eighth.jpg')}
+              />
+              {' '}
+              <p className="img__description">Click To Choose</p>
+            </RadioButton>
           </RadioGroup>
         </div>
       </Modal>

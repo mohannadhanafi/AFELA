@@ -34,7 +34,6 @@ exports.sendEmail = async (req, res) => {
       res.status(400).send({ message: 'This email doesn\'t exist' });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };

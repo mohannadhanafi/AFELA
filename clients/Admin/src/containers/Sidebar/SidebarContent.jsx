@@ -164,58 +164,13 @@ class SidebarContent extends Component {
                     <IntlMessages id="sidebar.addCategory" />
                   </Link>
                 </Menu.Item>
-
               </SubMenu>
-              {role === 'admin' ? (
-                <SubMenu
-                  key="options"
-                  className={this.getNavStyleSubMenuClass(navStyle)}
-                  title={(
-                    <span>
-                      {' '}
-                      <i className="icon icon-setting" />
-                      <IntlMessages id="sidebar.options" />
-                    </span>
-)}
-                >
-                  <Menu.Item key="options/main">
-                    <Link to="/admin/options/main">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.main" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/social">
-                    <Link to="/admin/options/social">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.social" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/footer">
-                    <Link to="/admin/options/footer">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.footer" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/about">
-                    <Link to="/admin/options/about">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.about" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/contact">
-                    <Link to="/admin/options/contact">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.Contact" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/social_statistic">
-                    <Link to="/admin/options/social_statistic">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.socialStatistic" />
-                    </Link>
-                  </Menu.Item>
-                </SubMenu>
-              ) : null}
+              <Menu.Item key="layout">
+                <Link to="/admin/layout">
+                  <i className="icon icon-product-list" />
+                  <IntlMessages id="sidebar.layout" />
+                </Link>
+              </Menu.Item>
               <SubMenu
                 key="services"
                 className={this.getNavStyleSubMenuClass(navStyle)}
@@ -380,6 +335,56 @@ class SidebarContent extends Component {
                   </Link>
                 </Menu.Item>
               </SubMenu>
+              {role === 'admin' ? (
+                <SubMenu
+                  key="options"
+                  className={this.getNavStyleSubMenuClass(navStyle)}
+                  title={(
+                    <span>
+                      {' '}
+                      <i className="icon icon-setting" />
+                      <IntlMessages id="sidebar.options" />
+                    </span>
+)}
+                >
+                  <Menu.Item key="options/main">
+                    <Link to="/admin/options/main">
+                      <i className="icon icon-product-list" />
+                      <IntlMessages id="sidebar.main" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="options/social">
+                    <Link to="/admin/options/social">
+                      <i className="icon icon-product-list" />
+                      <IntlMessages id="sidebar.social" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="options/footer">
+                    <Link to="/admin/options/footer">
+                      <i className="icon icon-product-list" />
+                      <IntlMessages id="sidebar.footer" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="options/about">
+                    <Link to="/admin/options/about">
+                      <i className="icon icon-product-list" />
+                      <IntlMessages id="sidebar.about" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="options/contact">
+                    <Link to="/admin/options/contact">
+                      <i className="icon icon-product-list" />
+                      <IntlMessages id="sidebar.Contact" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="options/social_statistic">
+                    <Link to="/admin/options/social_statistic">
+                      <i className="icon icon-product-list" />
+                      <IntlMessages id="sidebar.socialStatistic" />
+                    </Link>
+                  </Menu.Item>
+                </SubMenu>
+              ) : null}
               {/* {role === 'admin' ? (
                 <SubMenu
                   key="newsletter"
