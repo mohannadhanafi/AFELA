@@ -12,9 +12,8 @@
 /* eslint-disable linebreak-style */
 import React, { Component } from 'react';
 import {
- Button, Card, Form, Select, Spin, Popconfirm, Modal 
+  Button, Card, Form, Select, Spin, Popconfirm, Modal, Radio,
 } from 'antd';
-import { Radio } from 'antd';
 import axios from 'axios';
 import {
   NotificationManager,
