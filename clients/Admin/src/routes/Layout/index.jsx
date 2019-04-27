@@ -12,7 +12,7 @@ import Modal from './Modal';
 import ContactCell from './ContactCell/index.jsx';
 
 const Contacts = SortableContainer(({
- contacts, changeState, openModal, handleSave 
+  contacts, changeState, openModal, handleSave,
 }) => (
   <Row>
     <Col span={5}>
