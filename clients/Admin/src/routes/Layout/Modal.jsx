@@ -160,7 +160,7 @@ class Modall extends Component {
                 <img
                   className="layout-image"
                   alt=""
-                  src={require('./layouts/7.JPG')}
+                  src={require('./layouts/4.JPG')}
               />
                 {' '}
                 <p className="img__description">Click To Choose</p>
@@ -169,7 +169,7 @@ class Modall extends Component {
                 <img
                   className="layout-image"
                   alt=""
-                  src={require('./layouts/8.JPG')}
+                  src={require('./layouts/4.JPG')}
               />
                 {' '}
                 <p className="img__description">Click To Choose</p>

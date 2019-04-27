@@ -27,13 +27,30 @@ export default class index extends Component {
     }
 
     setLayout = (category) => {
-      const { type, layout_number } = category;
+      const {
+        type, layout_number, show, name,
+      } = category;
+      if (type === 'component') {
+        switch (name) {
+          case 'trending':
+            if (show) return <TrendingPosts />;
+            break;
+          default:
+            return null;
+        }
+      }
       if (type === 'category') {
         switch (layout_number) {
-          case 0:
-            return <LayoutFour seo={category.name} />;
           case 1:
+            return <LayoutOne seo={category.name} />;
+          case 2:
             return <LayoutTwo seo={category.name} />;
+          case 3:
+            return <LayoutThree seo={category.name} />;
+          case 4:
+            return <LayoutFour seo={category.name} />;
+          case 7:
+            return <LayoutFour seo={category.name} />;
           default:
             return null;
         }
@@ -46,14 +63,9 @@ export default class index extends Component {
         <div className="container pt-50">
           <div className="row">
             <div className="col-md-8 content">
-              <TrendingPosts seo="main" />
-              <Categories seo="main" />
-              {/* {array.map(element => this.setLayout(element))} */}
-              <LayoutFour seo="main" />
-              <LayoutOne seo="main" />
-              <LayoutTwo seo="main" />
-              <LayoutThree seo="main" />
-              <LayoutFive seo="main" />
+
+              {/* <Categories /> */}
+              {array.map(element => this.setLayout(element))}
 
             </div>
             <aside className="col-md-4 sidebar pb-50">
