@@ -1,4 +1,4 @@
-const { homeLayout } = require('../database/models');
+const { homeLayout, categories } = require('../database/models');
 
 exports.get = async (req, res) => {
   try {
@@ -27,6 +27,33 @@ exports.delete = async (req, res) => {
     const { id } = req.body;
     await homeLayout.destroy({ where: { id } });
     res.status(200).send({ message: 'Deleted !' });
+  } catch (error) {
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+};
+
+exports.post = async (req, res) => {
+  try {
+    const {
+      obj,
+    } = req.body;
+    const {
+      catName: seo, layout_number, type,
+    } = obj;
+
+    const categoryName = await categories.findOne({
+      attributes: ['name'],
+      where: { seo },
+      raw: true,
+    });
+    const { name } = categoryName;
+    const maxPosition = await homeLayout.max('position');
+    const position = maxPosition + 1;
+    homeLayout.create({
+      seo, layout_number, type, position, name,
+    }).then((result) => {
+      res.status(200).send(result);
+    });
   } catch (error) {
     res.status(500).send({ message: 'Internal Server Error' });
   }

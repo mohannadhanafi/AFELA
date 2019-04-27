@@ -68,9 +68,8 @@ router
   .get('/home/layouts', homeLayouts.get)
   .post('/home/layouts', homeLayouts.update)
   .delete('/home/layouts', homeLayouts.delete)
+  .post('/home/layout/create', homeLayouts.post)
   .get('/statistics', statistics.get)
-
-
   .use(Auth.checkToken)
   .post('/statistics', statistics.post)
   .get('/statistics/:id', statistics.getById)
