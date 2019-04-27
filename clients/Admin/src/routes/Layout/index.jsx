@@ -12,18 +12,18 @@ import Modal from './Modal';
 import ContactCell from './ContactCell/index.jsx';
 
 const Contacts = SortableContainer(({
-  contacts, changeState, openModal, handleSave,
+  contacts, changeState, openModal, handleSave, onDelete,
 }) => (
   <Row>
     <Col span={5}>
       <Card style={{ marginTop: 20 }}>
-        <Button type="primary" className="layout-button" onClick={openModal}> ADD CATEGORY</Button>
+        <Button type="primary" className="layout-button" onClick={openModal}> ADD </Button>
         <Button type="primary" className="layout-button" onClick={handleSave}>SAVE</Button>
       </Card>
     </Col>
     <Col span={19}>
       {contacts.map((contact, index) => (
-        <ContactCell key={index} index={index} contact={contact} changeState={changeState} />
+        <ContactCell key={index} index={index} contact={contact} changeState={changeState} onDelete={onDelete} />
       ))}
     </Col>
   </Row>
@@ -45,6 +45,19 @@ class DragNDrop extends Component {
     });
   }
 
+  onDelete = (element) => {
+    const { id } = element;
+    const { contacts } = this.state;
+    contacts.map((e, index) => {
+      if (e.id === id) {
+        return contacts.splice(index, 1);
+      }
+    });
+    axios.delete('/api/v1/home/layouts', { data: { id } }).then(() => {
+      this.setState(() => ({ contacts }));
+    });
+  }
+
 onSortEnd = ({ oldIndex, newIndex }) => {
   const { contacts } = this.state;
   const newContacts = arrayMove(contacts, oldIndex, newIndex);
@@ -56,9 +69,11 @@ onSortEnd = ({ oldIndex, newIndex }) => {
 
 handleSave = () => {
   const { contacts } = this.state;
-  axios.post('/api/v1/home/layouts', contacts).then((r) => {
+  console.log(contacts);
 
-  });
+  // axios.post('/api/v1/home/layouts', contacts).then((r) => {
+
+  // });
 }
 
 handleCancel = () => {
@@ -95,6 +110,7 @@ render() {
               changeState={this.changeState}
               openModal={this.openModal}
               handleSave={this.handleSave}
+              onDelete={this.onDelete}
             />
           ) : null}
         </div>

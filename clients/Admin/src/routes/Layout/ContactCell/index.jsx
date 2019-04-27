@@ -2,11 +2,17 @@ import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import './style.css';
 
-const DragHandle = SortableHandle(() => (
+const DragHandle = SortableHandle(({ onDelete }) => (
   <div className="handle">
     <span className="gx-draggable-icon gx-pt-2">
-      {/* <i className="icon icon-expand" style={{ fontSize: 25, color: 'red', margin: 15 }} /> */}
-      <i className="icon icon-expand" style={{ fontSize: 20, color: 'red', margin: 10 }} />
+      <i
+        className="fas fa-trash-alt"
+        onClick={onDelete}
+        style={{
+          fontSize: 20, color: 'red', margin: 10, cursor: 'pointer',
+        }}
+      />
+      <i className="icon icon-expand" style={{ fontSize: 20, color: 'green', margin: 10 }} />
 
 
     </span>
@@ -21,19 +27,14 @@ class ContactCell extends React.Component {
     };
   }
 
-  onDeleteContact = (contact) => {
-    this.setState({ addContactState: false });
-    this.props.onDeleteContact(contact);
-  };
-
   render() {
-    const { contact } = this.props;
+    const { contact, onDelete } = this.props;
     const { show, id, name } = contact;
     return (
       <>
         <div className="gx-contact-item gx-dragndrop-item item-drag-drop">
           <span className="title-drag">{name}</span>
-          <DragHandle />
+          <DragHandle onDelete={() => onDelete(contact)} />
           <i
             className={`fas ${!show ? 'fa-eye-slash' : 'fa-eye'}`}
             style={{
