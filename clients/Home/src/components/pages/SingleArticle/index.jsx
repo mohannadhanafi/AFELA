@@ -209,7 +209,6 @@ render() {
               <Ads link="/" />
               <Galleries />
               <Categoty />
-              <TopRated />
               <Tags />
             </aside>
           </div>

@@ -1,57 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { connect } from 'react-redux/es';
 
-export default class Tags extends Component {
+class Tags extends Component {
   state={
-    tags: [
-      {
-        link: '/',
-        name: 'Multi-purpose',
-      },
-      {
-        link: '/',
-        name: 'Creative',
-      }, {
-        link: '/',
-        name: 'Elegant',
-      }, {
-        link: '/',
-        name: 'Clean',
-      }, {
-        link: '/',
-        name: 'Modern',
-      }, {
-        link: '/',
-        name: 'Responsive',
-      }, {
-        link: '/',
-        name: 'E-commerce',
-      }, {
-        link: '/',
-        name: 'WordPress',
-      }, {
-        link: '/',
-        name: 'Woocommerce',
-      }, {
-        link: '/',
-        name: 'Store',
-      }, {
-        link: '/',
-        name: 'Business',
-      },
-    ],
+
   }
 
+
   render() {
-    const { tags } = this.state;
+    const { trendingPosts: { Trending } } = this.props;
+    console.log(Trending.tags);
 
     return (
-      <div className="widget tags clearfix">
-        <h3 className="widget-title heading relative heading-small uppercase bottom-line style-2 left-align">Tags</h3>
-        { tags && tags.map(({ link, name }) => (
-          <Link to={link}>{name}</Link>
-        )) }
-      </div>
+      Trending.length ? (
+        <div className="widget tags clearfix">
+
+          <h3 className="widget-title heading relative heading-small uppercase bottom-line style-2 left-align">Tags</h3>
+          {Trending && Trending.map(element => (
+            element.tags.length ? (element.tags.slice(0, 4).map(tag => (
+              <Link to={`/news/${element.category.seo}/${element.seo}`}>
+                {tag}
+              </Link>
+            ))) : null
+
+
+          )) }
+        </div>
+      ) : null
     );
   }
 }
+
+const mapStateToProps = ({ trending }) => trending;
+
+export default connect(mapStateToProps, null)((Tags));
