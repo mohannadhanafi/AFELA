@@ -16,6 +16,7 @@ const titles = require('./titles');
 const clients = require('./clients');
 const galleries = require('./galleries');
 const homeLayout = require('./homeLayout');
+const statistics = require('./statistics');
 
 posts.belongsTo(categories, {
   onDelete: 'CASCADE',
@@ -65,4 +66,5 @@ module.exports = {
   mail,
   clients,
   homeLayout,
+  statistics,
 };

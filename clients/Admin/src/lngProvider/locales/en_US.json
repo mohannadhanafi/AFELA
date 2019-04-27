@@ -346,6 +346,9 @@
   "sidebar.testimonials.view": "View Testimonials",
   "sidebar.testimonials.add": "Add Testimonials",
   "sidebar.gallery":"Gallery",
+  "sidebar.statistics": "Statistics",
+  "sidebar.statistics.view": "View Statistics",
+  "sidebar.statistics.add": "Add Statistic",
   "sidebar.socialStatistic":"Social Statistic",
   "sidebar.layout": "Layout"
 }

@@ -5,9 +5,9 @@ import React from 'react';
 export default function Testomonials({ testomonials }) {
   return (
     <section className="section-wrap parallax-testimonials nopadding relative">
-     <div className="relative test-back">
-  <h2 className="text-center uppercase color-white">Happy Customers</h2>
-  <div
+      <div className="relative test-back">
+        <h2 className="text-center uppercase color-white">Happy Customers</h2>
+        <div
           id="owl-testimonials"
           className="owl-carousel owl-theme text-center"
         >
@@ -26,7 +26,7 @@ export default function Testomonials({ testomonials }) {
             </div>
           ))}
         </div>
-       </div>
+      </div>
 
       <div className="parallax" data-stellar-background-ratio="0.5" />
     </section>

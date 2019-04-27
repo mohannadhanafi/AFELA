@@ -311,6 +311,30 @@ class SidebarContent extends Component {
                   </Link>
                 </Menu.Item>
               </SubMenu>
+              <SubMenu
+                key="statistics"
+                className={this.getNavStyleSubMenuClass(navStyle)}
+                title={(
+                  <span>
+                    {' '}
+                    <i className="icon icon-chart-line" />
+                    <IntlMessages id="sidebar.statistics" />
+                  </span>
+)}
+              >
+                <Menu.Item key="statistics/view">
+                  <Link to="/admin/statistics/view">
+                    <i className="icon icon-plain-list-divider" />
+                    <IntlMessages id="sidebar.statistics.view" />
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="statistics/add">
+                  <Link to="/admin/statistics/add">
+                    <i className="icon icon-add" />
+                    <IntlMessages id="sidebar.statistics.add" />
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
               {role === 'admin' ? (
                 <SubMenu
                   key="options"

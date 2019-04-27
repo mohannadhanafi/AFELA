@@ -15,39 +15,47 @@
 /* eslint-disable linebreak-style */
 import React, { Component } from 'react';
 import {
-  Button,
-  Card,
-  Form,
-  Input,
+  Button, Card, Form, Input,
 } from 'antd';
 import axios from 'axios';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
 
 const FormItem = Form.Item;
-const { TextArea } = Input;
 
 class Registration extends Component {
-  state = {
-    teamtitle: '',
-    teamsub: '',
-    teamdesc: '',
-    disable: false,
-  }
+    state = {
+      title: '',
+      count: '',
+      disable: false,
+    }
+
+    componentDidMount = () => {
+      const { match: { params: { id } } } = this.props;
+      axios(`/api/v1/statistics/${id}`).then((result) => {
+        const { data } = result;
+        this.setState({ ...data });
+      });
+    }
+
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.setState({ disable: true });
+        const { match: { params: { id } } } = this.props;
         axios
-          .post('/api/v1/titles/update', values)
+          .post(`/api/v1/statistics/${id}`, values)
           .then((result) => {
             const {
               data: { message },
             } = result;
             NotificationManager.success(message, 'SUCCESS', 2000);
             setTimeout(() => {
-              this.props.history.push('/admin/teams/settings');
+              this.props.history.push('/admin/statistics/view');
               this.setState({ disable: false });
             }, 3000);
           })
@@ -65,21 +73,9 @@ class Registration extends Component {
     });
   };
 
-  componentDidMount = () => {
-    axios.get('/api/v1/getTitle').then((result) => {
-      const { data } = result;
-      console.log(data);
-      const { teamtitle, teamsub, teamdesc } = data[0];
-      this.setState(() => ({ teamtitle, teamsub, teamdesc }));
-    });
-  }
-
-
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {
-      teamtitle, teamsub, teamdesc, disable,
-    } = this.state;
+    const { title, count,disable } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -103,53 +99,43 @@ class Registration extends Component {
       },
     };
     return (
-      <Card className="gx-card" title="Options">
+      <Card className="gx-card" title="Statistic Details">
         <Form onSubmit={this.handleSubmit}>
           <FormItem {...formItemLayout} label={<span>Title</span>}>
-            {getFieldDecorator('teamtitle', {
-              initialValue: teamtitle,
+            {getFieldDecorator('title', {
+              initialValue: title,
               rules: [
                 {
-                  required: true,
-                  message: 'Please input the title!',
-                  whitespace: true,
-                }, {
                   max: 20,
                   message: 'Max is 20 letter',
-
                 },
               ],
             })(<Input />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={<span>subtitle</span>}>
-            {getFieldDecorator('teamsub', {
-              initialValue: teamsub,
+          <FormItem {...formItemLayout} label={<span>Count</span>}>
+            {getFieldDecorator('count', {
+              initialValue: count,
               rules: [
                 {
                   required: true,
-                  message: 'Please input the subtitle!',
+                  message: 'Please input the count!',
                   whitespace: true,
                 },
               ],
-            })(<TextArea />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>Description</span>}>
-            {getFieldDecorator('teamdesc', {
-              initialValue: teamdesc,
-            })(<TextArea />)}
+            })(<Input  />)}
           </FormItem>
           <FormItem {...tailFormItemLayout}>
             {!disable
-              ? (
+            ? (
                 <Button type="primary" htmlType="submit">
-              Submit
+              Save
                 </Button>
-              )
-              : (
+            )
+            : (
                 <Button type="primary" disabled htmlType="submit">
-         Submit
+         Save
                 </Button>
-              ) }
+            ) }
           </FormItem>
         </Form>
         <NotificationContainer />

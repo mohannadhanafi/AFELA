@@ -61,8 +61,6 @@ exports.get = async (req, res) => {
       res.status(404).send({ message: 'Wrong Category title' });
     }
   } catch (error) {
-    console.log(error);
-
     res.status(500).send('Internal Server Error');
   }
 };
