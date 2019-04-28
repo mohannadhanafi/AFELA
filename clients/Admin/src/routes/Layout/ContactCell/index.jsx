@@ -3,7 +3,9 @@ import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import './style.css';
 import { Popconfirm, Icon } from 'antd';
 
-const DragHandle = SortableHandle(({ onDelete, show, id }) => (
+const DragHandle = SortableHandle(({
+  onDelete, show, id, changeState,
+}) => (
   <div className="handle">
     <span className="gx-draggable-icon gx-pt-2">
 
@@ -27,7 +29,7 @@ const DragHandle = SortableHandle(({ onDelete, show, id }) => (
           margin: 10,
           cursor: 'pointer',
         }}
-        onClick={() => this.props.changeState(id)}
+        onClick={() => changeState(id)}
       />
       <i
         className="icon icon-expand"
@@ -48,29 +50,50 @@ class ContactCell extends React.Component {
 
   render() {
     const { contact, onDelete } = this.props;
-    const { show, id, name } = contact;
+    const {
+      show, id, name, threecats, type, layout_number,
+    } = contact;
     return (
       <>
         <div className="gx-contact-item gx-dragndrop-item item-drag-drop">
-          {contact.type === 'category' ? (
+          {type === 'category' ? (
             <>
               <img
                 className="layout-image-small"
                 alt=""
-                src={require(`../layouts/${contact.layout_number}.JPG`)}
+                src={require(`../layouts/${layout_number}.JPG`)}
               />
               {' '}
 
             </>
           )
-            : null}
+            : name === 'three' ? (
+              <>
+                {' '}
+                <img
+                  className="layout-image-small"
+                  alt=""
+                  src={require('../layouts/threeC.jpg')}
+                />
 
-          <span className="title-drag">{name}</span>
+              </>
+            ) : null}
+          {name === 'three' ? (
+            <div className="title-drag no-space">
+
+              { threecats.map(cat => (
+                <span style={{ marginLeft: 10 }}>{cat}</span>))
+            }
+
+            </div>
+
+          ) : <span className="title-drag">{name}</span>
+              }
 
 
-          {contact.type === 'category' ? (
+          {name !== 'trending' ? (
             <>
-              <DragHandle contact={contact} onDelete={() => onDelete(contact)} id={id} show={show} />
+              <DragHandle contact={contact} onDelete={() => onDelete(contact)} id={id} show={show} changeState={this.props.changeState} />
             </>
           )
             : null}

@@ -38,25 +38,39 @@ exports.post = async (req, res) => {
       obj,
     } = req.body;
     const {
-      catName: seo, layout_number, type,
+      catName: seo, layout_number, type, threecats,
     } = obj;
-
-    const categoryName = await categories.findOne({
-      attributes: ['name'],
-      where: { seo },
-      raw: true,
-    });
-    const { name } = categoryName;
     const maxPosition = await homeLayout.max('position');
     const position = maxPosition + 1;
-    homeLayout.create({
-      seo, layout_number, type, position, name,
-    }).then((result) => {
-      res.status(200).send(result);
-    });
+    if (type === 'category') {
+      const categoryName = await categories.findOne({
+        attributes: ['name'],
+        where: { seo },
+        raw: true,
+      });
+      const { name } = categoryName;
+      homeLayout.create({
+        seo, layout_number, type, position, name,
+      }).then((result) => {
+        res.status(200).send(result);
+      });
+    } else {
+      const threeCatsNames = await Promise.all(threecats.map(async (seo) => {
+        const categoryName = await categories.findOne({
+          attributes: ['name'],
+          where: { seo },
+          raw: true,
+        });
+        const { name } = categoryName;
+        return name;
+      }));
+      homeLayout.create({
+        type: 'component', position, threecats: threeCatsNames, name: type, threecatsseo: threecats,
+      }).then((result) => {
+        res.status(200).send(result);
+      });
+    }
   } catch (error) {
-    console.log(error);
-
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
