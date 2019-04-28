@@ -71,7 +71,7 @@ class DragNDrop extends Component {
                 <img
                   className="layout-image"
                   alt="category"
-                  src={require('./layouts/cat1.jpg')}
+                  src={require('./layouts/cat2.jpg')}
                 />
                 {' '}
                 <p className="img__description">Click To Choose</p>
@@ -80,7 +80,7 @@ class DragNDrop extends Component {
                 <img
                   className="layout-image"
                   alt="category"
-                  src={require('./layouts/cat2.jpg')}
+                  src={require('./layouts/cat1.jpg')}
                 />
                 {' '}
                 <p className="img__description">Click To Choose</p>

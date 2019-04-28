@@ -22,7 +22,8 @@ export default class index extends Component {
                 >
                   <img
                     src={`/api/v1/getFile/${element.header_media[0]}`}
-                    alt=""
+                    alt="image"
+                    className="category--post"
                   />
                 </Link>
               </div>

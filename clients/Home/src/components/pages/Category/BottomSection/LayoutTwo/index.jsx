@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import { Link } from 'react-router-dom';
 import Pagination from 'rc-pagination';
 import moment from 'moment';
+import './style.css';
 
 export default class index extends Component {
   state={}
