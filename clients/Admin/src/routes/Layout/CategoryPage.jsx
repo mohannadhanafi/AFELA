@@ -63,6 +63,7 @@ class DragNDrop extends Component {
             <RadioGroup
               onChange={this.radioChange}
               className="layouts-group"
+              defaultValue="1"
             >
               <RadioButton value="1" className="image__wrap">
                 <img
