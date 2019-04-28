@@ -37,7 +37,6 @@ const posts = connection.define('options', {
   about_desc: Sequelize.TEXT,
   about_story: Sequelize.TEXT,
   about_story_desc: Sequelize.TEXT,
-
   twitter_number: {
     allowNull: false,
     defaultValue: 0,
@@ -75,7 +74,7 @@ const posts = connection.define('options', {
   },
   mobile: Sequelize.TEXT,
   address: Sequelize.TEXT,
-
+  category_layout: Sequelize.TEXT,
 });
 
 module.exports = posts;
