@@ -56,11 +56,6 @@ class Mail extends PureComponent {
 
             {this.getNavFilters()}
 
-            {/* <li className="gx-module-nav-label">
-              <IntlMessages id="sidebar.mail.labels" />
-            </li> */}
-
-            {/* {this.getNavLabels()} */}
           </ul>
         </CustomScrollbars>
       </div>

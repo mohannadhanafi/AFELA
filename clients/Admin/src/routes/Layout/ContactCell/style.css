@@ -39,6 +39,13 @@
   font-weight: bold;
   opacity: 1;
 }
+.no-space{
+  letter-spacing: unset !important;
+}
+.three-names{
+  display: block;
+  font-weight: bold;
+}
 .layout-image {
   width: 100%;
 }

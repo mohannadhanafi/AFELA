@@ -46,7 +46,7 @@ class Modall extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const {
-      visible, handleCancel, onSubmit, category, setCatName, radioChange, handleChange, type,
+      visible, handleCancel, onSubmit, category, setCatName, radioChange, handleChange, type, setThreeName,
     } = this.props;
     const { categories, threeCats } = this.state;
     const formItemLayout = {
@@ -184,6 +184,7 @@ class Modall extends Component {
                 <Select
                   style={{ width: '100%' }}
                   placeholder="First Category"
+                  onChange={value => setThreeName('first', value)}
                 >
                   {categories.map(category => (
                     <Option value={category.seo}>{category.name}</Option>
@@ -196,6 +197,8 @@ class Modall extends Component {
                 <Select
                   style={{ width: '100%' }}
                   placeholder="Second Category"
+                  onChange={value => setThreeName('second', value)}
+
                         >
                   {categories.map(category => (
                     <Option value={category.seo}>{category.name}</Option>
@@ -208,6 +211,8 @@ class Modall extends Component {
                 <Select
                   style={{ width: '100%' }}
                   placeholder="Third Category"
+                  onChange={value => setThreeName('third', value)}
+
                                 >
                   {categories.map(category => (
                     <Option value={category.seo}>{category.name}</Option>

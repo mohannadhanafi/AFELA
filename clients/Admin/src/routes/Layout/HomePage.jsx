@@ -42,6 +42,9 @@ class DragNDrop extends Component {
       layout_number: '',
       type: '',
       loading: true,
+      first: '',
+      second: '',
+      third: '',
 
     };
   }
@@ -85,18 +88,37 @@ class DragNDrop extends Component {
   };
 
   handleOk = () => {
-    const { catName, layout_number, type } = this.state;
-    const obj = {
-      catName,
-      layout_number,
-      type,
-    };
+    const {
+      catName, layout_number, type, first, second, third,
+    } = this.state;
     const { contacts } = this.state;
-    axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
-      const { data } = result;
-      contacts.push(data);
-      this.setState({ contacts, visible: false });
-    });
+    let obj;
+    if (type === 'category') {
+      obj = {
+        catName,
+        layout_number,
+        type,
+      };
+      if (catName.trim()) {
+        axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
+          const { data } = result;
+          contacts.push(data);
+          this.setState({ contacts, visible: false });
+        });
+      }
+    } else {
+      obj = {
+        type,
+        threecats: [first, second, third],
+      };
+      if (first.trim() && second.trim() && third.trim()) {
+        axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
+          const { data } = result;
+          contacts.push(data);
+          this.setState({ contacts, visible: false });
+        });
+      }
+    }
   };
 
   handleChange = (value) => {
@@ -123,6 +145,10 @@ class DragNDrop extends Component {
     this.setState(() => ({ catName: value }));
   };
 
+  setThreeName = (name, value) => {
+    this.setState(() => ({ [name]: value }));
+  }
+
   radioChange = (e) => {
     this.setState({
       layout_number: e.target.value,
@@ -136,39 +162,35 @@ class DragNDrop extends Component {
     return (
       <>
         <Card loading={loading}>
-            <div className="gx-main-content gx-mb-4">
-              <Button
-                type="primary"
-                className="layout-button"
-                onClick={this.openModal}
-                style={{ width: '30%', height: 40, margin: '0 auto' }}
-              >
-                {' '}
+          <div className="gx-main-content gx-mb-4">
+            <Button
+              type="primary"
+              className="layout-button"
+              onClick={this.openModal}
+              style={{ width: '30%', height: 40, margin: '0 auto' }}
+            >
+              {' '}
 Create New Section in Home Page
 
-              </Button>
+            </Button>
 
-              <Row>
-                {/* <Col span={5}>
-              <Card style={{ marginTop: 20 }}>
-              </Card>
-            </Col> */}
-                {contacts.length ? (
-                  <Contacts
-                    contacts={contacts}
-                    onSortEnd={this.onSortEnd}
-                    useDragHandle
-                    changeState={this.changeState}
-                    openModal={this.openModal}
-                    handleSave={this.handleSave}
-                    onDelete={this.onDelete}
-                  />
-                ) : null}
-              </Row>
-            </div>
-            <Button type="primary" className="layout-button" onClick={this.handleSave} style={{ float: 'right' }}>SAVE</Button>
+            <Row>
+              {contacts.length ? (
+                <Contacts
+                  contacts={contacts}
+                  onSortEnd={this.onSortEnd}
+                  useDragHandle
+                  changeState={this.changeState}
+                  openModal={this.openModal}
+                  handleSave={this.handleSave}
+                  onDelete={this.onDelete}
+                />
+              ) : null}
+            </Row>
+          </div>
+          <Button type="primary" className="layout-button" onClick={this.handleSave} style={{ float: 'right' }}>SAVE</Button>
 
-          </Card>
+        </Card>
         <Modal
           visible={visible}
           handleCancel={this.handleCancel}
@@ -178,6 +200,7 @@ Create New Section in Home Page
           radioChange={this.radioChange}
           handleChange={this.handleChange}
           type={type}
+          setThreeName={this.setThreeName}
         />
       </>
     );
