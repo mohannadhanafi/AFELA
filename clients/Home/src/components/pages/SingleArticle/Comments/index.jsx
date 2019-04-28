@@ -14,7 +14,7 @@ export default function index({ AllComments }) {
       {AllComments.map(comment => (
         <li>
           <div className="comment-body">
-            {/* <img src={comment.user.avatar} className="comment-avatar" alt="bg" /> */}
+            <img src="https://cdn2.iconfinder.com/data/icons/finances/512/client-512.png" className="comment-avatar" alt="bg" />
             <div className="comment-content">
               <span className="comment-author">{comment.email}</span>
               <span><Link to="/">{moment(comment.time).calendar()}</Link></span>

@@ -47,3 +47,7 @@ code {
 .entry__img {
   height: auto !important;
 }
+.comment-avatar{
+  width: 70px;
+  height: 70px;
+}

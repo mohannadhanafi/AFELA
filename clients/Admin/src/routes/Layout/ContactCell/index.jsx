@@ -5,23 +5,12 @@ import { Popconfirm, Icon } from 'antd';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const DragHandle = SortableHandle(({
-  onDelete, show, id, changeState,
+  name, onDelete, show, id, changeState,
 }) => (
   <div className="handle">
     <span className="gx-draggable-icon gx-pt-2">
 
-      <Popconfirm title="Are you sure ？" icon={<Icon type="question-circle-o" style={{ color: 'red' }} />} onConfirm={onDelete}>
 
-        <i
-          className="fas fa-trash-alt"
-          style={{
-            fontSize: 18,
-            color: 'red',
-            margin: 10,
-            cursor: 'pointer',
-          }}
-        />
-      </Popconfirm>
       <i
         className={`fas ${!show ? 'fa-eye-slash' : 'fa-eye'}`}
         style={{
@@ -32,10 +21,27 @@ const DragHandle = SortableHandle(({
         }}
         onClick={() => changeState(id)}
       />
-      <i
-        className="icon icon-expand"
-        style={{ fontSize: 18, color: 'green', margin: 10 }}
-      />
+      {name !== 'trending' ? (
+        <>
+          <Popconfirm title="Are you sure ？" icon={<Icon type="question-circle-o" style={{ color: 'red' }} />} onConfirm={onDelete}>
+
+            <i
+              className="fas fa-trash-alt"
+              style={{
+                fontSize: 18,
+                color: 'red',
+                margin: 10,
+                cursor: 'pointer',
+              }}
+            />
+          </Popconfirm>
+          <i
+            className="icon icon-expand"
+            style={{ fontSize: 18, color: 'green', margin: 10 }}
+          />
+
+        </>
+      ) : null}
 
     </span>
   </div>
@@ -73,10 +79,10 @@ class ContactCell extends React.Component {
               <>
                 {' '}
                 <img
-                    className="layout-image-small"
-                    alt=""
-                    src={require('../layouts/threeC.jpg')}
-                  />
+                  className="layout-image-small"
+                  alt=""
+                  src={require('../layouts/threeC.jpg')}
+                />
 
               </>
             ) : null}
@@ -93,12 +99,8 @@ class ContactCell extends React.Component {
               }
 
 
-          {name !== 'trending' ? (
-            <>
-              <DragHandle contact={contact} onDelete={() => onDelete(contact)} id={id} show={show} changeState={this.props.changeState} />
-            </>
-          )
-            : null}
+          <DragHandle contact={contact} name={name} onDelete={() => onDelete(contact)} id={id} show={show} changeState={this.props.changeState} />
+
         </div>
 
       </>
