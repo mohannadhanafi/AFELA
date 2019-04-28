@@ -39,9 +39,6 @@ class DragNDrop extends Component {
       } = result;
       if (result.status === 200) {
         NotificationManager.success(message, 'SUCCESS', 2000);
-        setTimeout(() => {
-          this.props.history.push('/admin/layout');
-        }, 3000);
       } else {
         NotificationManager.error(message || statusText, 'ERROR', 2000);
       }

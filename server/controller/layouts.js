@@ -17,6 +17,7 @@ exports.update = async (req, res) => {
     await Promise.all(newData.map(async (layout) => {
       await homeLayout.update(layout, { where: { id: layout.id } });
     }));
+    res.status(200).send({ message: 'Updated' });
   } catch (error) {
     res.status(500).send({ message: 'Internal Server Error' });
   }
