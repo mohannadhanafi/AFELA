@@ -1,25 +1,37 @@
 import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import './style.css';
+import { Popconfirm, Icon } from 'antd';
 
-const DragHandle = SortableHandle(({ onDelete }) => (
+const DragHandle = SortableHandle(({ onDelete, show, id }) => (
   <div className="handle">
     <span className="gx-draggable-icon gx-pt-2">
 
+      <Popconfirm title="Are you sure ？" icon={<Icon type="question-circle-o" style={{ color: 'red' }} />} onConfirm={onDelete}>
 
+        <i
+          className="fas fa-trash-alt"
+          style={{
+            fontSize: 18,
+            color: 'red',
+            margin: 10,
+            cursor: 'pointer',
+          }}
+        />
+      </Popconfirm>
       <i
-        className="fas fa-trash-alt"
-        onClick={onDelete}
+        className={`fas ${!show ? 'fa-eye-slash' : 'fa-eye'}`}
         style={{
-          fontSize: 20,
-          color: 'red',
+          fontSize: 18,
+          color: !show ? 'red' : 'green',
           margin: 10,
           cursor: 'pointer',
         }}
+        onClick={() => this.props.changeState(id)}
       />
       <i
         className="icon icon-expand"
-        style={{ fontSize: 20, color: 'green', margin: 10 }}
+        style={{ fontSize: 18, color: 'green', margin: 10 }}
       />
 
     </span>
@@ -40,7 +52,6 @@ class ContactCell extends React.Component {
     return (
       <>
         <div className="gx-contact-item gx-dragndrop-item item-drag-drop">
-          <span className="title-drag">{name}</span>
           {contact.type === 'category' ? (
             <>
               <img
@@ -48,20 +59,21 @@ class ContactCell extends React.Component {
                 alt=""
                 src={require(`../layouts/${contact.layout_number}.JPG`)}
               />
-              <DragHandle contact={contact} onDelete={() => onDelete(contact)} />
+              {' '}
+
             </>
           )
             : null}
-          <i
-            className={`fas ${!show ? 'fa-eye-slash' : 'fa-eye'}`}
-            style={{
-              fontSize: 20,
-              color: !show ? 'red' : 'green',
-              margin: 10,
-              cursor: 'pointer',
-            }}
-            onClick={() => this.props.changeState(id)}
-          />
+
+          <span className="title-drag">{name}</span>
+
+
+          {contact.type === 'category' ? (
+            <>
+              <DragHandle contact={contact} onDelete={() => onDelete(contact)} id={id} show={show} />
+            </>
+          )
+            : null}
         </div>
       </>
     );

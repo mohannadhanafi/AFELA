@@ -10,7 +10,9 @@
 .icon-trash:hover {
   color: red !important;
 }
-
+.ant-tabs-nav .ant-tabs-tab-active {
+  font-weight: bold !important;
+}
 .icon-feedback {
   color: #666 !important;
   font-size: 20px;
