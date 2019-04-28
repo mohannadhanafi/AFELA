@@ -3,8 +3,16 @@
   text-align: center;
   border: 1px dotted !important;
   margin-top: 20px;
+/* animation: expand 0.5s; */
+
 }
 
+@keyframes expand {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
 .item-drag-drop:hover .handle {
   opacity: 1;
   background-color: #f7f7f7;

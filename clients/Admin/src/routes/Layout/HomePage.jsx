@@ -11,6 +11,7 @@ import {
   NotificationContainer,
 } from 'react-notifications';
 import { arrayMove, SortableContainer } from 'react-sortable-hoc';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Modal from './Modal';
 
 import ContactCell from './ContactCell/index.jsx';
@@ -20,16 +21,21 @@ const Contacts = SortableContainer(
     contacts, changeState, openModal, handleSave, onDelete,
   }) => (
     <Col span={24}>
-      {contacts.map((contact, index) => (
-        <ContactCell
-          disabled={contact.name === 'trending'}
-          key={index}
-          index={index}
-          contact={contact}
-          changeState={changeState}
-          onDelete={onDelete}
-        />
-      ))}
+      <ReactCSSTransitionGroup
+        transitionName="example"
+
+      >
+        {contacts.map((contact, index) => (
+          <ContactCell
+            disabled={contact.name === 'trending'}
+            key={index}
+            index={index}
+            contact={contact}
+            changeState={changeState}
+            onDelete={onDelete}
+          />
+        ))}
+      </ReactCSSTransitionGroup>
     </Col>
   ),
 );

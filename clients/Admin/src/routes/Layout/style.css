@@ -13,3 +13,32 @@
 .layout-image-threeC{
     margin-top: 30px;
 }
+.example-enter {
+    opacity: 0.01;
+  }
+  
+  .example-enter.example-enter-active {
+    opacity: 1;
+    animation: expand 0.5s ;
+  }
+  
+  .example-leave {
+    opacity: 1;
+  }
+  
+  .example-leave.example-leave-active {
+    opacity: 0.01;
+    animation: expandd 0.5s ;
+  }
+  @keyframes expand {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+  @keyframes expandd {
+    from {
+      transform: scale(0);
+      opacity: 1;
+    }
+  }

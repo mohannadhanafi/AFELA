@@ -34,6 +34,7 @@
     "prop-types": "^15.6.2",
     "rc-color-picker": "^1.2.6",
     "react": "^16.4.1",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-big-calendar": "^0.19.2",
     "react-bootstrap-sweetalert": "^4.4.1",
     "react-ckeditor-component": "^1.0.7",
