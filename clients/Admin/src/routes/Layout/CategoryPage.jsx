@@ -58,35 +58,39 @@ class DragNDrop extends Component {
   render() {
     const {
       loading,
+      category_layout,
     } = this.state;
     return (
       <>
         <Card loading={loading}>
-          <div className="gx-main-content gx-mb-4">
-            <RadioGroup
-              onChange={this.radioChange}
-              className="layouts-group"
-            >
-              <RadioButton value="1" className="image__wrap">
-                <img
-                  className="layout-image"
-                  alt="category"
-                  src={require('./layouts/cat2.jpg')}
-                />
-                {' '}
-                <p className="img__description">Click To Choose</p>
-              </RadioButton>
-              <RadioButton value="2" className="image__wrap">
-                <img
-                  className="layout-image"
-                  alt="category"
-                  src={require('./layouts/cat1.jpg')}
-                />
-                {' '}
-                <p className="img__description">Click To Choose</p>
-              </RadioButton>
-            </RadioGroup>
-          </div>
+          {category_layout ? (
+            <div className="gx-main-content gx-mb-4">
+              <RadioGroup
+                onChange={this.radioChange}
+                className="layouts-group"
+                defaultValue={category_layout}
+              >
+                <RadioButton value="1" className="image__wrap">
+                  <img
+                    className="layout-image"
+                    alt="category"
+                    src={require('./layouts/cat2.jpg')}
+                  />
+                  {' '}
+                  <p className="img__description">Click To Choose</p>
+                </RadioButton>
+                <RadioButton value="2" className="image__wrap">
+                  <img
+                    className="layout-image"
+                    alt="category"
+                    src={require('./layouts/cat1.jpg')}
+                  />
+                  {' '}
+                  <p className="img__description">Click To Choose</p>
+                </RadioButton>
+              </RadioGroup>
+            </div>
+          ) : null}
           <Button type="primary" className="layout-button" onClick={this.handleSave} style={{ float: 'right' }}>SAVE</Button>
           <NotificationContainer />
         </Card>
