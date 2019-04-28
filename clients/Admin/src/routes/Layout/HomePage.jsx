@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
 import {
-  Col, Row, Card, Button, Spin,
+  Col, Row, Card, Button,
+
 } from 'antd';
 import './style.css';
 import axios from 'axios';
-
+import {
+  NotificationManager,
+  NotificationContainer,
+} from 'react-notifications';
 import { arrayMove, SortableContainer } from 'react-sortable-hoc';
 import Modal from './Modal';
 
@@ -65,7 +69,9 @@ class DragNDrop extends Component {
       }
     });
     axios.delete('/api/v1/home/layouts', { data: { id } }).then(() => {
-      this.setState(() => ({ contacts }));
+      this.setState(() => ({ contacts }), () => {
+        NotificationManager.success('Deleted', null, 1500);
+      });
     });
   };
 
@@ -80,7 +86,9 @@ class DragNDrop extends Component {
 
   handleSave = () => {
     const { contacts } = this.state;
-    axios.post('/api/v1/home/layouts', contacts).then((r) => {});
+    axios.post('/api/v1/home/layouts', contacts).then(() => {
+      NotificationManager.success('Updated', null, 1500);
+    });
   };
 
   handleCancel = () => {
@@ -103,8 +111,12 @@ class DragNDrop extends Component {
         axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
           const { data } = result;
           contacts.push(data);
-          this.setState({ contacts, visible: false });
+          this.setState({ contacts, visible: false }, () => {
+            NotificationManager.success('Saved', null, 1500);
+          });
         });
+      } else {
+        NotificationManager.error('Please Choose Category', null, 1500);
       }
     } else {
       obj = {
@@ -115,8 +127,12 @@ class DragNDrop extends Component {
         axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
           const { data } = result;
           contacts.push(data);
-          this.setState({ contacts, visible: false });
+          this.setState({ contacts, visible: false }, () => {
+            NotificationManager.success('Saved', null, 1500);
+          });
         });
+      } else {
+        NotificationManager.error('Please Choose Three Categories', null, 1500);
       }
     }
   };
@@ -202,6 +218,8 @@ Create New Section in Home Page
           type={type}
           setThreeName={this.setThreeName}
         />
+        <NotificationContainer />
+
       </>
     );
   }
