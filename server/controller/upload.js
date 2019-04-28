@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 
-exports.post = (request, response) => {
+exports.post = async (request, response) => {
   const { file } = request.files;
   const { name, data } = file;
   const splitName = name.split('.');
@@ -10,8 +11,21 @@ exports.post = (request, response) => {
     .toUpperCase();
   const ext = splitName[1];
   const fullName = `${nameOfFile}.${ext}`;
-  fs.writeFile(`uploads/${fullName}`, data, (err) => {
-    response.send({ fullName });
+  fs.writeFile(`uploads/${fullName}`, data, async (err) => {
+    sharp(path.join(__dirname, '..', '..', 'uploads', fullName))
+      .resize(240, 170)
+      .toFile(
+        path.join(
+          __dirname,
+          '..',
+          '..',
+          'uploads',
+          `${nameOfFile}-small.${ext}`,
+        ),
+      )
+      .then(() => {
+        response.send({ fullName });
+      });
   });
 };
 
