@@ -15,7 +15,7 @@ export default class index extends Component {
     return (
       <section className="section-wrap relative pb-70 pt-0">
         <div className="row">
-          <div className="col-sm-12">
+          <div className="col-sm-12 mb-50">
             <ul className="posts-list no-top-pad clearfix">
               {posts && posts.map(element => (
                 <li key={uuid()} className="clearfix">
