@@ -20,7 +20,7 @@ exports.post = async (request, response) => {
           '..',
           '..',
           'uploads',
-          `${nameOfFile}-small.${ext}`,
+          `${nameOfFile}_small.${ext}`,
         ),
       )
       .then(() => {
