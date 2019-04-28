@@ -41,7 +41,7 @@ export default class index extends Component {
                             </Link>
                           </div>
                         </div>
-                        <div className="col-sm-5">
+                        <div className="col-sm-7">
 
                           <div className="entry">
                             <h2 className="entry-title"><Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.title}</Link></h2>

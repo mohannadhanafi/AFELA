@@ -19,22 +19,28 @@ export default class index extends Component {
               {posts && posts.map(element => (
                 <li key={uuid()} className="clearfix">
                   <article>
-                    <div className="entry-img hover-scale">
-                      <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                        <img className="editor--img" src={element.header_media && `/api/v1/getFile/${element.header_media[0]}`} alt="bg" />
-                      </Link>
-                    </div>
-                    <div className="entry">
-                      <h2 className="entry-title"><Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.title}</Link></h2>
-                      <ul className="entry-meta list-inline">
-                        <li className="entry-date">
-                          {moment(element.createdAt).calendar()}
-                        </li>
-                      </ul>
-                      <div className="entry-content">
-                        <p>{element.post_intro}</p>
-                        <Link to={`/news/${element.category.category_seo}/${element.seo}`} className="read-more dark-link">Read More<i className="fa fa-angle-right" />
+                    <div className="col-sm-5 nopadding">
+
+                      <div className="entry-img hover-scale">
+                        <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
+                          <img className="editor--img" src={element.header_media && `/api/v1/getFile/${element.header_media[0]}`} alt="bg" />
                         </Link>
+                      </div>
+                    </div>
+                    <div className="col-sm-7">
+
+                      <div className="entry">
+                        <h2 className="entry-title"><Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.title}</Link></h2>
+                        <ul className="entry-meta list-inline">
+                          <li className="entry-date">
+                            {moment(element.createdAt).calendar()}
+                          </li>
+                        </ul>
+                        <div className="entry-content">
+                          <p>{element.post_intro}</p>
+                          <Link to={`/news/${element.category.category_seo}/${element.seo}`} className="read-more dark-link">Read More<i className="fa fa-angle-right" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </article>
