@@ -51,7 +51,7 @@ class TP_facebook {
 	 * @param    int       $item_count 	number of photos to pull
 	 */
 	public function get_photo_set_photos($photo_set_id,$item_count=10){
-		$url = "https://graph.facebook.com/v2.0/$photo_set_id?fields=photos";
+		$url = "https://graph.facebook.com/v1.0/$photo_set_id?fields=photos";
 		$photo_set_photos = json_decode(file_get_contents($url));
 		return $photo_set_photos->photos->data;
 	}

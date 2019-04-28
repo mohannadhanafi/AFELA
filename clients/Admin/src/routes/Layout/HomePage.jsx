@@ -136,39 +136,39 @@ class DragNDrop extends Component {
     return (
       <>
         <Card loading={loading}>
-            <div className="gx-main-content gx-mb-4">
-              <Button
-                type="primary"
-                className="layout-button"
-                onClick={this.openModal}
-                style={{ width: '30%', height: 40, margin: '0 auto' }}
-              >
-                {' '}
+          <div className="gx-main-content gx-mb-4">
+            <Button
+              type="primary"
+              className="layout-button"
+              onClick={this.openModal}
+              style={{ width: '30%', height: 40, margin: '0 auto' }}
+            >
+              {' '}
 Create New Section in Home Page
 
-              </Button>
+            </Button>
 
-              <Row>
-                {/* <Col span={5}>
+            <Row>
+              {/* <Col span={5}>
               <Card style={{ marginTop: 20 }}>
               </Card>
             </Col> */}
-                {contacts.length ? (
-                  <Contacts
-                    contacts={contacts}
-                    onSortEnd={this.onSortEnd}
-                    useDragHandle
-                    changeState={this.changeState}
-                    openModal={this.openModal}
-                    handleSave={this.handleSave}
-                    onDelete={this.onDelete}
-                  />
-                ) : null}
-              </Row>
-            </div>
-            <Button type="primary" className="layout-button" onClick={this.handleSave} style={{ float: 'right' }}>SAVE</Button>
+              {contacts.length ? (
+                <Contacts
+                  contacts={contacts}
+                  onSortEnd={this.onSortEnd}
+                  useDragHandle
+                  changeState={this.changeState}
+                  openModal={this.openModal}
+                  handleSave={this.handleSave}
+                  onDelete={this.onDelete}
+                />
+              ) : null}
+            </Row>
+          </div>
+          <Button type="primary" className="layout-button" onClick={this.handleSave} style={{ float: 'right' }}>SAVE</Button>
 
-          </Card>
+        </Card>
         <Modal
           visible={visible}
           handleCancel={this.handleCancel}

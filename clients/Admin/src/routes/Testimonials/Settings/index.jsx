@@ -53,7 +53,7 @@ class Registration extends Component {
         }
         if (fileList.length) {
           axios
-            .post('/api/v2/titles/update', values)
+            .post('/api/v1/titles/update', values)
             .then((result) => {
               const {
                 data: { message },
@@ -69,7 +69,7 @@ class Registration extends Component {
                   }, 3000);
                   if (removedFile.length) {
                     removedFile.map(async (file) => {
-                      await axios.post('/api/v2/removeFile', { pic: file });
+                      await axios.post('/api/v1/removeFile', { pic: file });
                     });
                   }
                 });
@@ -109,7 +109,7 @@ class Registration extends Component {
   };
 
   componentDidMount = async () => {
-    const result = await axios.get('/api/v2/getTitle');
+    const result = await axios.get('/api/v1/getTitle');
     const { data } = result;
     const {
       testimonialstitle,
@@ -121,12 +121,12 @@ class Registration extends Component {
     const fileList = [];
     if (background !== '') {
       await axios
-        .get(`/api/v2/getFile/${background}`)
+        .get(`/api/v1/getFile/${background}`)
         .then(result => fileList.push({
           uid: uuid(),
           name: 'image.png',
           status: 'done',
-          url: `/api/v2/getFile/${background}`,
+          url: `/api/v1/getFile/${background}`,
         }))
         .catch((error) => {});
     }
@@ -169,8 +169,8 @@ class Registration extends Component {
           response: { fullName },
         } = file;
         this.setState({ fileName: fullName });
-      } 
-}
+      }
+    }
   };
 
 
@@ -274,7 +274,7 @@ class Registration extends Component {
           >
             <>
               <Upload
-                action="/api/v2/uploadFile"
+                action="/api/v1/uploadFile"
                 listType="picture-card"
                 fileList={fileList}
                 onPreview={this.handlePreview}
@@ -291,23 +291,23 @@ class Registration extends Component {
                 <img
                   alt="example"
                   style={{ width: '100%' }}
-                  src={`/api/v2/getFile/${background}`}
+                  src={`/api/v1/getFile/${background}`}
                 />
               </Modal>
             </>
           </FormItem>
           <FormItem {...tailFormItemLayout}>
             {!disable
-            ? (
-              <Button type="primary" htmlType="submit">
+              ? (
+                <Button type="primary" htmlType="submit">
               Save
-                </Button>
-            )
-            : (
-              <Button type="primary" disabled htmlType="submit">
+              </Button>
+              )
+              : (
+                <Button type="primary" disabled htmlType="submit">
          Save
-                </Button>
-            ) }
+              </Button>
+              ) }
           </FormItem>
         </Form>
         <NotificationContainer />

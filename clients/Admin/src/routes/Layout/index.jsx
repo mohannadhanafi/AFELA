@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import HomePage from './HomePage';
+import CategoryPage from './CategoryPage';
 
 const { TabPane } = Tabs;
 
@@ -14,7 +15,7 @@ export default class index extends Component {
             <HomePage />
           </TabPane>
           <TabPane tab="Category Page" key="2">
-            <HomePage />
+            <CategoryPage />
           </TabPane>
         </Tabs>
       );
