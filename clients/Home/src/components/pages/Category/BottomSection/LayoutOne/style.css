@@ -234,3 +234,7 @@
     display: none;
   }
 }
+
+.category--post {
+  height: 390px !important;
+}
