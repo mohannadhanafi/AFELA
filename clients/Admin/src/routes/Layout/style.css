@@ -42,3 +42,33 @@
       opacity: 1;
     }
   }
+
+  .preview-layout{
+    width: 300px;
+    height: 320px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    overflow-y: scroll;
+  }
+  .ant-slider {
+    margin:  unset !important;
+    padding: 9px 0 !important;
+  }
+  .preview-layout img {
+    animation: ease-in 2s;
+  }
+  @keyframes cf3FadeInOut {
+    0% {
+    opacity:1;
+  }
+  45% {
+  opacity:1;
+  }
+  55% {
+  opacity:0;
+  }
+  100% {
+  opacity:0;
+  }
+}

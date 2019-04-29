@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { connect } from 'react-redux/es';
+
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import TopSection from './TopSection';
@@ -45,40 +47,49 @@ runLoading = () => {
 }
 
   getData = (props) => {
-    this.runLoading();
-    this.closeLoading();
-    window.scrollTo(0, 0);
+    const { options } = props;
 
-    const {
-      history: {
-        location: { pathname },
-      },
-    } = props;
-    const seo = pathname.split('/')[2];
-    axios
-      .get(`/api/v1/CatWithPosts/${seo}`, {
-        params: {
-          limit: 5,
-          offset: 0,
+    if (options.length) {
+      const { category_post_no } = options[0];
+      this.runLoading();
+      this.closeLoading();
+      window.scrollTo(0, 0);
+
+      const {
+        history: {
+          location: { pathname },
         },
-      })
-      .then((results) => {
-        const { data } = results;
-        const { result, catName } = data;
-        const { rows, count } = result;
-        this.setState({ posts: rows, catName, total: count });
-      })
-      .catch((error) => {});
+      } = props;
+      const seo = pathname.split('/')[2];
+      axios
+        .get(`/api/v1/CatWithPosts/${seo}`, {
+          params: {
+            limit: category_post_no,
+            offset: 0,
+          },
+        })
+        .then((results) => {
+          const { data } = results;
+          const { result, catName } = data;
+          const { rows, count } = result;
+          this.setState({ posts: rows, catName, total: count });
+        })
+        .catch((error) => {});
+    }
   };
 
 
   changeData = (current) => {
-    const { history: { location: { pathname } } } = this.props;
+    const { history: { location: { pathname } }, options } = this.props;
+    this.runLoading();
+    this.closeLoading();
+    const { category_post_no } = options[0];
+
     const seo = pathname.split('/')[2];
     axios(
       `/api/v1/CatWithPosts/${seo}`, {
         params: {
-          limit: 5,
+          limit: category_post_no,
           offset: current - 1,
         },
       },
@@ -96,16 +107,20 @@ runLoading = () => {
 
   render() {
     const { background, posts, total } = this.state;
+    const { options } = this.props;
+
     return (
       <>
         <div className="loader-mask">
           <div className="loader">Loading...</div>
         </div>
         <TopSection background={background} posts={posts} />
-        <BottomSection posts={posts} changeData={current => this.changeData(current)} total={total} />
+        {options.length ? <BottomSection posts={posts} changeData={current => this.changeData(current)} total={total} catNo={options[0].category_post_no} />
+          : null}
       </>
     );
   }
 }
+const mapStateToProps = ({ options }) => options;
 
-export default withRouter(index);
+export default connect(mapStateToProps, null)(withRouter(index));

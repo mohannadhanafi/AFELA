@@ -11,7 +11,9 @@ export default class index extends Component {
   state={}
 
   render() {
-    const { posts, total, changeData } = this.props;
+    const {
+      posts, total, changeData, catNo,
+    } = this.props;
     return (
       <section className="section-wrap relative pb-70 pt-0">
         <div className="row">
@@ -54,7 +56,7 @@ export default class index extends Component {
           <Pagination
             hideOnSinglePage
             total={total}
-            defaultPageSize={5}
+            defaultPageSize={catNo || 1}
             onChange={changeData}
           />
         </div>

@@ -75,6 +75,14 @@ const posts = connection.define('options', {
   mobile: Sequelize.TEXT,
   address: Sequelize.TEXT,
   category_layout: Sequelize.TEXT,
+  category_post_no: {
+    type: Sequelize.INTEGER,
+    defaultValue: 5,
+  },
+  category_right: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+  },
 });
 
 module.exports = posts;

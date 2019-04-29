@@ -87,7 +87,7 @@ class Modall extends Component {
           )}
         </FormItem>
         {type === 'category' ? (
-          <div>
+          <div className="layout-buttons">
             <FormItem {...formItemLayout} label="Cat. Name">
               {getFieldDecorator('catName')(
                 <Select defaultValue="category" style={{ width: '100%' }} onChange={setCatName}>

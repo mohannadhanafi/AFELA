@@ -7,7 +7,7 @@ const { posts, categories, users } = require('../database/models');
 exports.get = async (req, res) => {
   try {
     const { limit, offset } = req.query;
-    const offSetValue = parseInt(offset, 10) * 5;
+    const offSetValue = parseInt(offset, 10) * limit;
     const { seo_name: seo } = req.params;
     const cat = await categories.findOne({ where: { seo }, raw: true });
     if (cat) {

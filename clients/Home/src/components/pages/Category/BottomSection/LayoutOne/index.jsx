@@ -10,7 +10,9 @@ export default class index extends Component {
 
 
   render() {
-    const { posts, total, changeData } = this.props;
+    const {
+      posts, total, changeData, catNo,
+    } = this.props;
     return (
       <div>
         {posts
@@ -67,8 +69,9 @@ export default class index extends Component {
           <Pagination
             hideOnSinglePage
             total={total}
-            defaultPageSize={5}
+            defaultPageSize={catNo || 1}
             onChange={changeData}
+            jumpPrevIcon={() => <h1>dsfdsf</h1>}
           />
         </div>
       </div>

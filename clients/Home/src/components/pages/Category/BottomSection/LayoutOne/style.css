@@ -224,7 +224,16 @@
   color: #121212;
   border-color: #2cb8a5;
 }
-
+.rc-pagination-jump-prev:after,
+.rc-pagination-jump-next:after {
+  content: "•••";
+  display: block;
+  letter-spacing: 1px;
+  color: #ccc;
+  font-size: 10px;
+  margin-top: 1px;
+  transition-duration: 0.3s;
+}
 .rc-pagination-next:hover a {
   color: #2cb8a5;
 }
