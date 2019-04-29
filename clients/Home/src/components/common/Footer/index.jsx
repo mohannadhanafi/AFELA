@@ -4,6 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 import { connect } from 'react-redux/es';
+import { convertImage } from '../../../appRedux/actions';
 
 class Footer extends Component {
   state = {
@@ -14,10 +15,7 @@ class Footer extends Component {
     links: [{ name: 'facebook', link: '#' }, { name: 'google-plus', link: '#' }, { name: 'youtube', link: '#' }, { name: 'linkedin', link: '#' }, { name: 'vimeo', link: '#' }],
     copyrights: '© 2015 Afela Theme | Made by DeoThemes',
     recentPosts: [
-
     ],
-    aboutUs:
-      'Afela Shop is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme. We possess within us two minds. So far I have written only of the conscious mind.',
   };
 
   componentWillMount() {
@@ -115,13 +113,17 @@ class Footer extends Component {
                       {recentPosts.length ? recentPosts.slice(0, 2).map(post => (
                         <li className="footer-entry">
                           <article className="post-small clearfix">
-                            <div className="entry-img hover-scale">
-                              <a href={`/news/${post.seo}`}>
-                                <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
-                              </a>
+                            <div className="col-md-6 col-sm-6 col-xs-5">
+
+                              <div className="entry-img hover-scale">
+                                <a href={`/news/${post.seo}`}>
+                                  <img src={`/api/v1/getFile/${convertImage(post.header_media[0], 'small')}`} alt="" />
+                                </a>
+                              </div>
                             </div>
+
                             <div className="entry">
-                              <h3 className="entry-title">
+                              <h3 className="entry-title two-lines">
                                 <a href={`/news/${post.seo}`}>
                                   {post.title}
                                 </a>

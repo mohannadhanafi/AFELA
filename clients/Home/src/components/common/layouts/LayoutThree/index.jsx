@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import './style.css';
 import moment from 'moment';
 import axios from 'axios';
+import { convertImage } from '../../../../appRedux/actions';
 
 export default class index extends Component {
     state = {
@@ -41,17 +42,17 @@ export default class index extends Component {
 
                     <li key={uuid()}>
                       <article className="post-small clearfix">
-                        <div className="col-sm-6 nopadding">
+                        <div className="col-sm-5 nopadding">
                           <div className="entry-img hover-scale">
                             <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                              <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" />
+                              <img src={`/api/v1/getFile/${convertImage(element.header_media[0], 'small')}`} alt="" />
                             </Link>
                           </div>
                         </div>
-                        <div className="col-sm-6 ">
+                        <div className="col-md-7">
 
                           <div className="entry">
-                            <h3 className="entry-title">
+                            <h3 className="entry-title three-lines">
                               <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
                                 {element.title}
                               </Link>

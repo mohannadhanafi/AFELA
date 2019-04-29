@@ -6,6 +6,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import './style.css';
 import uuid from 'uuid';
+import { convertImage } from '../../../../appRedux/actions';
 
 export default class TrendingPosts extends Component {
   state = {
@@ -47,11 +48,11 @@ export default class TrendingPosts extends Component {
                     {element.category.category_name}
                   </Link>
                   <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                    <img src={`/api/v1/getFile/${element.header_media[0]}`} alt="" className="entry__img" />
+                    <img src={`/api/v1/getFile/${convertImage(element.header_media[0], 'medium')}`} alt="" className="entry__img" />
                   </Link>
                 </div>
                 <div className="entry mb-0">
-                  <h2 className="entry-title">
+                  <h2 className="entry-title three-lines">
                     <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
                       {element.title}
                     </Link>

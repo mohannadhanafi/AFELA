@@ -9,6 +9,7 @@ import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import TabCats from './TabCats';
+import { convertImage } from '../../../../appRedux/actions';
 
 class TrendingPosts extends Component {
   state = {
@@ -24,8 +25,6 @@ class TrendingPosts extends Component {
       categories, news,
     } = this.state;
     const { trendingPosts: { Trending, finalData } } = this.props;
-
-
     return (
       Trending.length ? (
         <section className="section-wrap relative pb-0 pt-0">
@@ -62,11 +61,12 @@ class TrendingPosts extends Component {
                         >
                           {Trending[0].category.name}
                         </a>
-                        <a href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}>     <img src={`/api/v1/getFile/${Trending[0].header_media[0]}`} alt="" />
+                        <a href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}>
+                          <img src={`/api/v1/getFile/${convertImage(Trending[0].header_media[0], 'medium')}`} alt="" />
                         </a>
                       </div>
                       <div className="entry mb-0">
-                        <h2 className="entry-title">
+                        <h2 className="entry-title three-lines fix-height">
                           <a href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}>
                             {Trending[0].title}
                           </a>
@@ -77,7 +77,7 @@ class TrendingPosts extends Component {
                           </li>
                         </ul>
                         <div className="entry-content">
-                          <p>
+                          <p className="three-lines fix-height">
                             {ReactHtmlParser(Trending[0].description)}
                           </p>
                           <a
@@ -92,20 +92,20 @@ class TrendingPosts extends Component {
                   ) : null}
                   <ul className="posts-list">
 
-                    {Trending.length ? Trending.slice(1, 3).map(post => (
+                    {Trending.length ? Trending.slice(1, 4).map(post => (
                       <li>
                         <article className="post-small clearfix">
                           <div className="col-sm-5 nopadding pl-15">
                             <div className="entry-img hover-scale">
                               <a href={`/news/${post.category.seo}/${post.seo}`}>
-                                <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
+                                <img src={`/api/v1/getFile/${convertImage(post.header_media[0], 'small')}`} alt="" />
                               </a>
                             </div>
                           </div>
                           <div className="col-sm-7 pl-15">
 
                             <div className="entry">
-                              <h3 className="entry-title">
+                              <h3 className="entry-title three-lines">
                                 <a href={`/news/${post.category.seo}/${post.seo}`}>
                                   {post.title}
                                 </a>
@@ -135,11 +135,11 @@ class TrendingPosts extends Component {
                           {Trending[4].category.name}
                         </a>
                         <a href={`/news/${Trending[4].category.seo}/${Trending[4].seo}`}>
-                          <img src={`/api/v1/getFile/${Trending[4].header_media[0]}`} alt="" />
+                          <img src={`/api/v1/getFile/${convertImage(Trending[4].header_media[0], 'medium')}`} alt="" />
                         </a>
                       </div>
                       <div className="entry mb-0">
-                        <h2 className="entry-title">
+                        <h2 className="entry-title three-lines">
                           <a href={`/news/${Trending[4].category.seo}/${Trending[4].seo}`}>
                             {Trending[4].title}
                           </a>
@@ -150,7 +150,7 @@ class TrendingPosts extends Component {
                           </li>
                         </ul>
                         <div className="entry-content">
-                          <p>
+                          <p className="three-lines fix-height">
                             {ReactHtmlParser(Trending[4].description)}
                           </p>
                           <a
@@ -165,20 +165,20 @@ class TrendingPosts extends Component {
                   ) : null}
                   <ul className="posts-list">
 
-                    {Trending.length ? Trending.slice(3, 6).map(post => (
+                    {Trending.length ? Trending.slice(5, 8).map(post => (
                       <li>
                         <article className="post-small clearfix">
                           <div className="col-sm-5 nopadding pl-15">
 
                             <div className="entry-img hover-scale">
                               <a href={`/news/${post.category.seo}/${post.seo}`}>
-                                <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
+                                <img src={`/api/v1/getFile/${convertImage(post.header_media[0], 'small')}`} alt="" />
                               </a>
                             </div>
                           </div>
                           <div className="col-sm-7 pl-15">
                             <div className="entry">
-                              <h3 className="entry-title">
+                              <h3 className="entry-title three-lines fix-height">
                                 <a href={`/news/${post.category.seo}/${post.seo}`}>
                                   {post.title}
                                 </a>
@@ -210,4 +210,4 @@ class TrendingPosts extends Component {
 }
 const mapStateToProps = ({ trending }) => trending;
 
-export default connect(mapStateToProps, null)(withRouter(TrendingPosts));
+export default connect(mapStateToProps, { convertImage })(withRouter(TrendingPosts));

@@ -405,7 +405,7 @@ exports.lastPosts = async (req, res) => {
 exports.trendingPosts = async (request, response) => {
   try {
     const Trending = await posts.findAll({
-      limit: 6,
+      limit: 10,
       order: [['views', 'DESC']],
       include: [
         {

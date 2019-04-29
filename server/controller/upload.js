@@ -24,7 +24,33 @@ exports.post = async (request, response) => {
         ),
       )
       .then(() => {
-        response.send({ fullName });
+        sharp(path.join(__dirname, '..', '..', 'uploads', fullName))
+          .resize(370, 300)
+          .toFile(
+            path.join(
+              __dirname,
+              '..',
+              '..',
+              'uploads',
+              `${nameOfFile}_medium.${ext}`,
+            ),
+          )
+          .then(() => {
+            sharp(path.join(__dirname, '..', '..', 'uploads', fullName))
+              .resize(640, 540)
+              .toFile(
+                path.join(
+                  __dirname,
+                  '..',
+                  '..',
+                  'uploads',
+                  `${nameOfFile}_large.${ext}`,
+                ),
+              )
+              .then(() => {
+                response.send({ fullName });
+              });
+          });
       });
   });
 };

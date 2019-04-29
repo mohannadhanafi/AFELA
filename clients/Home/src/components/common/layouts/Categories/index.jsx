@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Category1 from './Category1';
-import Category2 from './Category2';
-import Category3 from './Category3';
+
 import './style.css';
 
 export default class index extends Component {
@@ -43,11 +42,11 @@ export default class index extends Component {
               title={title1}
               news={news1}
             />
-            <Category2
+            <Category1
               title={title2}
               news={news2}
             />
-            <Category3
+            <Category1
               title={title3}
               news={news3}
             />

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import uuid from 'uuid';
 import axios from 'axios';
 import './style.css';
+import { convertImage } from '../../../../appRedux/actions';
 
 export default class index extends Component {
     state ={
@@ -28,11 +29,11 @@ export default class index extends Component {
               <div className="col-sm-6">
                 <article className="entry-img hover-scale post-1">
                   <Link to={news[0].category && `/news/${news[0].category.category_seo}/${news[0].seo}`} className="gradient">
-                    <img className="news--in--pictures-first" src={`/api/v1/getFile/${news[0].header_media[0]}`} alt="bg" />
+                    <img className="news--in--pictures-first" src={`/api/v1/getFile/${convertImage(news[0].header_media[0], 'large')}`} alt="bg" />
                   </Link>
                   <div className="entry-inner small">
                     <div className="entry">
-                      <h2 className="entry-title color-white mb-0"><Link to={news[0].category && `/news/${news[0].category.category_seo}/${news[0].seo}`}>{news[0].title}</Link></h2>
+                      <h2 className="entry-title color-white mb-0 three-lines"><Link to={news[0].category && `/news/${news[0].category.category_seo}/${news[0].seo}`}>{news[0].title}</Link></h2>
                     </div>
                   </div>
                 </article>
@@ -44,7 +45,7 @@ export default class index extends Component {
                       <li key={uuid()}>
                         <article className="entry-img hover-scale">
                           <Link to={element.category && `/news/${element.category.category_seo}/${element.seo}`}>
-                            <img className="news--in--pictures" src={`/api/v1/getFile/${element.header_media[0]}`} alt="bg" />
+                            <img className="news--in--pictures" src={`/api/v1/getFile/${convertImage(element.header_media[0], 'small')}`} alt="bg" />
                           </Link>
                         </article>
                       </li>

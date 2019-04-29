@@ -22,18 +22,15 @@ code {
 }
 
 .post-small img {
-  width: auto;
   height: auto;
 }.categories img {
   height: auto;
-  width: auto
 } 
 .footer-entry .post-small img {
-  width: 100px;
-  height: 72px;
+  /* width: 100px; */
+  height: auto;
  }
 .popular__image{
-  width: auto !important;
   height: auto !important;
 } 
 .latest--image {
@@ -41,7 +38,6 @@ code {
 }
 .editor--img {
   height: auto;
-  width: auto;
 } 
 
 .entry__img {
@@ -50,4 +46,32 @@ code {
 .comment-avatar{
   width: 70px;
   height: 70px;
+}
+
+.three-lines{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-height: 20px;
+  height: 60px !important;
+
+  max-height: 60px;
+  overflow: hidden;
+  margin-bottom: 10px !important;
+
+}
+.fix-height {
+  height: 60px !important;
+}
+.two-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 25px;
+  max-height: 45px;
+  height: 60px !important;
+
+  margin-bottom: 10px !important;
+
 }

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import './style.css';
+import { convertImage } from '../../../../appRedux/actions';
 
 export default class index extends Component {
     state = {
@@ -37,14 +38,14 @@ export default class index extends Component {
                           <div className="entry-img hover-scale">
                             <Link to={`/news/${element.category.category_seo}/${element.seo}`} className="entry-category-label green">{element.category.category_name}</Link>
                             <Link to={`/news/${element.category.category_seo}/${element.seo}`}>
-                              <img className="editor--img" src={element.header_media && `/api/v1/getFile/${element.header_media[0]}`} alt="bg" />
+                              <img className="editor--img" src={element.header_media && `/api/v1/getFile/${convertImage(element.header_media[0], 'medium')}`} alt="bg" />
                             </Link>
                           </div>
                         </div>
                         <div className="col-sm-7">
 
                           <div className="entry">
-                            <h2 className="entry-title"><Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.title}</Link></h2>
+                            <h2 className="entry-title three-lines"><Link to={`/news/${element.category.category_seo}/${element.seo}`}>{element.title}</Link></h2>
                             <ul className="entry-meta list-inline">
                               <li className="entry-date">
                                 {moment(element.createdAt).calendar()}
@@ -53,7 +54,7 @@ export default class index extends Component {
                             </ul>
 
                             <div className="entry-content">
-                              <p>{element.post_intro}</p>
+                              <p className="three-lines">{element.post_intro}</p>
                               <Link to={`/news/${element.category.category_seo}/${element.seo}`} className="read-more dark-link">Read More<i className="fa fa-angle-right" />
                               </Link>
                             </div>
