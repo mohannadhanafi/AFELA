@@ -11,3 +11,8 @@
     margin: 0 10px 0 0 !important;
     padding: 12px 10px !important;
 }
+.sticky-tab{
+    height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

@@ -350,7 +350,7 @@ exports.postSeo = async (req, res) => {
         },
         {
           model: users,
-          attributes: ['name', 'pic', 'bio'],
+          attributes: ['first', 'last', 'pic', 'bio'],
         },
       ],
     });
@@ -380,6 +380,8 @@ exports.postSeo = async (req, res) => {
       res.status(404).send({ message: 'Wrong news title !' });
     }
   } catch (error) {
+    console.log(error);
+
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
@@ -439,7 +441,7 @@ exports.trendingPosts = async (request, response) => {
           },
           {
             model: users,
-            attributes: ['name', 'pic', 'bio'],
+            attributes: ['first', 'last', 'pic', 'bio'],
           },
         ],
       });

@@ -71,42 +71,42 @@ render() {
       <Tabs>
 
         {role !== 'admin' ? (
-          <TabPane disabled tab="General Settings" key="1" style={{ color: 'red' }}>
+          <TabPane disabled tab="General Settings" key="1" style={{ color: 'red' }} className="sticky-tab">
             <General />
           </TabPane>
         ) : (
-          <TabPane tab="General Settings" key="1" style={{ color: 'red' }}>
+          <TabPane tab="General Settings" key="1" style={{ color: 'red' }} className="sticky-tab">
             <General />
           </TabPane>
         )}
 
-        <TabPane tab="Contact Us" key="2">
+        <TabPane tab="Contact Us" key="2" style={{ color: 'red' }} className="sticky-tab">
           <ContactUs />
         </TabPane>
 
-        <TabPane tab="Social Media" key="3">
+        <TabPane tab="Social Media" key="3" className="sticky-tab">
           <Social />
         </TabPane>
 
-        <TabPane tab="Style" key="4">
+        <TabPane tab="Style" key="4" className="sticky-tab">
           <Logo />
         </TabPane>
 
         {role !== 'admin' ? (
-          <TabPane disabled tab="Additional Codes" key="5">
+          <TabPane disabled tab="Additional Codes" key="5" className="sticky-tab">
             <Additional />
           </TabPane>
         ) : (
-          <TabPane tab="Additional Codes" key="5">
+          <TabPane tab="Additional Codes" key="5" className="sticky-tab">
             <Additional />
           </TabPane>
         )}
 
-        <TabPane tab="Footer" key="6">
+        <TabPane tab="Footer" key="6" className="sticky-tab">
           <Footer />
         </TabPane>
 
-        <TabPane tab="Hours" key="7">
+        <TabPane tab="Hours" key="7" className="sticky-tab">
           <OpenningHours />
         </TabPane>
 
