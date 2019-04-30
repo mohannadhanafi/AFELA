@@ -46,7 +46,7 @@ exports.get = async (req, res) => {
         include: [
           {
             model: users,
-            attributes: ['name'],
+            attributes: ['first', 'last'],
           },
           {
             model: categories,
@@ -62,7 +62,7 @@ exports.get = async (req, res) => {
         include: [
           {
             model: users,
-            attributes: ['name'],
+            attributes: ['name', 'last'],
           },
           {
             model: categories,
@@ -416,7 +416,7 @@ exports.trendingPosts = async (request, response) => {
         },
         {
           model: users,
-          attributes: ['name', 'pic', 'bio'],
+          attributes: ['first', 'last', 'pic', 'bio'],
         },
       ],
     });
