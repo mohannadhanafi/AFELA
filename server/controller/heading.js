@@ -29,7 +29,7 @@ exports.getHero = async (req, res) => {
       include: [
         {
           model: users,
-          attributes: ['name'],
+          attributes: ['first', 'last'],
         },
         {
           model: categories,

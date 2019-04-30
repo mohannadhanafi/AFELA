@@ -31,7 +31,7 @@ exports.get = async (req, res) => {
               },
               {
                 model: users,
-                attributes: [['name', 'name']],
+                attributes: [['first', 'last', 'name']],
               }],
             limit,
             offset: offSetValue,
@@ -50,7 +50,7 @@ exports.get = async (req, res) => {
               },
               {
                 model: users,
-                attributes: [['name', 'name']],
+                attributes: [['first', 'last', 'name']],
               }],
             order: [['createdAt', 'DESC']],
           },
