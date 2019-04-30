@@ -337,50 +337,32 @@ class SidebarContent extends Component {
               </SubMenu>
               {role === 'admin' ? (
                 <SubMenu
-                  key="options"
+                  key="settings"
                   className={this.getNavStyleSubMenuClass(navStyle)}
                   title={(
                     <span>
                       {' '}
                       <i className="icon icon-setting" />
-                      <IntlMessages id="sidebar.options" />
+                      <IntlMessages id="sidebar.settings" />
                     </span>
-)}
+            )}
                 >
-                  <Menu.Item key="options/main">
-                    <Link to="/admin/options/main">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.main" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/social">
-                    <Link to="/admin/options/social">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.social" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/footer">
-                    <Link to="/admin/options/footer">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.footer" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/about">
-                    <Link to="/admin/options/about">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.about" />
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="options/contact">
-                    <Link to="/admin/options/contact">
-                      <i className="icon icon-product-list" />
+                  <Menu.Item key="settings/contact">
+                    <Link to="/admin/settings/contact">
+                      <i className="icon icon-button" />
                       <IntlMessages id="sidebar.Contact" />
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="options/social_statistic">
-                    <Link to="/admin/options/social_statistic">
-                      <i className="icon icon-product-list" />
-                      <IntlMessages id="sidebar.socialStatistic" />
+                  <Menu.Item key="settings/newsletter">
+                    <Link to="/admin/settings/newsletter">
+                      <i className="icon icon-button" />
+                      <IntlMessages id="sidebar.newsletter" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="settings/settings">
+                    <Link to="/admin/settings/settings">
+                      <i className="icon icon-button" />
+                      <IntlMessages id="sidebar.settings" />
                     </Link>
                   </Menu.Item>
                 </SubMenu>

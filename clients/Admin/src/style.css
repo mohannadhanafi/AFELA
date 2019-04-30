@@ -6,7 +6,13 @@
   color: #666 !important;
   font-size: 18px;
 }
-
+.notification-container{
+  height:115px;
+  overflow-y: hidden !important;
+}
+.notification {
+  box-shadow: 0 0 4px #999;
+}
 .icon-trash:hover {
   color: red !important;
 }
@@ -217,4 +223,29 @@ a,
 }
 .full-layout{
   overflow: unset;
+}
+.notification-success {
+  background-color: #f6ffed !important;
+  border: 1px solid #b7eb8f !important;
+  border-radius: 10px;
+  height: 90px !important;
+  
+}
+.notification-error {
+  background-color: #fff1f0 !important;
+  border: 1px solid #ffa39e !important;
+  border-radius: 10px;
+  height: 90px !important;
+}
+.notification, .notification .title {
+  color: #545454 !important;
+  box-shadow: none !important;
+}
+
+.notification-success:before {
+  color: #b7eb8f
+}
+.notification-error:before {
+  color: #ffa39e !important;
+
 }

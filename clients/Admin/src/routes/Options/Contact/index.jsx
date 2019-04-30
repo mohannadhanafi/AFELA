@@ -1,137 +1,130 @@
-import React, { Component } from 'react';
-import {
-  Button, Card, Form, Input,
-} from 'antd';
+/* eslint-disable no-return-assign */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/jsx-one-expression-per-line */
+import React from 'react';
 import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser';
+import { connect } from 'react-redux';
+
+import { Link } from 'react-router-dom';
 import {
-  NotificationContainer,
+  Card,
+  Table,
+} from 'antd';
+import {
   NotificationManager,
+  NotificationContainer,
 } from 'react-notifications';
 
-const FormItem = Form.Item;
-
-class Registration extends Component {
+class Dynamic extends React.Component {
   state = {
-    contact: '',
-    mobile: '',
-    email: '',
-    address:'',
+    data: [],
+    columns: [],
   };
 
-  componentDidMount = async () => {
-    const res = await axios.get('/api/v1/getoptions');
-    const { data } = res;
-
-    const { contact, mobile, email ,address} = data[0];
-    this.setState({ contact, mobile, email ,address});
+  delete = (id) => {
+    axios
+      .delete('/api/v2/posts/delete', { data: { id } })
+      .then((res) => {
+        const {
+          data: { message },
+          statusText,
+        } = res;
+        if (res.status === 200) {
+          const { items } = this.state;
+          const final = items.filter(element => element.id !== id);
+          this.setState(
+            () => ({ items: final }),
+            () => {
+              NotificationManager.success(message, 'SUCCESS', 2000);
+            },
+          );
+        } else {
+          NotificationManager.error(message || statusText, 'ERROR', 2000);
+        }
+      })
+      .catch((error) => {
+        const {
+          data: { message: errorMessage },
+          statusText: errorText,
+        } = error.response;
+        NotificationManager.error(errorMessage || errorText, 'ERROR', 2000);
+      });
   };
 
-  handleSubmit = (e) => {
-    const { form, history } = this.props;
-    e.preventDefault();
-    form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        axios.post('/api/v1/option', values).then((result) => {
-          const {
-            data: { message },
-            statusText,
-          } = result;
-          if (result.status === 200) {
-            NotificationManager.success(message, 'SUCCESS', 2000);
-            setTimeout(() => {
-              history.push('/admin/options/contact');
-            }, 3000);
-          } else {
-            NotificationManager.error(message || statusText, 'ERROR', 2000);
-          }
-        });
-      }
+  clearFilters = () => {
+    this.setState({ filteredInfo: null });
+  };
+
+  componentWillMount = () => {
+    axios.get('/api/v2/contactus').then((result) => {
+      const { data } = result;
+      const columns = [
+        {
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+          sorter: (a, b) => a.name.length - b.name.length,
+        },
+        {
+          title: 'Email',
+          dataIndex: 'email',
+          key: 'email',
+          sorter: (a, b) => a.email.length - b.email.length,
+        },
+        {
+          title: 'Mobile',
+          dataIndex: 'mobile',
+          key: 'mobile',
+          sorter: (a, b) => a.mobile.length - b.mobile.length,
+        },
+        {
+          title: 'Message',
+          dataIndex: 'message',
+          key: 'message',
+          sorter: (a, b) => a.message.length - b.message.length,
+        },
+      ];
+      this.setState({ columns, items: data });
     });
   };
 
+  onChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    const { data } = this.state;
+    let list = data;
+    list = list.filter(
+      item => item.title.props.children[0].toLowerCase().indexOf(value.toLowerCase()) !== -1,
+    );
+
+    if (list.length !== 0) {
+      this.setState({ items: list });
+    } else {
+      this.setState({ items: null });
+    }
+  };
+
   render() {
-    const { form } = this.props;
-    const { contact, mobile, email, address } = this.state;
-    const { getFieldDecorator } = form;
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 6 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 18 },
-      },
-    };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      },
-    };
+    const { columns, items } = this.state;
     return (
-      <Card className="gx-card" title="Contact Us">
-        <Form onSubmit={this.handleSubmit}>
-          <FormItem {...formItemLayout} label={<span>Contact</span>}>
-            {getFieldDecorator('contact', {
-              initialValue: contact,
-              rules: [
-                {
-                  max: 500,
-                  message: 'Max Contact is 500',
-                  whitespace: true,
-                },
-                {
-                  required: true,
-                  message: 'Please Enter Contact',
-                  whitespace: true,
-                },
-              ],
-            })(
-              <Input.TextArea
-                placeholder="Enter a Contact "
-                autosize={{ minRows: 2, maxRows: 6 }}
-              />,
-            )}
-          </FormItem>
-          <FormItem {...formItemLayout} label="E-mail">
-            {getFieldDecorator('email', {
-              initialValue: email,
-              rules: [
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-              ],
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>Mobile</span>}>
-            {getFieldDecorator('mobile', {
-              initialValue: mobile,
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>Address</span>}>
-            {getFieldDecorator('address', {
-              initialValue: address,
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              Update
-            </Button>
-          </FormItem>
-        </Form>
-        <NotificationContainer />
+      <Card title="Contact Us">
+        <Table
+          className="gx-table-responsive"
+          {...this.state}
+          columns={columns}
+          dataSource={items}
+        />
       </Card>
     );
   }
 }
-
-const RegistrationForm = Form.create()(Registration);
-export default RegistrationForm;
+const mapStateToProps = ({ auth }) => {
+  const { role } = auth;
+  return {
+    role,
+  };
+};
+export default connect(mapStateToProps)(Dynamic);

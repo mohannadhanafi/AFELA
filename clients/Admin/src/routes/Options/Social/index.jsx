@@ -14,14 +14,14 @@
 /* eslint-disable linebreak-style */
 import React, { Component } from 'react';
 import {
-  Button,
-  Card,
   Form,
   Input,
 } from 'antd';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import axios from 'axios';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { connect } from 'react-redux/es';
+import { setForm } from '../../../appRedux/actions/form';
 
 const FormItem = Form.Item;
 
@@ -34,28 +34,20 @@ class Registration extends Component {
     previewImage: '',
     categories: [],
     fileName: '',
-    facebook: '',
-    twitter: '',
-    whats: '',
-    google: '',
-    copyrights: '',
-    googleplus: '',
-    linkedin: '',
-    vimeo: '',
-    youtube: '',
-    logo: '',
+
+    disable: false,
   };
 
   handleCancel = () => this.setState({ previewVisible: false });
 
 componentDidMount = async () => {
-  const res = await axios.get('/api/v1/getoptions');
+  const res = await axios.get('/api/v2/getoptions');
   const { data } = res;
   const {
-    facebook, twitter, whats, google, copyrights, logo, googleplus, linkedin, vimeo, youtube,
+    facebook, twitter, whats, google, logo, email, address, youtube, instagram, linkedin, googleplay, appstore,
   } = data[0];
   this.setState({
-    facebook, twitter, copyrights, logo, whats, google, googleplus, linkedin, vimeo, youtube,
+    facebook, twitter, logo, whats, google, email, address, youtube, instagram, linkedin, googleplay, appstore,
   });
 }
 
@@ -63,7 +55,8 @@ componentDidMount = async () => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        axios.post('/api/v1/option', values).then((result) => {
+        this.setState({ disable: true });
+        axios.post('/api/v2/option', values).then((result) => {
           const {
             data: { message },
             statusText,
@@ -71,10 +64,13 @@ componentDidMount = async () => {
           if (result.status === 200) {
             NotificationManager.success(message, 'SUCCESS', 2000);
             setTimeout(() => {
-              this.props.history.push('/admin/options/social');
+              this.setState({ disable: false });
             }, 3000);
           } else {
             NotificationManager.error(message || statusText, 'ERROR', 2000);
+            setTimeout(() => {
+              this.setState({ disable: false });
+            }, 2000);
           }
         }).catch((error) => {
           this.setState({ loading: false }, () => {
@@ -83,6 +79,9 @@ componentDidMount = async () => {
               statusText: statusMessage,
             } = error.response;
             NotificationManager.error(errorMessage || statusMessage, 'ERROR', 2000);
+            setTimeout(() => {
+              this.setState({ disable: false });
+            }, 2000);
           });
         });
       }
@@ -102,38 +101,22 @@ componentDidMount = async () => {
       const {
         response: { fullName: pic },
       } = file;
-      await axios.post('/api/v1/removeFile', { pic }).then(() => {
+      await axios.post('/api/v2/removeFile', { pic }).then(() => {
         this.setState({ fileName: '' });
       });
     }
   };
 
-  handleChange = ({ file, fileList }) => {
-    const isJPG = file.type === 'image/jpeg';
-    const isPNG = file.type === 'image/png';
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isJPG && !isPNG) {
-      NotificationManager.error('You can only upload image files!', 'ERROR', 2000);
-    } else if (!isLt2M) {
-      NotificationManager.error('Image must smaller than 2MB!', 'ERROR', 2000);
-    } else {
-      this.setState({ fileList });
-      const { status } = file;
-      if (status === 'done') {
-        const {
-          response: { fullName },
-        } = file;
-        this.setState({ fileName: fullName });
-      }
-    }
-  };
 
+  onChange =() => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      this.props.setForm(values);
+    });
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {
-      facebook, twitter, whats, google, googleplus, linkedin, vimeo, youtube,
-    } = this.state;
+    const { options } = this.props;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -144,62 +127,59 @@ componentDidMount = async () => {
         sm: { span: 18 },
       },
     };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      },
-    };
     return (
-      <Card className="gx-card" title="Social Media">
-        <Form onSubmit={this.handleSubmit}>
-          <FormItem {...formItemLayout} label={<span>Facebook</span>}>
-            {getFieldDecorator('facebook', { initialValue: facebook })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>Twitter</span>}>
-            {getFieldDecorator('twitter', { initialValue: twitter })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>Whatsapp</span>}>
-            {getFieldDecorator('whats', {
-              initialValue: whats,
-              rules: [
-                {
-                  max: 20,
-                  message: 'The input is not valid Mobile',
-                },
-              ],
-            })(<Input type="number" />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>Google</span>}>
-            {getFieldDecorator('google', { initialValue: google })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>Google-plus</span>}>
-            {getFieldDecorator('googleplus', { initialValue: googleplus })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label={<span>linkedIn</span>}>
-            {getFieldDecorator('linkedin', { initialValue: linkedin })(<Input />)}
-          </FormItem>  <FormItem {...formItemLayout} label={<span>Vimeo</span>}>
-            {getFieldDecorator('vimeo', { initialValue: vimeo })(<Input />)}
-                       </FormItem>  <FormItem {...formItemLayout} label={<span>Youtube</span>}>
-            {getFieldDecorator('youtube', { initialValue: youtube })(<Input />)}
-                       </FormItem>
-          <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              Update
-            </Button>
-          </FormItem>
-        </Form>
+      <>
+        {options.length ? (
+          <Form onSubmit={this.handleSubmit} onChange={this.onChange}>
+            <FormItem {...formItemLayout} label={<span>Facebook</span>}>
+              {getFieldDecorator('facebook', { initialValue: options[0].facebook })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>Twitter</span>}>
+              {getFieldDecorator('twitter', { initialValue: options[0].twitter })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>Youtube</span>}>
+              {getFieldDecorator('youtube', { initialValue: options[0].youtube })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>Google</span>}>
+              {getFieldDecorator('google', { initialValue: options[0].google })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>Instagram</span>}>
+              {getFieldDecorator('instagram', { initialValue: options[0].instagram })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>Whatsapp</span>}>
+              {getFieldDecorator('whats', { initialValue: options[0].whats })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>Linked In</span>}>
+              {getFieldDecorator('linkedin', { initialValue: options[0].linkedin })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>Google Play</span>}>
+              {getFieldDecorator('googleplay', { initialValue: options[0].googleplay })(<Input />)}
+            </FormItem>
+
+            <FormItem {...formItemLayout} label={<span>App Store</span>} style={{ float: 'unset' }}>
+              {getFieldDecorator('appstore', { initialValue: options[0].appstore })(<Input />)}
+            </FormItem>
+          </Form>
+        ) : null}
+
         <NotificationContainer />
-      </Card>
+      </>
     );
   }
 }
-
 const RegistrationForm = Form.create()(Registration);
-export default RegistrationForm;
+const mapStateToProps = ({ opations }) => {
+  const { opations: options } = opations;
+  return {
+    options,
+  };
+};
+
+export default connect(mapStateToProps, { setForm })(RegistrationForm);

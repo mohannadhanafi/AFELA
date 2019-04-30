@@ -21,7 +21,9 @@ import {
   setNotifications,
 } from 'appRedux/actions/Notifications';
 import Cookies from 'js-cookie';
-
+import {
+  getOpations,
+} from 'appRedux/actions/options';
 import {
   onLayoutTypeChange,
   onNavStyleChange,
@@ -80,6 +82,8 @@ class App extends Component {
   state = {};
 
   componentWillMount() {
+    this.props.getOpations();
+
     this.props.getNotifications();
     if (this.props.url === '/admin') {
       this.props.setInitUrl(this.props.history.location.pathname);
@@ -212,5 +216,6 @@ export default connect(
     onLayoutTypeChange,
     getNotifications,
     setNotifications,
+    getOpations,
   },
 )(App);
