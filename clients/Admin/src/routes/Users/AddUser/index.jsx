@@ -10,13 +10,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
-  Button, Card, Form, Icon, Input, Select, Tooltip, Spin, Upload, Modal,
+  Button,
+  Card,
+  Form,
+  Icon,
+  Input,
+  Select,
+  Tooltip,
+  Spin,
+  Upload,
+  Modal,
+  Row,
+  Col,
 } from 'antd';
 import {
   NotificationManager,
   NotificationContainer,
 } from 'react-notifications';
-
+import './style.css';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -45,23 +56,31 @@ class Registration extends Component {
         if (fileList.length) {
           await this.toggleLoading();
           values.pic = fileName;
-          axios.post('/api/v1/users/create', values).then(async (result) => {
-            await this.toggleLoading();
-            const { data: { message } } = result;
-            NotificationManager.success(message, 'SUCCESS', 2000);
-            setTimeout(() => {
-              this.props.history.push('/admin/users/view');
-            }, 3000);
-            if (removedFile.length) {
-              removedFile.map(async (file) => {
-                await axios.post('/api/v1/removeFile', { pic: file });
-              });
-            }
-          }).catch(async (error) => {
-            await this.toggleLoading();
-            const { data: { message }, statusText } = error.response;
-            NotificationManager.error(message || statusText, 'ERROR', 2000);
-          });
+          axios
+            .post('/api/v1/users/create', values)
+            .then(async (result) => {
+              await this.toggleLoading();
+              const {
+                data: { message },
+              } = result;
+              NotificationManager.success(message, 'SUCCESS', 2000);
+              setTimeout(() => {
+                this.props.history.push('/admin/users/view');
+              }, 3000);
+              if (removedFile.length) {
+                removedFile.map(async (file) => {
+                  await axios.post('/api/v1/removeFile', { pic: file });
+                });
+              }
+            })
+            .catch(async (error) => {
+              await this.toggleLoading();
+              const {
+                data: { message },
+                statusText,
+              } = error.response;
+              NotificationManager.error(message || statusText, 'ERROR', 2000);
+            });
         } else {
           NotificationManager.error('Please Choose an image !', 'ERROR', 2000);
         }
@@ -93,7 +112,9 @@ class Registration extends Component {
 
   removeFile = (file) => {
     const { removedFile } = this.state;
-    const { response: { fullName } } = file;
+    const {
+      response: { fullName },
+    } = file;
     removedFile.push(fullName);
     this.setState({ removedFile });
   };
@@ -132,28 +153,26 @@ class Registration extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {
-      previewVisible, previewImage, fileList,
-    } = this.state;
+    const { previewVisible, previewImage, fileList } = this.state;
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 6 },
+        xs: { span: 16 },
+        sm: { span: 10 },
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 18 },
+        xs: { span: 16 },
+        sm: { span: 12 },
       },
     };
     const tailFormItemLayout = {
       wrapperCol: {
         xs: {
-          span: 24,
-          offset: 0,
+          span: 12,
+          offset: 4,
         },
         sm: {
-          span: 16,
-          offset: 8,
+          span: 12,
+          offset: 2,
         },
       },
     };
@@ -167,117 +186,166 @@ class Registration extends Component {
     return (
       <Card className="gx-card" title="Add User">
         <Spin spinning={this.state.loading}>
+          <Form onSubmit={this.handleSubmit} className="add-user">
+            <Row justify="center">
+              <Col span={18}>
+                <FormItem {...formItemLayout} label={<span>First Name</span>}>
+                  {getFieldDecorator('first', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please enter first name!',
+                        whitespace: true,
+                      },
+                      {
+                        max: 50,
+                        message: 'the name must be less than 50',
+                        whitespace: true,
+                      },
+                    ],
+                  })(<Input />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label={<span>Last Name</span>}>
+                  {getFieldDecorator('last', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please enter last name!',
+                        whitespace: true,
+                      },
+                      {
+                        max: 50,
+                        message: 'the lastname must be less than 50',
+                        whitespace: true,
+                      },
+                    ],
+                  })(<Input />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label={<span>Username</span>}>
+                  {getFieldDecorator('username', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please enter username!',
+                        whitespace: true,
+                      },
+                      {
+                        max: 50,
+                        message: 'the username must be less than 50',
+                        whitespace: true,
+                      },
+                    ],
+                  })(<Input />)}
+                </FormItem>
 
-          <Form onSubmit={this.handleSubmit}>
-            <FormItem
-              {...formItemLayout}
-              label={(
-                <span>
-                Name&nbsp;
-                  <Tooltip title="What do you want others to call you?">
-                    <Icon type="question-circle-o" />
-                  </Tooltip>
-                </span>
-)}
-          >
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input your Name!',
-                    whitespace: true,
-                  },
-                  {
-                    max: 20,
-                    message: 'the name should be less than 20 letters',
-                    whitespace: true,
-                  },
-                ],
-              })(<Input />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="E-mail">
-              {getFieldDecorator('email', {
-                rules: [
-                  {
-                    type: 'email',
-                    message: 'The input is not valid E-mail!',
-                  },
-                  {
-                    required: true,
-                    message: 'Please input your E-mail!',
-                  },
-                ],
-              })(<Input id="email1" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<span>Role</span>}>
-              {getFieldDecorator('rule', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input role type!',
-                    whitespace: true,
-                  },
-                ],
-              })(
-                <Select defaultValue="admin">
-                  <Option value="admin">Admin</Option>
-                  <Option value="Data Entery">Data Entery</Option>
-                </Select>,
-              )}
-            </FormItem>
-            <FormItem {...formItemLayout} label="User Profile">
-              <Upload
-                action="/api/v1/uploadFile"
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={this.handlePreview}
-                onChange={this.handleChange}
-                withCredentials
-                onRemove={this.removeFile}
-              >
-                {fileList.length === 1 ? null : uploadButton}
-              </Upload>
-              <Modal
-                visible={previewVisible}
-                footer={null}
-                onCancel={this.handleCancel}
-              >
-                <img
-                  alt="example"
-                  style={{ width: '100%' }}
-                  src={previewImage}
-                />
-              </Modal>
-            </FormItem>
-            <FormItem {...formItemLayout} label="Password">
-              {getFieldDecorator('password', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input your password!',
-                  },
-                  {
-                    validator: this.validateToNextPassword,
-                  },
-                ],
-              })(<Input type="password" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Confirm Password">
-              {getFieldDecorator('confirm', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please confirm your password!',
-                  },
-                  {
-                    validator: this.compareToFirstPassword,
-                  },
-                ],
-              })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
-            </FormItem>
+                <FormItem {...formItemLayout} label="E-mail">
+                  {getFieldDecorator('email', {
+                    rules: [
+                      {
+                        type: 'email',
+                        message: 'The input is not valid E-mail!',
+                      },
+                      {
+                        required: true,
+                        message: 'Please input your E-mail!',
+                      },
+                    ],
+                  })(<Input id="email1" type="email" />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label="Password">
+                  {getFieldDecorator('password', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please enter the password!',
+                      },
+                      {
+                        validator: this.validateToNextPassword,
+                      },
+                      {
+                        pattern: '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,}$',
+                        message:
+                          'Passowrd must have at least one Numeric and one Character and length must be more than 4',
+                      },
+                    ],
+                  })(<Input type="password" />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label="Confirm Password">
+                  {getFieldDecorator('confirm', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please confirm password!',
+                      },
+                      {
+                        validator: this.compareToFirstPassword,
+                      },
+                    ],
+                  })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label={<span>Role</span>}>
+                  {getFieldDecorator('rule', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please choose role type!',
+                        whitespace: true,
+                      },
+                    ],
+                  })(
+                    <Select defaultValue="admin">
+                      <Option value="admin">Admin</Option>
+                      <Option value="Data Entery">Data Entery</Option>
+                    </Select>,
+                  )}
+                </FormItem>
+
+                <FormItem
+                  {...formItemLayout}
+                  label={<span>Mobile Number</span>}
+                >
+                  {getFieldDecorator('mobile')(<Input />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label={<span>Job Title</span>}>
+                  {getFieldDecorator('job Title')(<Input />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label={<span>Adress</span>}>
+                  {getFieldDecorator('adress')(<Input />)}
+                </FormItem>
+                <FormItem />
+
+              </Col>
+              <Col span={6} className="addUser-image">
+                {' '}
+                <FormItem {...formItemLayout} label="">
+                  <Upload
+                    action="/api/v1/uploadFile"
+                    listType="picture-card"
+                    fileList={fileList}
+                    onPreview={this.handlePreview}
+                    onChange={this.handleChange}
+                    withCredentials
+                    onRemove={this.removeFile}
+                  >
+                    {fileList.length === 1 ? null : uploadButton}
+                  </Upload>
+                  <Modal
+                    visible={previewVisible}
+                    footer={null}
+                    onCancel={this.handleCancel}
+                  >
+                    <img
+                      alt="example"
+                      style={{ width: '100%' }}
+                      src={previewImage}
+                    />
+                  </Modal>
+                </FormItem>
+              </Col>
+            </Row>
             <FormItem {...tailFormItemLayout}>
               <Button type="primary" htmlType="submit">
-              Register
+                    Register
               </Button>
             </FormItem>
           </Form>

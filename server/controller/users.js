@@ -15,7 +15,7 @@ exports.post = async (request, response) => {
   try {
     const { body } = request;
     const {
-      email, password, rule, name, pic,
+      email, password, rule, first, last, mobile, adress, jobtitle, username, pic,
     } = body;
 
     if (
@@ -23,34 +23,41 @@ exports.post = async (request, response) => {
       && email.trim()
       && password
       && rule
-      && name
+      && first
       && pic
-      && password.trim()
+      && password.trim() && password.match('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,}$')
       && rule.trim()
-      && name.trim()
+      && first.trim()
       && pic.trim()
     ) {
       const result = await users.count({ where: { email } });
-      if (result === 0) {
-        bcryptjs.hash(password, 10, async (err, hash) => {
-          if (err) {
-            response.status(500).send('Internal Server Error');
-          }
-          const newUser = {
-            name,
-            email,
-            password: hash,
-            rule,
-            pic,
-          };
-          await users.create(newUser);
-          response
-            .status(200)
-            .send({ message: 'Success, New user has been added' });
-        });
-      } else {
-        response.status(400).send({ message: 'Email is already exist !' });
+      const resultUsername = await users.count({ where: { username } });
+      if (result !== 0) {
+        return response.status(400).send({ message: 'Email is already exist !' });
+      } if (resultUsername !== 0) {
+        return response.status(400).send({ message: 'username is already exist !' });
       }
+      bcryptjs.hash(password, 10, async (err, hash) => {
+        if (err) {
+          response.status(500).send('Internal Server Error');
+        }
+        const newUser = {
+          first,
+          email,
+          password: hash,
+          rule,
+          pic,
+          last,
+          mobile,
+          adress,
+          jobtitle,
+          username,
+        };
+        await users.create(newUser);
+        response
+          .status(200)
+          .send({ message: 'Success, New user has been added' });
+      });
     } else {
       response.status(400).send({
         message: 'Invalid inputs, please note the type of each input',

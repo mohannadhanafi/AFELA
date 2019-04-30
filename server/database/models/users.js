@@ -2,9 +2,25 @@ const Sequelize = require('sequelize');
 const connection = require('../config');
 
 const users = connection.define('users', {
-  name: {
+  first: {
     type: Sequelize.TEXT,
     allowNull: false,
+  },
+  last: {
+    type: Sequelize.TEXT,
+  },
+  username: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+  },
+  jobtitle: {
+    type: Sequelize.TEXT,
+  },
+  mobile: {
+    type: Sequelize.TEXT,
+  },
+  adress: {
+    type: Sequelize.TEXT,
   },
   email: {
     type: Sequelize.TEXT,
