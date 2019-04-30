@@ -125,7 +125,7 @@ class DragNDrop extends Component {
                   <span>Show right Section ?</span>
                 </Col>
                 <Col span={12}>
-                  <Preview categoryLayout={category_layout} />
+                  <Preview categoryLayout={category_layout} checkValue={checkValue} />
 
                 </Col>
               </Row>

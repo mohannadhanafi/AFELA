@@ -3,7 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './style.css';
 
 
-export default function Preview({ categoryLayout }) {
+export default function Preview({ categoryLayout, checkValue }) {
   return (
 
     <div className="preview-layout">
@@ -11,13 +11,13 @@ export default function Preview({ categoryLayout }) {
         <img
           className="layout-image"
           alt="category"
-          src={require('./layouts/list-right.png')}
+          src={require(`./layouts/list-${checkValue ? '' : 'no-'}right.png`)}
         />
       ) : (
         <img
           className="layout-image"
           alt="category"
-          src={require('./layouts/standard-right.png')}
+          src={require(`./layouts/standard-${checkValue ? '' : 'no-'}right.png`)}
         />
       )}
     </div>
