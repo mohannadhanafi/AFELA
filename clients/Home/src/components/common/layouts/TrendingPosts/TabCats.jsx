@@ -128,7 +128,7 @@ render() {
         ) : null}
         <ul className="posts-list">
 
-          {categoryPosts.length ? categoryPosts.slice(3, 6).map(post => (
+          {categoryPosts.length ? categoryPosts.slice(5, 8).map(post => (
             <li>
               <article className="post-small clearfix">
                 <div className="col-sm-5 nopadding pl-15">
