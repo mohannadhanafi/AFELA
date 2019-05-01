@@ -64,7 +64,7 @@ class Registration extends Component {
       this.setState({ disable: true });
       if (!err) {
         axios
-          .post('/api/v2/option', values)
+          .post('/api/v1/option', values)
           .then((result) => {
             const {
               data: { message },
@@ -154,8 +154,6 @@ class Registration extends Component {
 
 const RegistrationForm = Form.create()(Registration);
 const mapStateToProps = (props) => {
-  console.log(props);
-
   const { opations: options } = props.opations;
   return {
     options,

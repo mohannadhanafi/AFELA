@@ -45,7 +45,7 @@ class Registration extends Component {
       this.setState({ disable: true });
       if (!err) {
         axios
-          .post('/api/v2/option', values)
+          .post('/api/v1/option', values)
           .then((result) => {
             const {
               data: { message },

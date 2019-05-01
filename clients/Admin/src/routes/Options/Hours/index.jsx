@@ -43,7 +43,7 @@ class Registration extends Component {
       if (!err) {
         this.setState({ disable: true });
         axios
-          .post('/api/v2/hours', values)
+          .post('/api/v1/hours', values)
           .then((result) => {
             const {
               data: { message },

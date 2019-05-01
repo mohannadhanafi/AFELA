@@ -45,16 +45,16 @@ class Registration extends Component {
 
 
 componentDidMount = async () => {
-  const res = await axios.get('/api/v2/getoptions');
+  const res = await axios.get('/api/v1/getoptions');
   const { data } = res;
   const { favicon: pic, copyrights } = data[0];
   const fileList = [];
-  await axios.get(`/api/v2/getFav/${pic}`).then(() => {
+  await axios.get(`/api/v1/getFav/${pic}`).then(() => {
     fileList.push({
       uid: '-1',
       name: 'image.png',
       status: 'done',
-      url: `/api/v2/getFav/${pic}`,
+      url: `/api/v1/getFav/${pic}`,
     });
   }).catch((error) => {
   });
@@ -71,7 +71,7 @@ componentDidMount = async () => {
           values.favicon = fileName;
         }
         if (fileList.length) {
-          axios.post('/api/v2/option', values).then((result) => {
+          axios.post('/api/v1/option', values).then((result) => {
             const {
               data: { message },
               statusText,
@@ -177,7 +177,7 @@ componentDidMount = async () => {
         <Form onSubmit={this.handleSubmit}>
           <FormItem {...formItemLayout} label="Icon">
             <Upload
-              action="/api/v2/uploadFav"
+              action="/api/v1/uploadFav"
               listType="picture-card"
               fileList={fileList}
               onPreview={this.handlePreview}
@@ -195,7 +195,7 @@ componentDidMount = async () => {
               <img
                 alt="example"
                 style={{ width: '100%' }}
-                src={`/api/v2/getFav/${pic}`}
+                src={`/api/v1/getFav/${pic}`}
                 />
             </Modal>
           </FormItem>
