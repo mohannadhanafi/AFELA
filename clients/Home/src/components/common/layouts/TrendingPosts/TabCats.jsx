@@ -9,8 +9,10 @@ state = {}
 
 render() {
   const { data: { categoryDetails: { name }, categoryPosts } } = this.props;
+  console.log(name);
+
   return (
-    <div className="tab-pane fade in" id={`tab-${name}`}>
+    <div className="tab-pane fade in" id={`tab-${name.replace(/ /g, '')}`}>
 
       <div className="col-md-6 mb-50">
         {categoryPosts.length && categoryPosts[0] ? (

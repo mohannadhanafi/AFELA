@@ -40,7 +40,7 @@ class TrendingPosts extends Component {
               </li>
               {finalData.length && finalData.map(category => (
                 <li>
-                  <a href={`#tab-${category.categoryDetails.name}`} data-toggle="tab">
+                  <a href={`#tab-${category.categoryDetails.name.replace(/ /g, '')}`} data-toggle="tab">
                     {category.categoryDetails.name}
                   </a>
                 </li>
