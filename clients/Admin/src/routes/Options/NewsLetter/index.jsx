@@ -32,7 +32,7 @@ class Dynamic extends React.Component {
 
   delete = (id) => {
     axios
-      .delete('/api/v2/posts/delete', { data: { id } })
+      .delete('/api/v1/posts/delete', { data: { id } })
       .then((res) => {
         const {
           data: { message },
@@ -65,7 +65,7 @@ class Dynamic extends React.Component {
   };
 
   componentWillMount = () => {
-    axios.get('/api/v2/newsletters').then((result) => {
+    axios.get('/api/v1/newsletters').then((result) => {
       const { data } = result;
       const columns = [
         {

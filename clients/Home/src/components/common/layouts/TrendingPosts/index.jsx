@@ -55,6 +55,7 @@ class TrendingPosts extends Component {
                   {Trending.length && Trending[0] ? (
                     <article>
                       <div className="entry-img hover-scale">
+
                         <a
                           href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}
                           className="entry-category-label blue"

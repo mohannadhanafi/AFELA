@@ -1,10 +1,11 @@
 const nodemailer = require('nodemailer');
 const validator = require('validator');
+const { contactus } = require('../database/models');
 
 exports.post = async (request, response) => {
   try {
     const {
-      name, email, message,
+      name, email, message, mobile, text,
     } = request.body;
     if (
       name
@@ -13,6 +14,10 @@ exports.post = async (request, response) => {
       && email.trim()
       && message
       && message.trim()
+      && mobile
+      && mobile.trim()
+      && text
+      && text.trim()
     ) {
       const checkEmail = validator.isEmail(email);
       if (checkEmail) {
@@ -34,7 +39,11 @@ exports.post = async (request, response) => {
           if (error) {
             response.status(500).send({ message: 'Internal Server Error' });
           } else {
-            response.status(200).send({ message: 'Your Email has been Send' });
+            contactus.create({
+              name, email, mobile, message: text,
+            }).then(() => {
+              response.status(200).send({ message: 'Your Email has been Send' });
+            });
           }
         });
       } else {

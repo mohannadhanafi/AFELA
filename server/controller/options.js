@@ -24,6 +24,11 @@ exports.update = async (req, res) => {
       mobile,
       email,
       address,
+      phone,
+      tel,
+      fax,
+      footer_mobile,
+      footer_phone,
       copyrights,
     } = newData;
 
@@ -93,6 +98,11 @@ exports.update = async (req, res) => {
           min: 1,
           max: 8,
         }))
+        || (phone && !validator.isNumeric(phone))
+        || (tel && !validator.isNumeric(tel))
+        || (fax && !validator.isNumeric(fax))
+        || (footer_mobile && !validator.isNumeric(footer_mobile))
+        || (footer_phone && !validator.isNumeric(footer_phone))
     ) {
       res.status(400).send({
         message: 'Invalid inputs, please note the type of each input',
@@ -108,7 +118,6 @@ exports.update = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-
     res.status(500).send({
       message: 'Internal server error',
     });
@@ -120,8 +129,6 @@ exports.get = async (req, res) => {
     const result = await options.findAll();
     res.status(200).send(result);
   } catch (error) {
-    console.log(error);
-
     res.status(500).send({
       message: 'Internal server error',
     });
