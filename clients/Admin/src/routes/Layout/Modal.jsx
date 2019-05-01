@@ -46,7 +46,7 @@ class Modall extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const {
-      visible, handleCancel, onSubmit, category, setCatName, radioChange, handleChange, type, setThreeName,
+      visible, handleCancel, onSubmit, category, setCatId, radioChange, handleChange, type, setThreeName,
     } = this.props;
     const { categories, threeCats } = this.state;
     const formItemLayout = {
@@ -89,10 +89,10 @@ class Modall extends Component {
         {type === 'category' ? (
           <div className="layout-buttons">
             <FormItem {...formItemLayout} label="Cat. Name">
-              {getFieldDecorator('catName')(
-                <Select defaultValue="category" style={{ width: '100%' }} onChange={setCatName}>
+              {getFieldDecorator('catId')(
+                <Select defaultValue="category" style={{ width: '100%' }} onChange={setCatId}>
                   {categories.map(category => (
-                    <Option value={category.seo}>{category.name}</Option>
+                    <Option value={category.id}>{category.name}</Option>
                   ))}
                 </Select>,
               )}
@@ -187,7 +187,7 @@ class Modall extends Component {
                   onChange={value => setThreeName('first', value)}
                 >
                   {categories.map(category => (
-                    <Option value={category.seo}>{category.name}</Option>
+                    <Option value={category.id}>{category.name}</Option>
                   ))}
                 </Select>,
               )}
@@ -201,7 +201,7 @@ class Modall extends Component {
 
                         >
                   {categories.map(category => (
-                    <Option value={category.seo}>{category.name}</Option>
+                    <Option value={category.id}>{category.name}</Option>
                   ))}
                 </Select>,
               )}
@@ -215,7 +215,7 @@ class Modall extends Component {
 
                                 >
                   {categories.map(category => (
-                    <Option value={category.seo}>{category.name}</Option>
+                    <Option value={category.id}>{category.name}</Option>
                   ))}
                 </Select>,
               )}

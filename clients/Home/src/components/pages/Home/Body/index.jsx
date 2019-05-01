@@ -55,8 +55,6 @@ export default class index extends Component {
           return null;
       }
     } else if (type === 'component') {
-      console.log(name, 555555551545);
-
       switch (name) {
         case 'trending':
           if (show) return <TrendingPosts />;

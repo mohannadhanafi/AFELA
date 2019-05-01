@@ -23,6 +23,21 @@ posts.belongsTo(categories, {
   foreignKey: 'category_id',
   targetKey: 'id',
 });
+homeLayout.belongsTo(categories, {
+  onDelete: 'CASCADE',
+  foreignKey: 'category_id',
+  targetKey: 'id',
+});
+homeLayout.belongsTo(categories, {
+  onDelete: 'CASCADE',
+  foreignKey: 'category1_id',
+  targetKey: 'id',
+});
+homeLayout.belongsTo(categories, {
+  onDelete: 'CASCADE',
+  foreignKey: 'category2_id',
+  targetKey: 'id',
+});
 homePageLayouts.belongsTo(categories, {
   onDelete: 'CASCADE',
   foreignKey: 'category_id',

@@ -1,11 +1,16 @@
+/* eslint-disable camelcase */
 const { homeLayout, categories } = require('../database/models');
 
 exports.get = async (req, res) => {
   try {
-    const result = await homeLayout.findAll({
-      order: [['position', 'ASC']],
-    });
-    res.status(200).send(result);
+    // const result = await homeLayout.findAll({
+    //   order: [['position', 'ASC']],
+    //   include: [{ model: categories }],
+    // });
+    // console.log(result);
+
+    // res.status(200).send(result);
+    categories.findAll();
   } catch (error) {
     res.status(500).send({ message: 'Internal Server Error' });
   }
@@ -39,19 +44,13 @@ exports.post = async (req, res) => {
       obj,
     } = req.body;
     const {
-      catName: seo, layout_number, type, threecats,
+      catName: seo, layout_number, type, threecats, catId,
     } = obj;
     const maxPosition = await homeLayout.max('position');
     const position = maxPosition + 1;
     if (type === 'category') {
-      const categoryName = await categories.findOne({
-        attributes: ['name'],
-        where: { seo },
-        raw: true,
-      });
-      const { name } = categoryName;
       homeLayout.create({
-        seo, layout_number, type, position, name,
+        seo, layout_number, type, position, category_id: catId,
       }).then((result) => {
         res.status(200).send(result);
       });
@@ -66,7 +65,7 @@ exports.post = async (req, res) => {
         return name;
       }));
       homeLayout.create({
-        type: 'component', position, threecats: threeCatsNames, name: type, threecatsseo: threecats,
+        type: 'component', position, threecats, name: type, threecatsseo: threecats,
       }).then((result) => {
         res.status(200).send(result);
       });

@@ -2,7 +2,6 @@ import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import './style.css';
 import { Popconfirm, Icon } from 'antd';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const DragHandle = SortableHandle(({
   name, onDelete, show, id, changeState,
@@ -58,7 +57,7 @@ class ContactCell extends React.Component {
   render() {
     const { contact, onDelete } = this.props;
     const {
-      show, id, name, threecats, type, layout_number,
+      show, id, name, threecats, type, layout_number, category,
     } = contact;
     return (
       <>
@@ -95,7 +94,7 @@ class ContactCell extends React.Component {
 
             </div>
 
-          ) : <span className="title-drag">{name}</span>
+          ) : <span className="title-drag">{category ? category.name : name}</span>
               }
 
 

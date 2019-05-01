@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable camelcase */
+
 import React, { Component } from 'react';
 import {
   Col, Row, Card, Button,
@@ -48,7 +50,7 @@ class DragNDrop extends Component {
       contacts: [],
       layout_number: '',
       category: '',
-      catName: '',
+      catId: '',
       layout_number: '',
       type: '',
       loading: true,
@@ -62,6 +64,8 @@ class DragNDrop extends Component {
   componentWillMount() {
     axios.get('/api/v1/home/layouts').then((result) => {
       const { data: contacts } = result;
+      console.log(contacts);
+
       this.setState(() => ({ contacts, loading: false }));
     });
   }
@@ -103,17 +107,17 @@ class DragNDrop extends Component {
 
   handleOk = () => {
     const {
-      catName, layout_number, type, first, second, third,
+      catId, layout_number, type, first, second, third,
     } = this.state;
     const { contacts } = this.state;
     let obj;
     if (type === 'category') {
       obj = {
-        catName,
+        catId,
         layout_number,
         type,
       };
-      if (catName.trim()) {
+      if (catId) {
         axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
           const { data } = result;
           contacts.push(data);
@@ -129,7 +133,7 @@ class DragNDrop extends Component {
         type,
         threecats: [first, second, third],
       };
-      if (first.trim() && second.trim() && third.trim()) {
+      if (first && second && third) {
         axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
           const { data } = result;
           contacts.push(data);
@@ -163,8 +167,8 @@ class DragNDrop extends Component {
     this.setState(() => ({ contacts }));
   };
 
-  setCatName = (value) => {
-    this.setState(() => ({ catName: value }));
+  setCatId = (value) => {
+    this.setState(() => ({ catId: value }));
   };
 
   setThreeName = (name, value) => {
@@ -218,7 +222,7 @@ Create New Section in Home Page
           handleCancel={this.handleCancel}
           onSubmit={this.handleOk}
           category={category}
-          setCatName={this.setCatName}
+          setCatId={this.setCatId}
           radioChange={this.radioChange}
           handleChange={this.handleChange}
           type={type}
