@@ -28,8 +28,9 @@ const Contacts = SortableContainer(
 
       >
         {contacts.map((contact, index) => (
+
           <ContactCell
-            disabled={contact.name === 'trending'}
+            disabled={contact.name && contact.name === 'trending'}
             key={index}
             index={index}
             contact={contact}
@@ -64,8 +65,6 @@ class DragNDrop extends Component {
   componentWillMount() {
     axios.get('/api/v1/home/layouts').then((result) => {
       const { data: contacts } = result;
-      console.log(contacts);
-
       this.setState(() => ({ contacts, loading: false }));
     });
   }
@@ -80,7 +79,7 @@ class DragNDrop extends Component {
     });
     axios.delete('/api/v1/home/layouts', { data: { id } }).then(() => {
       this.setState(() => ({ contacts }), () => {
-        NotificationManager.success('Deleted', null, 1500);
+        NotificationManager.success(null, 'Deleted', 1500);
       });
     });
   };
@@ -97,7 +96,7 @@ class DragNDrop extends Component {
   handleSave = () => {
     const { contacts } = this.state;
     axios.post('/api/v1/home/layouts', contacts).then(() => {
-      NotificationManager.success('Updated', null, 1500);
+      NotificationManager.success(null, 'Updated', 1500);
     });
   };
 
@@ -120,6 +119,8 @@ class DragNDrop extends Component {
       if (catId) {
         axios.post('/api/v1/home/layout/create', { obj }).then((result) => {
           const { data } = result;
+          console.log(data);
+
           contacts.push(data);
           this.setState({ contacts, visible: false }, () => {
             NotificationManager.success('Saved', null, 1500);
@@ -138,11 +139,11 @@ class DragNDrop extends Component {
           const { data } = result;
           contacts.push(data);
           this.setState({ contacts, visible: false }, () => {
-            NotificationManager.success('Saved', null, 1500);
+            NotificationManager.success(null, 'Saved', 1500);
           });
         });
       } else {
-        NotificationManager.error('Please Choose Three Categories', null, 1500);
+        NotificationManager.error(null, 'Please Choose Three Categories', 1500);
       }
     }
   };
