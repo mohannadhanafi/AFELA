@@ -27,7 +27,7 @@ render() {
               </a>
             </div>
             <div className="entry mb-0">
-              <h2 className="entry-title">
+              <h2 className="entry-title three-lines">
                 <a href={`/news/${categoryPosts[0].category.seo}/${categoryPosts[0].seo}`}>
                   {categoryPosts[0].title}
                 </a>
@@ -38,7 +38,7 @@ render() {
                 </li>
               </ul>
               <div className="entry-content">
-                <p>
+                <p className="three-lines fix-height">
                   {ReactHtmlParser(categoryPosts[0].description)}
                 </p>
                 <a
@@ -67,7 +67,7 @@ render() {
                 <div className="col-sm-7 pl-15">
 
                   <div className="entry">
-                    <h3 className="entry-title">
+                    <h3 className="entry-title three-lines">
                       <a href={`/news/${post.category.seo}/${post.seo}`}>
                         {post.title}
                       </a>
@@ -102,7 +102,7 @@ render() {
               </a>
             </div>
             <div className="entry mb-0">
-              <h2 className="entry-title">
+              <h2 className="entry-title three-lines">
                 <a href={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}>
                   {categoryPosts[4].title}
                 </a>
@@ -113,7 +113,7 @@ render() {
                 </li>
               </ul>
               <div className="entry-content">
-                <p>
+                <p className="three-lines fix-height">
                   {ReactHtmlParser(categoryPosts[4].description)}
                 </p>
                 <a
@@ -142,7 +142,7 @@ render() {
                 <div className="col-sm-7 pl-15">
 
                   <div className="entry">
-                    <h3 className="entry-title">
+                    <h3 className="entry-title three-lines fix-height">
                       <a href={`/news/${post.category.seo}/${post.seo}`}>
                         {post.title}
                       </a>
