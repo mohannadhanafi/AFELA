@@ -1,17 +1,17 @@
 /* eslint-disable camelcase */
-const { homeLayout, categories } = require('../database/models');
+const { homeLayout, categories, threeColumns } = require('../database/models');
 
 exports.get = async (req, res) => {
   try {
-    // const result = await homeLayout.findAll({
-    //   order: [['position', 'ASC']],
-    //   include: [{ model: categories }],
-    // });
-    // console.log(result);
+    const result = await homeLayout.findAll({
+      order: [['position', 'ASC']],
+      include: [{ model: categories }, { model: threeColumns, include: [{ model: categories }] }],
+    });
 
-    // res.status(200).send(result);
-    categories.findAll();
+    res.status(200).send(result);
   } catch (error) {
+    console.log(error);
+
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
@@ -55,20 +55,18 @@ exports.post = async (req, res) => {
         res.status(200).send(result);
       });
     } else {
-      const threeCatsNames = await Promise.all(threecats.map(async (seo) => {
-        const categoryName = await categories.findOne({
-          attributes: ['name'],
-          where: { seo },
-          raw: true,
-        });
-        const { name } = categoryName;
-        return name;
-      }));
-      homeLayout.create({
+      const createResult = await homeLayout.create({
         type: 'component', position, threecats, name: type, threecatsseo: threecats,
-      }).then((result) => {
-        res.status(200).send(result);
-      });
+      }, { raw: true, returning: true });
+      const resultData = createResult.get({ plain: true });
+      const { id: homeId } = resultData;
+      await Promise.all(threecats.map(async (id) => {
+        await threeColumns.create({
+          homepage_id: homeId,
+          category_id: id,
+        });
+      }));
+      res.status(200).send(createResult);
     }
   } catch (error) {
     res.status(500).send({ message: 'Internal Server Error' });

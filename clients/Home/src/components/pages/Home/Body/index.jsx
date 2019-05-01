@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import TrendingPosts from '../../../common/layouts/TrendingPosts';
@@ -11,7 +13,6 @@ import LayoutFive from '../../../common/layouts/LayoutFive';
 import Ads from '../../../common/Ads';
 import Galleries from '../../../common/Galleries';
 import Category from '../../../common/Category';
-import TopRated from '../../../common/TopRated';
 import Tags from '../../../common/Tags';
 import LayoutOne from '../../../common/layouts/LayoutOne';
 import LayoutTwo from '../../../common/layouts/LayoutTwo';
@@ -28,27 +29,27 @@ export default class index extends Component {
 
   setLayout = (category) => {
     const {
-      type, layout_number, show, name, threecatsseo,
+      type, layout_number, show, name, threecolumns,
     } = category;
     if (type === 'category') {
       switch (layout_number) {
         case 5:
-          if (show) return <LayoutOne seo={category.seo} />;
+          if (show) return <LayoutOne seo={category.category.seo} />;
           break;
         case 6:
-          if (show) return <LayoutTwo seo={category.seo} />;
+          if (show) return <LayoutTwo seo={category.category.seo} />;
           break;
 
         case 2:
-          if (show) return <LayoutThree seo={category.seo} />;
+          if (show) return <LayoutThree seo={category.category.seo} />;
           break;
 
         case 8:
-          if (show) return <LayoutFour seo={category.seo} />;
+          if (show) return <LayoutFour seo={category.category.seo} />;
           break;
 
         case 7:
-          if (show) return <LayoutFive seo={category.seo} />;
+          if (show) return <LayoutFive seo={category.category.seo} />;
           break;
 
         default:
@@ -63,9 +64,9 @@ export default class index extends Component {
           if (show) {
             return (
               <Categories
-                cat1={threecatsseo[0]}
-                cat2={threecatsseo[1]}
-                cat3={threecatsseo[2]}
+                cat1={threecolumns[0].category.seo}
+                cat2={threecolumns[1].category.seo}
+                cat3={threecolumns[2].category.seo}
               />
             );
           }
@@ -83,7 +84,6 @@ export default class index extends Component {
       <div className="container pt-50">
         <div className="row">
           <div className="col-md-8 content">
-            {/* <Categories /> */}
             {array.map(element => this.setLayout(element))}
           </div>
           <aside className="col-md-4 sidebar pb-50">

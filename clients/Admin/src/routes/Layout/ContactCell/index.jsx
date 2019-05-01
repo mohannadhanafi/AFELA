@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable camelcase */
+
 import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import './style.css';
@@ -56,8 +59,10 @@ class ContactCell extends React.Component {
 
   render() {
     const { contact, onDelete } = this.props;
+    console.log(contact);
+
     const {
-      show, id, name, threecats, type, layout_number, category,
+      show, id, name, threecats, type, layout_number, category, threecolumns,
     } = contact;
     return (
       <>
@@ -88,8 +93,10 @@ class ContactCell extends React.Component {
           {name === 'three' ? (
             <div className="title-drag no-space">
 
-              { threecats.map(cat => (
-                <span style={{ marginLeft: 10 }}>{cat}</span>))
+
+              {threecolumns.map(element => (
+                <span style={{ marginLeft: 10 }}>{element.category.name}</span>
+              ))
             }
 
             </div>

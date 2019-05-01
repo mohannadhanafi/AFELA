@@ -17,34 +17,18 @@ const clients = require('./clients');
 const galleries = require('./galleries');
 const homeLayout = require('./homeLayout');
 const statistics = require('./statistics');
+const threeColumns = require('./threeColumns');
 
 posts.belongsTo(categories, {
   onDelete: 'CASCADE',
   foreignKey: 'category_id',
   targetKey: 'id',
 });
-homeLayout.belongsTo(categories, {
-  onDelete: 'CASCADE',
-  foreignKey: 'category_id',
-  targetKey: 'id',
-});
-homeLayout.belongsTo(categories, {
-  onDelete: 'CASCADE',
-  foreignKey: 'category1_id',
-  targetKey: 'id',
-});
-homeLayout.belongsTo(categories, {
-  onDelete: 'CASCADE',
-  foreignKey: 'category2_id',
-  targetKey: 'id',
-});
-homePageLayouts.belongsTo(categories, {
-  onDelete: 'CASCADE',
-  foreignKey: 'category_id',
-  targetKey: 'id',
-});
-
-
+categories.hasMany(posts, { foreignKey: 'category_id' });
+threeColumns.belongsTo(homeLayout, { foreignKey: 'homepage_id' });
+threeColumns.belongsTo(categories, { foreignKey: 'category_id' });
+homeLayout.belongsTo(categories, { foreignKey: 'category_id' });
+homeLayout.hasMany(threeColumns, { foreignKey: 'homepage_id' });
 comments.belongsTo(posts, {
   onDelete: 'CASCADE',
   foreignKey: 'post_id',
@@ -82,4 +66,5 @@ module.exports = {
   clients,
   homeLayout,
   statistics,
+  threeColumns,
 };

@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 // const { posts, categories } = require('../database/models');
 // var querystring = require('querystring');
-const Sequelize = require('../database/config');
 const { posts, categories, users } = require('../database/models');
 
 exports.get = async (req, res) => {
@@ -50,8 +49,9 @@ exports.get = async (req, res) => {
               },
               {
                 model: users,
-                attributes: [['first', 'last', 'name']],
-              }],
+                attributes: [['first', 'last']],
+              },
+            ],
             order: [['createdAt', 'DESC']],
           },
         );
