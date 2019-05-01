@@ -60,7 +60,7 @@ render() {
                 <div className="col-sm-5 nopadding pl-15">
                   <div className="entry-img hover-scale">
                     <a href={`/news/${post.category.seo}/${post.seo}`}>
-                      <img src={`/api/v1/getFile${convertImage(post.header_media[0], 'small')}`} alt="" />
+                      <img src={`/api/v1/getFile/${convertImage(post.header_media[0], 'small')}`} alt="" />
                     </a>
                   </div>
                 </div>
