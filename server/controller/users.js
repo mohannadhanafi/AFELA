@@ -169,6 +169,7 @@ exports.getProfile = async (req, res) => {
     const result = await users.findById(id);
     res.status(200).send(result);
   } catch (error) {
+    console.log(error)
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
@@ -177,7 +178,7 @@ exports.updateProfile = async (req, res) => {
   try {
     const { id, body: { data } } = req;
     const {
-      email, password, rule, first, last, mobile, address, jobtitle, username,
+      email, password, rule, first, last, mobile, address, jobtitle, username,pic
     } = data;
     console.log(data);
     if (
@@ -209,6 +210,7 @@ exports.updateProfile = async (req, res) => {
             jobtitle,
             username,
             address,
+            pic,
           };
           users.update(obj, {
             where: { id },
@@ -230,6 +232,7 @@ exports.updateProfile = async (req, res) => {
               address,
               username,
               password,
+              pic,
             };
             users.update(obj, {
               where: { id },
@@ -249,6 +252,7 @@ exports.updateProfile = async (req, res) => {
           username,
           jobtitle,
           address,
+          pic,
         };
         users.update(obj, {
           where: { id },

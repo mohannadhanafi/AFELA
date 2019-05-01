@@ -85,14 +85,14 @@ class Dynamic extends React.Component {
           ),
         },
         {
-          title: 'email',
+          title: 'Email',
           dataIndex: 'email',
           key: 'email',
           ...this.getColumnSearchProps('email'),
           sorter: (a, b) => a.email.length - b.email.length,
         },
         {
-          title: 'rule',
+          title: 'Rule',
           dataIndex: 'rule',
           key: 'rule',
           ...this.getColumnSearchProps('rule'),
