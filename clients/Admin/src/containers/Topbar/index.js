@@ -71,8 +71,6 @@ componentDidMount() {
         this.setState(() => ({ notificationsNumber: notificationsNumber + 1 }));
       });
       this.io.on('newEmail', (data) => {
-        console.log(15);
-        
         const { message } = data;
         notification.open({
           message: 'New Email',

@@ -60,39 +60,39 @@ class Registration extends Component {
     const white = [];
     const faviconList = [];
     await axios
-      .get(`/api/v2/getFile/${pic}`)
+      .get(`/api/v1/getFile/${pic}`)
       .then(() => {
         coloured.push({
           uid: '-1',
           name: 'image.png',
           status: 'done',
-          url: `/api/v2/getFile/${pic}`,
+          url: `/api/v1/getFile/${pic}`,
         });
       })
       .catch((error) => {});
     await axios
-      .get(`/api/v2/getFile/${footer_logo}`)
+      .get(`/api/v1/getFile/${footer_logo}`)
       .then(() => {
         white.push({
           uid: '-1',
           name: 'image.png',
           status: 'done',
-          url: `/api/v2/getFile/${footer_logo}`,
+          url: `/api/v1/getFile/${footer_logo}`,
         });
       })
       .catch((error) => {});
     await axios
-      .get(`/api/v2/getFav/${favicon}`)
+      .get(`/api/v1/getFav/${favicon}`)
       .then(() => {
         faviconList.push({
           uid: '-1',
           name: 'image.png',
           status: 'done',
-          url: `/api/v2/getFav/${favicon}`,
+          url: `/api/v1/getFav/${favicon}`,
         });
       })
       .catch((error) => {});
-    const res = await axios.get('/api/v2/getoptions');
+    const res = await axios.get('/api/v1/getoptions');
     const { data } = res;
     const {
       ctatitle,
@@ -132,7 +132,7 @@ class Registration extends Component {
         }
         if (coloured.length) {
           axios
-            .post('/api/v2/option', values)
+            .post('/api/v1/option', values)
             .then((result) => {
               const {
                 data: { message },
@@ -303,7 +303,7 @@ class Registration extends Component {
           </FormItem>
           <FormItem {...formItemLayout} label="Main Logo">
             <Upload
-              action="/api/v2/uploadFile"
+              action="/api/v1/uploadFile"
               listType="picture-card"
               fileList={coloured}
               onPreview={this.handlePreview}
@@ -322,14 +322,14 @@ class Registration extends Component {
               <img
                 alt="example"
                 style={{ width: '100%' }}
-                src={`/api/v2/getFile/${pic}`}
+                src={`/api/v1/getFile/${pic}`}
               />
             </Modal>
           </FormItem>
 
           <FormItem {...formItemLayout} label="Footer Logo">
             <Upload
-              action="/api/v2/uploadFile"
+              action="/api/v1/uploadFile"
               listType="picture-card"
               fileList={white}
               onPreview={this.handlePreview}
@@ -348,14 +348,14 @@ class Registration extends Component {
               <img
                 alt="example"
                 style={{ width: '100%' }}
-                src={`/api/v2/getFile/${colouredName}`}
+                src={`/api/v1/getFile/${colouredName}`}
               />
             </Modal>
           </FormItem>
 
           <FormItem {...formItemLayout} label="Fav ico" style={{ float: 'unset' }}>
             <Upload
-              action="/api/v2/uploadFav"
+              action="/api/v1/uploadFav"
               listType="picture-card"
               fileList={faviconList}
               onPreview={this.handlePreview}
@@ -375,7 +375,7 @@ class Registration extends Component {
               <img
                 alt="example"
                 style={{ width: '100%' }}
-                src={`/api/v2/getFav/${faviconListName}`}
+                src={`/api/v1/getFav/${faviconListName}`}
                 />
             </Modal>
           </FormItem>

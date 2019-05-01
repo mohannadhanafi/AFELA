@@ -93,6 +93,7 @@ const posts = connection.define('options', {
   name: Sequelize.TEXT,
   header: Sequelize.TEXT,
   footer: Sequelize.TEXT,
+  first: Sequelize.TEXT,
   active: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,

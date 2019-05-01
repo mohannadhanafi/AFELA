@@ -40,7 +40,7 @@ class Registration extends Component {
   handleCancel = () => this.setState({ previewVisible: false });
 
 componentDidMount = async () => {
-  const res = await axios.get('/api/v2/getoptions');
+  const res = await axios.get('/api/v1/getoptions');
   const { data } = res;
   const {
     latitude, longitude,
@@ -55,7 +55,7 @@ componentDidMount = async () => {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.setState({ disable: true });
-        axios.post('/api/v2/option', values).then((result) => {
+        axios.post('/api/v1/option', values).then((result) => {
           const {
             data: { message },
             statusText,

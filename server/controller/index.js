@@ -28,6 +28,8 @@ const clients = require('./clients');
 const gallery = require('./galleries');
 const statistics = require('./statistics');
 const homeLayouts = require('./layouts');
+const contactus = require('./contactus');
+const newsletters = require('./newsletters');
 
 
 const router = express.Router();
@@ -99,6 +101,8 @@ router
   .get('/profile', users.getProfile)
   .post('/profile', users.updateProfile)
   .use(Auth.checkAdmin)
+  .get('/contactus', contactus.get)
+  .get('/newsletters', newsletters.get)
   .post('/search', search.search)
   .post('/layout/update', layout.homePageUpdate)
   .get('/category/:id', categories.getCategoty)
