@@ -28,7 +28,7 @@ class UserInfo extends Component {
     this.props.userSignOut();
   }
 
-  goPropfile = () => {
+    goPropfile = () => {
     const { id } = this.state;
     this.props.history.push('/admin/profile');
   }
