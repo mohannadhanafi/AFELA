@@ -307,10 +307,10 @@ class Registration extends Component {
                   {getFieldDecorator('mobile')(<Input />)}
                 </FormItem>
                 <FormItem {...formItemLayout} label={<span>Job Title</span>}>
-                  {getFieldDecorator('job Title')(<Input />)}
+                  {getFieldDecorator('jobtitle')(<Input />)}
                 </FormItem>
-                <FormItem {...formItemLayout} label={<span>Adress</span>}>
-                  {getFieldDecorator('adress')(<Input />)}
+                <FormItem {...formItemLayout} label={<span>Address</span>}>
+                  {getFieldDecorator('address')(<Input />)}
                 </FormItem>
                 <FormItem />
 
