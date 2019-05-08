@@ -29,22 +29,22 @@ class UserInfo extends Component {
   }
 
     goPropfile = () => {
-    const { id } = this.state;
-    this.props.history.push('/admin/profile');
-  }
+      const { id } = this.state;
+      this.props.history.push('/admin/profile');
+    }
 
-  render() {
-    const { name, pic } = this.state;
-    const userMenuOptions = (
+    render() {
+      const { name, pic } = this.state;
+      const userMenuOptions = (
       <ul className="gx-user-popover">
         <li onClick={this.goPropfile}>Profile</li>
         <Menu.Divider />
         <li onClick={this.logout}>Log out</li>
       </ul>
-    );
+      );
 
 
-    return (
+      return (
       <Popover
         overlayClassName="gx-popover-horizantal"
         placement="bottomRight"
@@ -57,8 +57,8 @@ class UserInfo extends Component {
           alt=""
         />
       </Popover>
-    );
-  }
+      );
+    }
 }
 
 export default connect(null, { userSignOut })(withRouter(UserInfo));

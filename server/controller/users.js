@@ -14,8 +14,6 @@ exports.get = async (request, response) => {
 exports.post = async (request, response) => {
   try {
     const { body } = request;
-    console.log(request.body);
-
     const {
       email, password, rule, first, last, mobile, address, jobtitle, username, pic,
     } = body;
@@ -169,7 +167,6 @@ exports.getProfile = async (req, res) => {
     const result = await users.findById(id);
     res.status(200).send(result);
   } catch (error) {
-    console.log(error)
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
@@ -178,9 +175,8 @@ exports.updateProfile = async (req, res) => {
   try {
     const { id, body: { data } } = req;
     const {
-      email, password, rule, first, last, mobile, address, jobtitle, username,pic
+      email, password, rule, first, last, mobile, address, jobtitle, username, pic,
     } = data;
-    console.log(data);
     if (
       email && email.trim()
       && first && first.trim()
@@ -210,8 +206,10 @@ exports.updateProfile = async (req, res) => {
             jobtitle,
             username,
             address,
-            pic,
           };
+          if (pic) {
+            obj.pic = pic;
+          }
           users.update(obj, {
             where: { id },
           });
@@ -232,8 +230,10 @@ exports.updateProfile = async (req, res) => {
               address,
               username,
               password,
-              pic,
             };
+            if (pic) {
+              obj.pic = pic;
+            }
             users.update(obj, {
               where: { id },
             });
@@ -252,8 +252,10 @@ exports.updateProfile = async (req, res) => {
           username,
           jobtitle,
           address,
-          pic,
         };
+        if (pic) {
+          obj.pic = pic;
+        }
         users.update(obj, {
           where: { id },
         });
@@ -265,7 +267,6 @@ exports.updateProfile = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
