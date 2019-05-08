@@ -5,6 +5,8 @@ export default class Header extends Component {
   state = {};
 
   render() {
+    const { options } = this.props;
+    console.log(options)
     return (
       <>
         <div className="header-wrap">
@@ -12,13 +14,15 @@ export default class Header extends Component {
             <div className="row">
               <div className="logo-container">
                 <div className="logo-wrap text-center">
+                {options.length ? (
                   <a href="/">
                     <img
                       className="logo"
-                      src="https://cdn.logojoy.com/wp-content/uploads/2017/08/freelogodesign2@2x.png"
+                      src={`/api/v1/getFile/${options[0].logo}`}
                       alt="logo"
                     />
                   </a>
+                ) : null}
                 </div>
               </div>
 

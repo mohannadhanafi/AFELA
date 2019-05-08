@@ -55,6 +55,16 @@ exports.post = async (request, response) => {
   });
 };
 
+exports.postIcon = (request, respone) => {
+  const { file } = request.files;
+  const { data } = file;
+  fs.writeFile('client/Home/build/favicon.ico', data, (err) => {
+    fs.writeFile('client/admin/build/favicon.ico', data, (err) => {
+      respone.send('favicon.ico');
+    });
+  });
+};
+
 exports.remove = (request, response) => {
   const { pic } = request.body;
   fs.unlink(`uploads/${pic}`, (err) => {
@@ -66,4 +76,9 @@ exports.remove = (request, response) => {
 exports.get = (request, response) => {
   const { name } = request.params;
   response.sendFile(path.join(__dirname, '..', '..', 'uploads', name));
+};
+
+exports.getFav = (request, response) => {
+  const { name } = request.params;
+  response.sendFile(path.join(__dirname, '..', '..', '..', 'clients', 'admin', 'build', name));
 };

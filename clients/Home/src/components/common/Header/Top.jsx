@@ -34,21 +34,57 @@ export default class Header extends Component {
                 <ul className="col-sm-6 top-bar-acc text-right">
                   {options.length ? (
                     <li className="social-icons dark">
-                      {links.map(link => (
+                    {options[0].facebook ? (
                         <a
-                          href={options[0][link.name] ? options[0][link.name] : null}
+                          href={options[0].facebook}
                         >
-                          <i className={`fab fa-${link.name}`} />
+                          <i className={`fab fa-facebook`} />
                         </a>
-                      ))}
+                    ) : null}
+                    {options[0].twitter ? (
+                        <a
+                          href={options[0].twitter}
+                        >
+                          <i className={`fab fa-twitter`} />
+                        </a>
+                    ) : null}
+                    {options[0].youtube ? (
+                        <a
+                          href={options[0].youtube}
+                        >
+                          <i className={`fab fa-youtube`} />
+                        </a>
+                    ) : null}
+                    {options[0].google ? (
+                        <a
+                          href={options[0].google}
+                        >
+                          <i className={`fab fa-google`} />
+                        </a>
+                    ) : null}
+                    {options[0].whats ? (
+                        <a
+                          href={`tel:${options[0].whats}`}
+                        >
+                          <i className={`fab fa-whatsapp`} />
+                        </a>
+                    ) : null}
+                        {options[0].instagram ? (
+                        <a
+                          href={ options[0].instagram }
+                        >
+                          <i className={`fab fa-instagram`} />
+                        </a>
+                        ) : null}
+                        {options[0].linkedin ? (
+                        <a
+                          href={options[0].linkedin}
+                        >
+                          <i className={`fab fa-linkedin`} />
+                        </a>
+                        ) : null}
                     </li>
                   ) : null}
-                  {/* <li className="top-bar-link">
-                    <a href="#">Join</a>
-                  </li>
-                  <li className="top-bar-link">
-                    <a href="#">Login</a>
-                  </li> */}
                 </ul>
               </div>
             </div>

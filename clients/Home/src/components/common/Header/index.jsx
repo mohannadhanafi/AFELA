@@ -12,8 +12,10 @@ class Header extends Component {
       const { options } = this.props;
       return (
         <header className="nav-type-4">
-
-          <Top options={options} />
+          <div className="hidden">
+            {options.length && options[0].header}
+          </div>
+          {options.length && <Top options={options} /> }
           <nav className="navbar navbar-static-top">
             <div className="navigation">
               <div className="container-fluid relative">
@@ -33,7 +35,7 @@ class Header extends Component {
                       </button>
                     </div>
                   </div>
-                  <Middle />
+                  <Middle options={options} />
                   <Bottom />
 
                 </div>

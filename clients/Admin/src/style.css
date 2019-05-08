@@ -244,5 +244,9 @@ a,
 }
 .notification-error:before {
   color: #ffa39e !important;
+}
 
+.notification-container {
+  height: 90px;
+  overflow-y: hidden !important
 }

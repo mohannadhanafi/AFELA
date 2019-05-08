@@ -71,7 +71,7 @@ class Registration extends Component {
               statusText,
             } = result;
             if (result.status === 200) {
-              NotificationManager.success(message, 'SUCCESS', 2020202020);
+              NotificationManager.success(message, 'SUCCESS', 2000);
               setTimeout(() => {
                 this.setState({ disable: false });
               }, 3000);
@@ -147,6 +147,7 @@ class Registration extends Component {
     </Form>
   ) : null}
 
+        <NotificationContainer />
       </>
     );
   }

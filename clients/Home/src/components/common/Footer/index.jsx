@@ -74,6 +74,9 @@ class Footer extends Component {
 
     return (
       <footer className="footer footer-type-4">
+      <div className="hidden">
+            {options.length && options[0].footer}
+          </div>
         <div className="container">
           <div className="footer-widgets">
             <div className="row">
@@ -186,13 +189,58 @@ class Footer extends Component {
               <div className="col-md-3 col-xs-12 footer-socials mt-mdm-10 text-right">
                 <div className="social-icons dark">
                   {options.length ? (
-                    links.map(link => (
-                      <a href={options[0][link.name] ? options[0][link.name] : null}>
-                        <i className={`fab fa-${link.name}`} />
-                      </a>
-                    ))
+                  <>
+                    {options[0].facebook ? (
+                        <a
+                          href={options[0].facebook}
+                        >
+                          <i className={`fab fa-facebook`} />
+                        </a>
+                    ) : null}
+                    {options[0].twitter ? (
+                        <a
+                          href={options[0].twitter}
+                        >
+                          <i className={`fab fa-twitter`} />
+                        </a>
+                    ) : null}
+                    {options[0].youtube ? (
+                        <a
+                          href={options[0].youtube}
+                        >
+                          <i className={`fab fa-youtube`} />
+                        </a>
+                    ) : null}
+                    {options[0].google ? (
+                        <a
+                          href={options[0].google}
+                        >
+                          <i className={`fab fa-google`} />
+                        </a>
+                    ) : null}
+                    {options[0].whats ? (
+                        <a
+                          href={`tel:${options[0].whats}`}
+                        >
+                          <i className={`fab fa-whatsapp`} />
+                        </a>
+                    ) : null}
+                        {options[0].instagram ? (
+                        <a
+                          href={ options[0].instagram }
+                        >
+                          <i className={`fab fa-instagram`} />
+                        </a>
+                        ) : null}
+                        {options[0].linkedin ? (
+                        <a
+                          href={options[0].linkedin}
+                        >
+                          <i className={`fab fa-linkedin`} />
+                        </a>
+                        ) : null}
+                  </>
                   ) : null}
-
                 </div>
               </div>
             </div>

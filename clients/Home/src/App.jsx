@@ -24,6 +24,11 @@ class App extends Component {
   }
 
   render() {
+    const {options} = this.props;
+    if (options.length) {
+      document.title = options[0].name;
+      document.documentElement.style.setProperty('--main-color', options[0].color);
+    }
     return (
       <div className="App">
         <Router>

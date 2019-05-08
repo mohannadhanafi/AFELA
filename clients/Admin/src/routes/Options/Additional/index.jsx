@@ -130,7 +130,7 @@ class Registration extends Component {
     </Form>
   ) : null
              }
-
+        <NotificationContainer />
       </>
     );
   }

@@ -1,3 +1,6 @@
+:root {
+  --main-color: #2cb8a5;
+}
 @media (max-width: 1199px) {
   .agency .container {
     width: auto;
@@ -185,7 +188,7 @@
   }
 
   .navbar-nav .open .dropdown-menu > li > a:hover {
-    color: #2cb8a5;
+    color: var(--main-color);
   }
 
   .navigation-overlay .navbar-nav .open .dropdown-menu > li > a:hover,

@@ -11,8 +11,7 @@ import Social from '../Social';
 import Footer from '../Footer';
 import ContactUs from '../ContactUs';
 import General from '../General';
-import OpenningHours from '../Hours';
-import Additional from '../Additional/index';
+import Additional from '../Additional';
 import './style.css';
 
 const { TabPane } = Tabs;
@@ -26,7 +25,6 @@ goToHome = () => {
 
 onSave = () => {
   const { values } = this.props;
-
   axios
     .post('/api/v1/option', values)
     .then((result) => {
@@ -34,7 +32,6 @@ onSave = () => {
         data: { message },
         statusText,
       } = result;
-
       if (result.status === 200) {
         NotificationManager.success(message, 'SUCCESS', 2000);
         setTimeout(() => {
@@ -71,43 +68,39 @@ render() {
       <Tabs>
 
         {role !== 'admin' ? (
-          <TabPane disabled tab="General Settings" key="1" style={{ color: 'red' }} className="sticky-tab">
+          <TabPane disabled tab="General Settings" key="1" style={{ color: 'red' }}>
             <General />
           </TabPane>
         ) : (
-          <TabPane tab="General Settings" key="1" style={{ color: 'red' }} className="sticky-tab">
+          <TabPane tab="General Settings" key="1" style={{ color: 'red' }}>
             <General />
           </TabPane>
         )}
 
-        <TabPane tab="Contact Us" key="2" style={{ color: 'red' }} className="sticky-tab">
+        <TabPane tab="Contact Us" key="2">
           <ContactUs />
         </TabPane>
 
-        <TabPane tab="Social Media" key="3" className="sticky-tab">
+        <TabPane tab="Social Media" key="3">
           <Social />
         </TabPane>
 
-        <TabPane tab="Style" key="4" className="sticky-tab">
+        <TabPane tab="Style" key="4">
           <Logo />
         </TabPane>
 
         {role !== 'admin' ? (
-          <TabPane disabled tab="Additional Codes" key="5" className="sticky-tab">
+          <TabPane disabled tab="Additional Codes" key="5">
             <Additional />
           </TabPane>
         ) : (
-          <TabPane tab="Additional Codes" key="5" className="sticky-tab">
+          <TabPane tab="Additional Codes" key="5">
             <Additional />
           </TabPane>
         )}
 
-        <TabPane tab="Footer" key="6" className="sticky-tab">
+        <TabPane tab="Footer" key="6">
           <Footer />
-        </TabPane>
-
-        <TabPane tab="Hours" key="7" className="sticky-tab">
-          <OpenningHours />
         </TabPane>
 
       </Tabs>
@@ -117,11 +110,13 @@ render() {
 }
 }
 
-const mapStateToProps = ({ auth, form }) => {
+const mapStateToProps = ({ auth, opations, form }) => {
   const { role } = auth;
+  const { opations: options } = opations;
   const { values } = form;
   return {
     role,
+    options,
     values,
   };
 };
