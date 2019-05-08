@@ -19,7 +19,7 @@ const users = connection.define('users', {
   mobile: {
     type: Sequelize.TEXT,
   },
-  adress: {
+  address: {
     type: Sequelize.TEXT,
   },
   email: {

@@ -6,9 +6,12 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 import {
   Card, Divider, Table, Popconfirm, Button, Input, Icon,
 } from 'antd';
+import { connect } from 'react-redux';
 import {
   NotificationContainer,
   NotificationManager,
@@ -30,9 +33,9 @@ class Dynamic extends React.Component {
         } = res;
         NotificationManager.success(message, 'SUCCESS', 2000);
         setTimeout(() => {
-          const { data } = this.state;
-          const final = data.filter(element => element.id !== id);
-          this.setState({ data: final });
+          const { items } = this.state;
+          const final = items.filter(element => element.id !== id);
+          this.setState({ items: final });
         }, 500);
       })
       .catch(() => {
@@ -46,6 +49,19 @@ class Dynamic extends React.Component {
 
   componentDidMount = () => {
     let { sortedInfo, filteredInfo } = this.state;
+    const cookie = Cookies.get('jwt');
+    let id;
+    if (cookie) {
+      try {
+        const jwt = jwtDecode(cookie);
+
+        id = jwt.id;
+      } catch (error) {
+        id = null;
+      }
+    } else {
+      id = null;
+    } console.log(id);
     sortedInfo = sortedInfo || {};
     filteredInfo = filteredInfo || {};
     axios.get('/api/v1/users/getAll').then((result) => {
@@ -53,10 +69,10 @@ class Dynamic extends React.Component {
       const columns = [
         {
           title: 'Name',
-          dataIndex: 'name',
-          key: 'name',
-          ...this.getColumnSearchProps('name'),
-          sorter: (a, b) => a.name.props.children.length - b.name.props.children.length,
+          dataIndex: 'first',
+          key: 'first',
+          ...this.getColumnSearchProps('first'),
+          sorter: (a, b) => a.first.length - b.first.length,
           render: (text, record) => (
             <div className="gx-flex-row gx-align-items-center">
               <img
@@ -64,19 +80,19 @@ class Dynamic extends React.Component {
                 src={`/api/v1/getFile/${record.pic}`}
                 alt=""
               />
-              <p className="gx-mb-0">{record.name}</p>
+              <p className="gx-mb-0">{`${record.first} ${record.last}`}</p>
             </div>
           ),
         },
         {
-          title: 'email',
+          title: 'Email',
           dataIndex: 'email',
           key: 'email',
           ...this.getColumnSearchProps('email'),
           sorter: (a, b) => a.email.length - b.email.length,
         },
         {
-          title: 'rule',
+          title: 'Rule',
           dataIndex: 'rule',
           key: 'rule',
           ...this.getColumnSearchProps('rule'),
@@ -93,7 +109,8 @@ class Dynamic extends React.Component {
       data.map((element) => {
         element.action = (
           <span>
-            <Link to={`/admin/users/${element.id}`} className="icon icon-feedback" />
+            { id === element.id ? (<Link to="/admin/profile" className="icon icon-feedback" />):(<Link to={`/admin/users/${element.id}`} className="icon icon-feedback" />)
+}
             <Divider type="vertical" />
             <Popconfirm
               title="Are you sure delete this task?"
@@ -114,28 +131,6 @@ class Dynamic extends React.Component {
     });
   };
 
-  delete = (id, rule) => {
-    axios
-      .delete('/api/v1/users/delete', { data: { id, rule } })
-      .then((res) => {
-        const {
-          data: { message },
-        } = res;
-        NotificationManager.success(message, 'SUCCESS', 2000);
-        setTimeout(() => {
-          const { data } = this.state;
-          const final = data.filter(element => element.id !== id);
-          this.setState({ data: final });
-        }, 500);
-      })
-      .catch(() => {
-        NotificationManager.error(
-          'You can not delete the admin',
-          'ERROR',
-          2000,
-        );
-      });
-  };
 
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({
@@ -219,13 +214,15 @@ class Dynamic extends React.Component {
     const { data } = this.state;
     let list = data;
     list = list.filter(
-      item => item.name.props.children.toLowerCase().indexOf(value.toLowerCase()) !== -1,
+      item => item.first.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      || item.last.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      || item.email.toLowerCase().indexOf(value.toLowerCase()) !== -1,
     );
 
     if (list.length !== 0) {
       this.setState({ items: list });
     } else {
-      this.setState({ items: null});
+      this.setState({ items: null });
     }
   };
 
@@ -233,7 +230,7 @@ class Dynamic extends React.Component {
     const { data, columns, items } = this.state;
     return (
       <Card title="Users List">
-        <Input.Search style={{ width: '30%' }} onChange={this.onChange} placeholder='Search By Name' />
+        <Input.Search style={{ width: '30%' }} onChange={this.onChange} placeholder="Search " />
         <Table
           className="gx-table-responsive"
           columns={columns}
@@ -244,5 +241,10 @@ class Dynamic extends React.Component {
     );
   }
 }
-
-export default Dynamic;
+const mapStateToProps = ({ auth }) => {
+  const { role } = auth;
+  return {
+    role,
+  };
+};
+export default connect(mapStateToProps)(Dynamic);

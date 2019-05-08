@@ -40,7 +40,7 @@ class TrendingPosts extends Component {
               </li>
               {finalData.length && finalData.map(category => (
                 <li>
-                  <a href={`#tab-${category.categoryDetails.name}`} data-toggle="tab">
+                  <a href={`#tab-${category.categoryDetails.name.replace(/ /g, '')}`} data-toggle="tab">
                     {category.categoryDetails.name}
                   </a>
                 </li>
@@ -55,6 +55,7 @@ class TrendingPosts extends Component {
                   {Trending.length && Trending[0] ? (
                     <article>
                       <div className="entry-img hover-scale">
+
                         <a
                           href={`/news/${Trending[0].category.seo}/${Trending[0].seo}`}
                           className="entry-category-label blue"

@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
+import { convertImage } from '../../../../appRedux/actions';
 
 class TabCats extends Component {
 state = {}
 
 render() {
   const { data: { categoryDetails: { name }, categoryPosts } } = this.props;
+  console.log(name);
+
   return (
-    <div className="tab-pane fade in" id={`tab-${name}`}>
+    <div className="tab-pane fade in" id={`tab-${name.replace(/ /g, '')}`}>
 
       <div className="col-md-6 mb-50">
         {categoryPosts.length && categoryPosts[0] ? (
@@ -22,11 +25,11 @@ render() {
                 {categoryPosts[0].category.name}
               </a>
               <a href={`/news/${categoryPosts[0].category.seo}/${categoryPosts[0].seo}`}>
-                <img src={`/api/v1/getFile/${categoryPosts[0].header_media[0]}`} alt="" />
+                <img src={`/api/v1/getFile/${convertImage(categoryPosts[0].header_media[0], 'medium')}`} alt="" />
               </a>
             </div>
             <div className="entry mb-0">
-              <h2 className="entry-title">
+              <h2 className="entry-title three-lines">
                 <a href={`/news/${categoryPosts[0].category.seo}/${categoryPosts[0].seo}`}>
                   {categoryPosts[0].title}
                 </a>
@@ -37,7 +40,7 @@ render() {
                 </li>
               </ul>
               <div className="entry-content">
-                <p>
+                <p className="three-lines fix-height">
                   {ReactHtmlParser(categoryPosts[0].description)}
                 </p>
                 <a
@@ -52,27 +55,34 @@ render() {
         ) : null}
         <ul className="posts-list">
 
-          {categoryPosts.length ? categoryPosts.slice(1, 3).map(post => (
+          {categoryPosts.length ? categoryPosts.slice(1, 4).map(post => (
             <li>
               <article className="post-small clearfix">
-                <div className="entry-img hover-scale">
-                  <a href={`/news/${post.category.seo}/${post.seo}`}>
-                    <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
-                  </a>
-                </div>
-                <div className="entry">
-                  <h3 className="entry-title">
-                    <a href={`/news/${post.category.seo}/${post.seo}`}>
-                      {post.title}
-                    </a>
-                  </h3>
-                  <ul className="entry-meta list-inline">
-                    <li className="entry-date">
-                      {moment(post.createdAt).calendar()}
-                    </li>
 
-                  </ul>
+                <div className="col-sm-5 nopadding pl-15">
+                  <div className="entry-img hover-scale">
+                    <a href={`/news/${post.category.seo}/${post.seo}`}>
+                      <img src={`/api/v1/getFile/${convertImage(post.header_media[0], 'small')}`} alt="" />
+                    </a>
+                  </div>
                 </div>
+                <div className="col-sm-7 pl-15">
+
+                  <div className="entry">
+                    <h3 className="entry-title three-lines">
+                      <a href={`/news/${post.category.seo}/${post.seo}`}>
+                        {post.title}
+                      </a>
+                    </h3>
+                    <ul className="entry-meta list-inline">
+                      <li className="entry-date">
+                        {moment(post.createdAt).calendar()}
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+
               </article>
             </li>
           )) : null}
@@ -90,11 +100,11 @@ render() {
                 {categoryPosts[4].category.name}
               </a>
               <a href={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}>
-                <img src={`/api/v1/getFile/${categoryPosts[4].header_media[0]}`} alt="" />
+                <img src={`/api/v1/getFile/${convertImage(categoryPosts[4].header_media[0], 'medium')}`} alt="" />
               </a>
             </div>
             <div className="entry mb-0">
-              <h2 className="entry-title">
+              <h2 className="entry-title three-lines">
                 <a href={`/news/${categoryPosts[4].category.seo}/${categoryPosts[4].seo}`}>
                   {categoryPosts[4].title}
                 </a>
@@ -105,7 +115,7 @@ render() {
                 </li>
               </ul>
               <div className="entry-content">
-                <p>
+                <p className="three-lines fix-height">
                   {ReactHtmlParser(categoryPosts[4].description)}
                 </p>
                 <a
@@ -120,27 +130,35 @@ render() {
         ) : null}
         <ul className="posts-list">
 
-          {categoryPosts.length ? categoryPosts.slice(3, 6).map(post => (
+          {categoryPosts.length ? categoryPosts.slice(5, 8).map(post => (
             <li>
               <article className="post-small clearfix">
-                <div className="entry-img hover-scale">
-                  <a href={`/news/${post.category.seo}/${post.seo}`}>
-                    <img src={`/api/v1/getFile/${post.header_media[0]}`} alt="" />
-                  </a>
-                </div>
-                <div className="entry">
-                  <h3 className="entry-title">
-                    <a href={`/news/${post.category.seo}/${post.seo}`}>
-                      {post.title}
-                    </a>
-                  </h3>
-                  <ul className="entry-meta list-inline">
-                    <li className="entry-date">
-                      {moment(post.createdAt).calendar()}
-                    </li>
+                <div className="col-sm-5 nopadding pl-15">
 
-                  </ul>
+                  <div className="entry-img hover-scale">
+                    <a href={`/news/${post.category.seo}/${post.seo}`}>
+                      <img src={`/api/v1/getFile/${convertImage(post.header_media[0], 'small')}`} alt="" />
+                    </a>
+                  </div>
                 </div>
+                <div className="col-sm-7 pl-15">
+
+                  <div className="entry">
+                    <h3 className="entry-title three-lines fix-height">
+                      <a href={`/news/${post.category.seo}/${post.seo}`}>
+                        {post.title}
+                      </a>
+                    </h3>
+                    <ul className="entry-meta list-inline">
+                      <li className="entry-date">
+                        {moment(post.createdAt).calendar()}
+                      </li>
+
+                    </ul>
+                  </div>
+
+                </div>
+
               </article>
             </li>
           )) : null}

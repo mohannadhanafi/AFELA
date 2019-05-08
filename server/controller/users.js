@@ -14,8 +14,10 @@ exports.get = async (request, response) => {
 exports.post = async (request, response) => {
   try {
     const { body } = request;
+    console.log(request.body);
+
     const {
-      email, password, rule, first, last, mobile, adress, jobtitle, username, pic,
+      email, password, rule, first, last, mobile, address, jobtitle, username, pic,
     } = body;
 
     if (
@@ -49,7 +51,7 @@ exports.post = async (request, response) => {
           pic,
           last,
           mobile,
-          adress,
+          address,
           jobtitle,
           username,
         };
@@ -98,21 +100,29 @@ exports.updateUser = async (req, res) => {
       data,
       params: { id },
     } = req.body;
+
     const {
-      email, name, rule,
+      email, password, rule, first, last, mobile, address, jobtitle, username, pic,
     } = data;
 
     if (
-      email.trim()
-      && name.trim()
-      && rule.trim()
-      && validator.isLength(name, { min: 1, max: 20 })
+      email && email.trim()
+      && first && first.trim()
+     && last && last.trim()
+     && username && username.trim()
+      && validator.isLength(first, { min: 1, max: 50 })
+      && validator.isLength(last, { min: 1, max: 50 })
+
     ) {
       const checkEmail = await users.findOne({ where: { email }, raw: true });
+      const checkUsername = await users.findOne({ where: { username }, raw: true });
+
       if (checkEmail && checkEmail.id !== parseInt(id, 10)) {
         res
           .status(400)
           .send({ message: 'Sorry !, this email is already exist' });
+      } else if (checkUsername && checkUsername.id !== parseInt(id, 10)) {
+        return res.status(400).send({ message: 'username is already exist !' });
       } else if (!data.password) {
         users.update(data, {
           where: { id },
@@ -159,6 +169,7 @@ exports.getProfile = async (req, res) => {
     const result = await users.findById(id);
     res.status(200).send(result);
   } catch (error) {
+    console.log(error)
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
@@ -167,40 +178,86 @@ exports.updateProfile = async (req, res) => {
   try {
     const { id, body: { data } } = req;
     const {
-      email, name, rule,
+      email, password, rule, first, last, mobile, address, jobtitle, username,pic
     } = data;
-
+    console.log(data);
     if (
-      email.trim()
-      && name.trim()
-      && rule.trim()
-      && validator.isLength(name, { min: 1, max: 20 })
+      email && email.trim()
+      && first && first.trim()
+     && last && last.trim()
+     && username && username.trim()
+      && validator.isLength(first, { min: 1, max: 50 })
+      && validator.isLength(last, { min: 1, max: 50 })
+
     ) {
+      const checkUsername = await users.findOne({ where: { username }, raw: true });
       const checkEmail = await users.findOne({ where: { email }, raw: true });
-      if (checkEmail && checkEmail.id !== parseInt(id, 10)) {
-        res
-          .status(400)
-          .send({ message: 'Sorry !, this email is already exist' });
-      } else if (!data.password) {
-        users.update(data, {
-          where: { id },
-        });
-        res.status(200).send({ message: 'Updated is done' });
-      } else if (data.password.trim()) {
-        bcryptjs.hash(data.password, 10, (err, hashedPass) => {
-          if (err) {
-            res.status(500).send({ message: 'Internal server Error' });
-          }
-          data.password = hashedPass;
-          users.update(data, {
+      const user = await users.findOne({ where: { id }, raw: true });
+      if (user.rule === 'admin') {
+        if (checkEmail && checkEmail.id !== parseInt(id, 10)) {
+          res
+            .status(400)
+            .send({ message: 'Sorry !, this email is already exist' });
+        } else if (checkUsername && checkUsername.id !== parseInt(id, 10)) {
+          return res.status(400).send({ message: 'username is already exist !' });
+        } else
+        if (!data.password) {
+          const obj = {
+            first,
+            last,
+            email,
+            mobile,
+            jobtitle,
+            username,
+            address,
+            pic,
+          };
+          users.update(obj, {
             where: { id },
           });
           res.status(200).send({ message: 'Updated is done' });
-        });
+        } else if (data.password.trim()) {
+          bcryptjs.hash(data.password, 10, (err, hashedPass) => {
+            if (err) {
+              res.status(500).send({ message: 'Internal server Error' });
+            }
+            data.password = hashedPass;
+            const password = hashedPass;
+            const obj = {
+              first,
+              last,
+              email,
+              mobile,
+              jobtitle,
+              address,
+              username,
+              password,
+              pic,
+            };
+            users.update(obj, {
+              where: { id },
+            });
+            res.status(200).send({ message: 'Updated is done' });
+          });
+        } else {
+          res.status(400).send({
+            message: 'Invalid inputs, enter a valid Password',
+          });
+        }
       } else {
-        res.status(400).send({
-          message: 'Invalid inputs, enter a valid Password',
+        const obj = {
+          first,
+          last,
+          mobile,
+          username,
+          jobtitle,
+          address,
+          pic,
+        };
+        users.update(obj, {
+          where: { id },
         });
+        res.status(200).send({ message: 'Updated is done' });
       }
     } else {
       res.status(400).send({
@@ -208,6 +265,7 @@ exports.updateProfile = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
