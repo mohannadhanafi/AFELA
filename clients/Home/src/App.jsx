@@ -43,7 +43,6 @@ class App extends Component {
         </Router>
         <Footer />
         <BackToTop />
-
       </div>
     );
   }
